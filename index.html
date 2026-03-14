@@ -105,3 +105,2462 @@
       "@type": "Question",
       "name": "How to report anti-Islam content on TikTok?",
       "acceptedAnswer": {"@type": "Answer", "text": "Visit Legend Report Portal, select TikTok as the platform, paste the account link, choose violation type, and submit. Then click 'Report on TikTok' to also report directly on the platform."}
+    },
+    {
+      "@type": "Question",
+      "name": "How to report blasphemy on Facebook?",
+      "acceptedAnswer": {"@type": "Answer", "text": "Use the Legend Report Portal to submit a report with the Facebook account link and select 'Blasphemy of Prophets' as the violation type. You can also click 'Report on Facebook' to report directly."}
+    },
+    {
+      "@type": "Question",
+      "name": "How to get an anti-Islamic YouTube channel banned?",
+      "acceptedAnswer": {"@type": "Answer", "text": "Submit the channel link on Legend Report Portal. The public report allows other Muslims to also report the same account, increasing the chance of a ban."}
+    },
+    {
+      "@type": "Question",
+      "name": "What is Legend Report Portal?",
+      "acceptedAnswer": {"@type": "Answer", "text": "Legend Report Portal is a free platform built by MA LEGEND where Muslims can report anti-Islam accounts, blasphemy content, scammers and blackmailers across all major social media platforms."}
+    }
+  ]
+}
+</script>
+
+<!-- ═══ PWA MANIFEST (Install as App) ═══ -->
+<link rel="manifest" href="data:application/json;charset=utf-8,%7B%22name%22%3A%22Legend%20Report%20Portal%22%2C%22short_name%22%3A%22LegendReport%22%2C%22description%22%3A%22Report%20anti-Islam%20accounts%20across%20all%20platforms%22%2C%22start_url%22%3A%22%2F%22%2C%22display%22%3A%22standalone%22%2C%22background_color%22%3A%22%23e0e5ec%22%2C%22theme_color%22%3A%22%236c63ff%22%2C%22icons%22%3A%5B%7B%22src%22%3A%22%2Ficon-192.png%22%2C%22sizes%22%3A%22192x192%22%2C%22type%22%3A%22image%2Fpng%22%7D%5D%7D">
+
+<!-- ═══ PRECONNECT (Speed) ═══ -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;700;900&family=Exo+2:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+<style>
+/* ═══════════════════════════════════════
+   THEME VARIABLES
+═══════════════════════════════════════ */
+[data-theme="light"]{
+  --bg:#e0e5ec;
+  --sd:rgba(163,177,198,0.7);
+  --sl:rgba(255,255,255,0.9);
+  --tx:#2d3561;--ts:#6b7a99;
+  --card-bg:#e0e5ec;
+  --shadow-out:6px 6px 14px rgba(163,177,198,0.7),-6px -6px 14px rgba(255,255,255,0.9);
+  --shadow-in:inset 4px 4px 9px rgba(163,177,198,0.6),inset -4px -4px 9px rgba(255,255,255,0.9);
+  --shadow-sm:3px 3px 7px rgba(163,177,198,0.7),-3px -3px 7px rgba(255,255,255,0.9);
+  --topnav-shadow:0 4px 20px rgba(163,177,198,0.5);
+  --overlay-bg:rgba(224,229,236,0.97);
+  --par-op:0.5;
+}
+[data-theme="dark"]{
+  --bg:#1a1e2e;
+  --sd:rgba(0,0,0,0.5);
+  --sl:rgba(255,255,255,0.04);
+  --tx:#e0e5f0;--ts:#7a849e;
+  --card-bg:#1f2335;
+  --shadow-out:6px 6px 14px rgba(0,0,0,0.5),-6px -6px 14px rgba(255,255,255,0.04);
+  --shadow-in:inset 4px 4px 9px rgba(0,0,0,0.5),inset -4px -4px 9px rgba(255,255,255,0.03);
+  --shadow-sm:3px 3px 7px rgba(0,0,0,0.5),-3px -3px 7px rgba(255,255,255,0.04);
+  --topnav-shadow:0 4px 20px rgba(0,0,0,0.4);
+  --overlay-bg:rgba(20,24,40,0.97);
+  --par-op:0.3;
+}
+:root{
+  --a1:#ff6b35;--a2:#00d4aa;--a3:#6c63ff;--a4:#f7c948;
+  --red:#e53935;--green:#43a047;
+  --sw:270px;
+}
+
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  background:var(--bg);
+  font-family:'Exo 2',sans-serif;
+  color:var(--tx);
+  min-height:100vh;
+  overflow-x:hidden;
+  transition:background .4s,color .4s;
+}
+::-webkit-scrollbar{width:4px;}
+::-webkit-scrollbar-track{background:var(--bg);}
+::-webkit-scrollbar-thumb{background:var(--a3);border-radius:10px;}
+
+/* ═══════════════════════════════════════
+   CANVAS PARTICLES (JS-driven, always works)
+═══════════════════════════════════════ */
+#particleCanvas{
+  position:fixed;inset:0;
+  pointer-events:none;z-index:0;
+  width:100%;height:100%;
+}
+
+/* ═══════════════════════════════════════
+   GLOW ORBS
+═══════════════════════════════════════ */
+.orb{position:fixed;border-radius:50%;filter:blur(70px);pointer-events:none;z-index:0;}
+.orb1{width:350px;height:350px;background:radial-gradient(circle,rgba(108,99,255,0.18),transparent 70%);top:-120px;right:-120px;animation:orbDrift 9s ease-in-out infinite;}
+.orb2{width:280px;height:280px;background:radial-gradient(circle,rgba(255,107,53,0.12),transparent 70%);bottom:-100px;left:-80px;animation:orbDrift 11s ease-in-out infinite reverse;}
+.orb3{width:200px;height:200px;background:radial-gradient(circle,rgba(0,212,170,0.10),transparent 70%);top:50%;left:50%;animation:orbDrift 14s ease-in-out infinite alternate;}
+@keyframes orbDrift{0%,100%{transform:translate(0,0) scale(1);}33%{transform:translate(25px,-15px) scale(1.05);}66%{transform:translate(-10px,20px) scale(0.95);}}
+
+/* ═══════════════════════════════════════
+   ADMIN LOGIN OVERLAY
+═══════════════════════════════════════ */
+.overlay{
+  position:fixed;inset:0;
+  background:var(--overlay-bg);
+  backdrop-filter:blur(12px);
+  display:flex;align-items:center;justify-content:center;
+  z-index:9999;padding:24px;
+  transition:all .3s;
+}
+.overlay.hidden{display:none;}
+.login-box{
+  background:var(--card-bg);
+  border-radius:28px;padding:36px 26px;
+  width:100%;max-width:340px;
+  box-shadow:var(--shadow-out);
+  text-align:center;
+  animation:popIn .45s cubic-bezier(.34,1.56,.64,1);
+  position:relative;overflow:hidden;
+}
+.login-box::before{
+  content:'';position:absolute;top:-40px;left:-40px;right:-40px;
+  height:120px;
+  background:linear-gradient(135deg,rgba(108,99,255,0.15),rgba(255,107,53,0.1));
+  border-radius:50% 50% 60% 60% / 40% 40% 60% 60%;
+  z-index:0;
+}
+@keyframes popIn{from{transform:scale(.8) translateY(20px);opacity:0;}to{transform:scale(1) translateY(0);opacity:1;}}
+.login-icon{font-size:52px;margin-bottom:10px;position:relative;z-index:1;}
+.login-title{font-family:'Orbitron',monospace;font-size:17px;font-weight:900;color:var(--tx);margin-bottom:3px;position:relative;z-index:1;}
+.login-sub{font-size:10px;color:var(--ts);letter-spacing:1.5px;margin-bottom:22px;position:relative;z-index:1;}
+.pass-wrap{position:relative;margin-bottom:12px;}
+.login-input{
+  width:100%;padding:14px 46px 14px 16px;
+  border:none;outline:none;border-radius:13px;
+  background:var(--card-bg);
+  box-shadow:var(--shadow-in);
+  font-family:'Exo 2',sans-serif;font-size:16px;
+  color:var(--tx);text-align:center;
+  letter-spacing:6px;
+  transition:box-shadow .2s;
+}
+.login-input:focus{box-shadow:var(--shadow-in),0 0 0 2px rgba(108,99,255,.4);}
+.eye-btn{
+  position:absolute;right:14px;top:50%;transform:translateY(-50%);
+  background:none;border:none;cursor:pointer;font-size:18px;opacity:.5;transition:opacity .2s;
+}
+.eye-btn:hover{opacity:1;}
+.login-btn{
+  width:100%;padding:14px;border:none;border-radius:14px;
+  background:linear-gradient(135deg,var(--a3),var(--a1));
+  color:#fff;font-family:'Orbitron',monospace;font-size:12px;font-weight:700;
+  letter-spacing:2px;cursor:pointer;
+  box-shadow:5px 5px 16px rgba(108,99,255,.4);
+  transition:all .2s;
+}
+.login-btn:active{transform:scale(.97);}
+.login-err{font-size:11px;color:var(--red);margin-top:10px;font-weight:700;display:none;}
+.attempt-bar{margin-top:6px;font-size:10px;color:var(--ts);}
+.back-link{
+  background:none;border:none;color:var(--ts);font-size:11px;
+  cursor:pointer;font-family:'Exo 2',sans-serif;margin-top:12px;
+  display:block;width:100%;transition:color .2s;
+}
+.back-link:hover{color:var(--a3);}
+
+/* ═══════════════════════════════════════
+   SIDEBAR
+═══════════════════════════════════════ */
+.sb-bg{
+  position:fixed;inset:0;background:rgba(0,0,0,.3);
+  backdrop-filter:blur(3px);
+  z-index:499;display:none;
+}
+.sb-bg.on{display:block;}
+.sidebar{
+  position:fixed;top:0;left:0;bottom:0;width:var(--sw);
+  background:var(--card-bg);
+  box-shadow:8px 0 32px rgba(0,0,0,.25);
+  z-index:500;
+  transform:translateX(calc(-1 * var(--sw)));
+  transition:transform .35s cubic-bezier(.4,0,.2,1);
+  display:flex;flex-direction:column;
+  overflow-y:auto;
+  scrollbar-width:thin;
+}
+.sidebar.open{transform:translateX(0);}
+
+.sb-header{
+  padding:30px 20px 20px;
+  background:linear-gradient(135deg,var(--a3) 0%,var(--a1) 100%);
+  position:relative;overflow:hidden;flex-shrink:0;
+}
+.sb-header::before{
+  content:'';position:absolute;width:200px;height:200px;
+  border-radius:50%;background:rgba(255,255,255,.07);
+  top:-80px;right:-60px;
+}
+.sb-header::after{
+  content:'';position:absolute;width:100px;height:100px;
+  border-radius:50%;background:rgba(255,255,255,.05);
+  bottom:-30px;left:20px;
+}
+.sb-logo-row{display:flex;align-items:center;gap:12px;position:relative;z-index:1;}
+.sb-emoji{font-size:38px;filter:drop-shadow(0 2px 8px rgba(0,0,0,0.3));} .sb-logo-img{width:48px;height:48px;border-radius:50%;}
+.sb-name{font-family:'Orbitron',monospace;font-size:15px;font-weight:900;color:#fff;letter-spacing:.5px;}
+.sb-tagline{font-size:10px;color:rgba(255,255,255,.75);letter-spacing:1.5px;margin-top:2px;}
+.sb-live{
+  display:inline-flex;align-items:center;gap:5px;
+  margin-top:12px;padding:4px 12px;
+  border-radius:20px;background:rgba(255,255,255,.18);
+  font-size:10px;font-weight:700;color:#fff;
+  position:relative;z-index:1;
+}
+.live-dot{width:7px;height:7px;border-radius:50%;background:#fff;animation:blink 1.2s infinite;}
+@keyframes blink{0%,100%{opacity:1;}50%{opacity:.2;}}
+
+.sb-sec{
+  padding:14px 18px 6px;
+  font-size:9px;font-weight:800;color:var(--ts);
+  letter-spacing:2px;text-transform:uppercase;
+}
+.sb-link{
+  display:flex;align-items:center;gap:12px;
+  padding:11px 18px;cursor:pointer;
+  border-left:3px solid transparent;
+  text-decoration:none;color:var(--tx);
+  transition:all .2s;
+}
+.sb-link:hover,.sb-link.active{
+  background:rgba(108,99,255,.08);
+  border-left-color:var(--a3);color:var(--a3);
+}
+.sb-link-icon{font-size:18px;width:26px;text-align:center;}
+.sb-link-txt{font-size:12px;font-weight:700;}
+.sb-link-badge{
+  margin-left:auto;background:var(--a1);color:#fff;
+  font-size:9px;font-weight:800;padding:2px 7px;
+  border-radius:10px;display:none;
+}
+
+.sb-stats-box{
+  margin:10px 16px;border-radius:16px;padding:14px;
+  background:var(--card-bg);box-shadow:var(--shadow-out);
+}
+.sb-stats-title{font-size:9px;font-weight:800;color:var(--ts);letter-spacing:2px;text-transform:uppercase;margin-bottom:10px;}
+.sb-stat-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;}
+.sb-stat-l{font-size:11px;color:var(--ts);}
+.sb-stat-v{font-family:'Orbitron',monospace;font-size:12px;font-weight:700;color:var(--a3);}
+
+.sb-ext-links{margin:6px 16px 10px;}
+.sb-ext-title{font-size:9px;font-weight:800;color:var(--ts);letter-spacing:2px;text-transform:uppercase;margin-bottom:8px;}
+.sb-ext-link{
+  display:flex;align-items:center;gap:10px;
+  padding:9px 12px;border-radius:12px;
+  background:var(--card-bg);box-shadow:var(--shadow-sm);
+  text-decoration:none;color:var(--tx);
+  margin-bottom:7px;transition:all .2s;
+}
+.sb-ext-link:active{box-shadow:var(--shadow-in);}
+.sb-ext-icon{font-size:16px;}
+.sb-ext-txt{font-size:11px;font-weight:700;}
+
+.sb-dua{
+  margin:0 16px 20px;border-radius:14px;padding:14px;text-align:center;
+  background:linear-gradient(135deg,rgba(108,99,255,.12),rgba(0,212,170,.08));
+  border:1px solid rgba(108,99,255,.15);
+}
+.sb-dua-ar{font-size:17px;color:var(--a3);font-weight:700;direction:rtl;margin-bottom:4px;}
+.sb-dua-tr{font-size:9px;color:var(--ts);letter-spacing:.5px;}
+
+/* ═══════════════════════════════════════
+   ADMIN TOPBAR
+═══════════════════════════════════════ */
+.admin-bar{
+  display:none;background:linear-gradient(135deg,var(--a3),var(--a1));
+  padding:8px 16px;align-items:center;justify-content:space-between;
+  position:relative;z-index:200;
+}
+.admin-bar.on{display:flex;}
+.admin-bar-tag{
+  font-family:'Orbitron',monospace;font-size:10px;font-weight:700;
+  color:#fff;letter-spacing:1px;display:flex;align-items:center;gap:7px;
+}
+.admin-bar-btns{display:flex;gap:7px;}
+.ab-btn{
+  padding:5px 13px;border:none;border-radius:20px;
+  background:rgba(255,255,255,.2);font-size:10px;font-weight:700;
+  color:#fff;cursor:pointer;font-family:'Exo 2',sans-serif;
+  transition:all .2s;
+}
+.ab-btn:hover{background:rgba(255,255,255,.3);}
+
+/* ═══════════════════════════════════════
+   TOP NAV
+═══════════════════════════════════════ */
+.topnav{
+  position:sticky;top:0;z-index:300;
+  background:var(--card-bg);
+  padding:10px 14px;
+  box-shadow:var(--topnav-shadow);
+  display:flex;align-items:center;gap:10px;
+  transition:background .4s;
+}
+.ham-btn{
+  padding:8px 9px;border:none;border-radius:10px;
+  background:var(--card-bg);box-shadow:var(--shadow-sm);
+  cursor:pointer;font-size:16px;transition:all .2s;
+  color:var(--tx);
+}
+.ham-btn:active{box-shadow:var(--shadow-in);}
+.nav-title{
+  font-family:'Orbitron',monospace;font-size:12px;font-weight:700;flex:1;
+  background:linear-gradient(135deg,var(--a1),var(--a3));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  background-clip:text;letter-spacing:.5px;
+}
+.nav-right{display:flex;align-items:center;gap:7px;}
+.lang-wrap{
+  display:flex;background:var(--card-bg);
+  box-shadow:var(--shadow-sm);border-radius:20px;overflow:hidden;
+}
+.lang-btn{
+  padding:5px 10px;border:none;background:none;
+  cursor:pointer;font-size:10px;font-weight:700;
+  color:var(--ts);font-family:'Exo 2',sans-serif;transition:all .2s;
+}
+.lang-btn.on{background:linear-gradient(135deg,var(--a3),var(--a1));color:#fff;border-radius:20px;}
+.theme-btn{
+  padding:7px 9px;border:none;border-radius:10px;
+  background:var(--card-bg);box-shadow:var(--shadow-sm);
+  cursor:pointer;font-size:15px;transition:all .2s;
+}
+.theme-btn:active{box-shadow:var(--shadow-in);}
+.notif-btn{
+  position:relative;padding:7px 9px;border:none;border-radius:10px;
+  background:var(--card-bg);box-shadow:var(--shadow-sm);
+  cursor:pointer;font-size:15px;transition:all .2s;
+}
+.notif-dot{
+  position:absolute;top:4px;right:4px;
+  width:8px;height:8px;border-radius:50%;
+  background:var(--a1);display:none;
+  animation:blink 1.2s infinite;
+}
+
+/* ═══════════════════════════════════════
+   BROADCAST BANNER
+═══════════════════════════════════════ */
+.bc-banner{
+  margin:12px 14px 0;border-radius:16px;
+  padding:13px 16px;display:none;
+  border-left:4px solid var(--a3);
+  background:linear-gradient(135deg,rgba(108,99,255,.1),rgba(255,107,53,.06));
+  box-shadow:var(--shadow-sm);
+  animation:slideDown .4s ease;
+  position:relative;z-index:1;
+}
+.bc-banner.on{display:block;}
+@keyframes slideDown{from{opacity:0;transform:translateY(-10px);}to{opacity:1;transform:translateY(0);}}
+.bc-label{font-size:9px;font-weight:800;color:var(--a3);letter-spacing:2px;text-transform:uppercase;margin-bottom:5px;}
+.bc-text{font-size:12px;color:var(--tx);font-weight:600;line-height:1.6;white-space:pre-wrap;}
+.bc-time{font-size:9px;color:var(--ts);margin-top:5px;}
+
+/* ═══════════════════════════════════════
+   TAB BAR (horizontal scroll)
+═══════════════════════════════════════ */
+.tab-bar{
+  display:flex;gap:8px;padding:14px 14px 0;
+  overflow-x:auto;scrollbar-width:none;
+  position:relative;z-index:1;
+}
+.tab-bar::-webkit-scrollbar{display:none;}
+.tab{
+  flex:0 0 auto;padding:8px 16px;border-radius:20px;border:none;
+  background:var(--card-bg);box-shadow:var(--shadow-sm);
+  font-family:'Exo 2',sans-serif;font-size:11px;font-weight:700;
+  color:var(--ts);cursor:pointer;transition:all .2s;white-space:nowrap;
+}
+.tab.on{
+  box-shadow:var(--shadow-in);
+  color:var(--a3);
+}
+
+/* ═══════════════════════════════════════
+   PAGES
+═══════════════════════════════════════ */
+.page{display:none;padding:16px 14px 96px;position:relative;z-index:1;}
+.page.on{display:block;animation:fadeUp .3s ease;}
+@keyframes fadeUp{from{opacity:0;transform:translateY(14px);}to{opacity:1;transform:translateY(0);}}
+
+/* ═══════════════════════════════════════
+   STATS GRID
+═══════════════════════════════════════ */
+.stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:9px;margin-bottom:14px;}
+.stat-box{
+  text-align:center;padding:12px 4px;border-radius:14px;
+  background:var(--card-bg);box-shadow:var(--shadow-out);
+  transition:transform .2s;cursor:default;
+}
+.stat-box:active{transform:scale(.96);}
+.stat-num{
+  font-family:'Orbitron',monospace;font-size:18px;font-weight:900;
+  background:linear-gradient(135deg,var(--a1),var(--a3));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  background-clip:text;
+}
+.stat-lbl{font-size:8px;color:var(--ts);letter-spacing:.8px;text-transform:uppercase;margin-top:2px;}
+
+/* ═══════════════════════════════════════
+   SECTION HEADING
+═══════════════════════════════════════ */
+.sec-h{
+  font-family:'Orbitron',monospace;font-size:10px;font-weight:700;
+  color:var(--ts);letter-spacing:2px;text-transform:uppercase;
+  margin:0 0 10px;display:flex;align-items:center;gap:8px;
+}
+.sec-h::after{content:'';flex:1;height:1px;background:linear-gradient(to right,var(--sd),transparent);}
+
+/* ═══════════════════════════════════════
+   CARD
+═══════════════════════════════════════ */
+.card{
+  background:var(--card-bg);border-radius:18px;
+  padding:16px;box-shadow:var(--shadow-out);
+  margin-bottom:14px;transition:background .4s;
+}
+
+/* ═══════════════════════════════════════
+   PLATFORM GRID (tap-to-select in form)
+═══════════════════════════════════════ */
+.plat-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;}
+.plat-card{
+  border-radius:15px;padding:13px 8px;text-align:center;
+  background:var(--card-bg);box-shadow:var(--shadow-out);
+  cursor:pointer;position:relative;transition:all .25s;
+  border:2px solid transparent;
+}
+.plat-card:active{transform:scale(.96);}
+.plat-card.sel{
+  box-shadow:var(--shadow-in);
+  border-color:var(--a3);
+}
+.plat-card.sel .plat-tag{color:var(--a3);font-weight:800;}
+.plat-dot{
+  position:absolute;top:8px;right:9px;
+  width:7px;height:7px;border-radius:50%;
+  animation:blink 2s ease-in-out infinite;
+}
+.plat-check{position:absolute;top:7px;left:9px;font-size:12px;display:none;}
+.plat-card.sel .plat-check{display:block;}
+.plat-icon{font-size:26px;margin-bottom:5px;display:block;}
+.plat-name{font-size:12px;font-weight:700;color:var(--tx);}
+.plat-tag{font-size:8px;color:var(--ts);letter-spacing:.8px;margin-top:2px;}
+
+/* ═══════════════════════════════════════
+   FORM ELEMENTS
+═══════════════════════════════════════ */
+.fg{margin-bottom:13px;}
+.fl{
+  font-size:10px;font-weight:700;color:var(--ts);
+  letter-spacing:1.5px;text-transform:uppercase;
+  margin-bottom:6px;display:block;
+}
+.ni{
+  width:100%;padding:12px 14px;border:none;outline:none;
+  border-radius:11px;background:var(--card-bg);
+  box-shadow:var(--shadow-in);
+  font-family:'Exo 2',sans-serif;font-size:13px;color:var(--tx);
+  transition:box-shadow .2s;
+}
+.ni::placeholder{color:var(--ts);opacity:.7;}
+.ni:focus{box-shadow:var(--shadow-in),0 0 0 2px rgba(108,99,255,.3);}
+select.ni{appearance:none;cursor:pointer;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M6 8L0 0h12z' fill='%236b7a99'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center;padding-right:36px;}
+textarea.ni{resize:none;height:85px;}
+.img-prev{width:100%;max-height:160px;object-fit:cover;border-radius:10px;margin-top:8px;display:none;}
+.sel-plat-show{
+  display:none;padding:8px 12px;border-radius:10px;
+  background:rgba(108,99,255,.1);font-size:11px;font-weight:700;
+  color:var(--a3);margin-bottom:10px;
+  border:1px solid rgba(108,99,255,.2);
+}
+
+/* CHIPS */
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:3px;}
+.chip{
+  padding:5px 11px;border-radius:18px;font-size:10px;font-weight:700;
+  background:var(--card-bg);box-shadow:var(--shadow-sm);
+  cursor:pointer;transition:all .2s;color:var(--ts);user-select:none;
+}
+.chip.on{box-shadow:var(--shadow-in);color:var(--a1);font-weight:800;}
+
+/* URGENCY */
+.urg-row{display:flex;gap:7px;}
+.urg-btn{
+  flex:1;padding:8px 2px;border:none;border-radius:10px;
+  background:var(--card-bg);box-shadow:var(--shadow-sm);
+  font-family:'Exo 2',sans-serif;font-size:9px;font-weight:700;
+  cursor:pointer;transition:all .2s;color:var(--ts);
+}
+.urg-btn.on{box-shadow:var(--shadow-in);}
+.ul.on{color:var(--green);}
+.um.on{color:#b8940a;}
+.uh.on{color:var(--a1);}
+.uc.on{color:var(--red);}
+
+/* SUBMIT BUTTON */
+.sub-btn{
+  width:100%;padding:14px;border:none;border-radius:13px;
+  background:linear-gradient(135deg,var(--a1),var(--a3));
+  color:#fff;font-family:'Orbitron',monospace;font-size:12px;
+  font-weight:700;letter-spacing:2px;cursor:pointer;margin-top:8px;
+  box-shadow:5px 5px 18px rgba(255,107,53,.35);
+  transition:all .25s;position:relative;overflow:hidden;
+}
+.sub-btn::before{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(135deg,transparent 30%,rgba(255,255,255,.2) 50%,transparent 70%);
+  transform:translateX(-100%);transition:transform .6s;
+}
+.sub-btn:hover::before{transform:translateX(100%);}
+.sub-btn:active{transform:scale(.97);}
+.sub-btn.teal{background:linear-gradient(135deg,var(--a2),var(--a3));box-shadow:5px 5px 18px rgba(0,212,170,.35);}
+
+/* ═══════════════════════════════════════
+   PUBLIC REPORT CARDS
+═══════════════════════════════════════ */
+.pub-card{
+  background:var(--card-bg);border-radius:16px;padding:14px;
+  margin-bottom:11px;box-shadow:var(--shadow-out);
+  border-left:4px solid var(--a1);transition:all .25s;
+  animation:slideIn .4s ease;
+}
+.pub-card.banned{border-left-color:var(--a2);}
+.pub-card.reviewing{border-left-color:var(--a4);}
+@keyframes slideIn{from{opacity:0;transform:translateX(-12px);}to{opacity:1;transform:translateX(0);}}
+.pub-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:5px;}
+.pub-plat{font-size:10px;font-weight:800;color:var(--a3);text-transform:uppercase;letter-spacing:1px;}
+.pub-urg{font-size:9px;font-weight:700;padding:2px 7px;border-radius:8px;}
+.u-low{background:rgba(67,160,71,.15);color:var(--green);}
+.u-med{background:rgba(247,201,72,.15);color:#b8940a;}
+.u-high{background:rgba(255,107,53,.15);color:var(--a1);}
+.u-crit{background:rgba(229,57,53,.15);color:var(--red);}
+.pub-reporter{font-size:10px;font-weight:700;color:var(--a1);margin-bottom:4px;}
+.pub-viol{font-size:10px;color:var(--ts);margin-bottom:5px;}
+.pub-desc{font-size:11px;color:var(--tx);margin-bottom:7px;line-height:1.5;}
+.btn-row{display:flex;gap:7px;flex-wrap:wrap;margin-top:6px;}
+.pub-btn{
+  display:inline-flex;align-items:center;gap:5px;
+  padding:7px 12px;border-radius:20px;
+  font-size:10px;font-weight:700;cursor:pointer;border:none;
+  transition:all .2s;
+}
+.pb-open{background:linear-gradient(135deg,rgba(107,122,153,.25),rgba(107,122,153,.15));color:var(--ts);box-shadow:var(--shadow-sm);}
+.pb-report{background:linear-gradient(135deg,var(--a1),#e84000);color:#fff;box-shadow:3px 3px 8px rgba(255,107,53,.3);}
+.pb-copy{background:var(--card-bg);color:var(--ts);box-shadow:var(--shadow-sm);font-size:9px;}
+.pub-btn:active{transform:scale(.95);}
+.pub-time{font-size:9px;color:var(--ts);margin-top:7px;opacity:.6;}
+
+/* ═══════════════════════════════════════
+   ADMIN REPORT CARDS
+═══════════════════════════════════════ */
+.adm-card{
+  background:var(--card-bg);border-radius:16px;padding:13px;
+  margin-bottom:11px;box-shadow:var(--shadow-out);
+  position:relative;overflow:hidden;transition:all .2s;
+}
+.adm-card::before{
+  content:'';position:absolute;left:0;top:0;bottom:0;
+  width:4px;border-radius:16px 0 0 16px;
+}
+.adm-card.pending::before{background:var(--a1);}
+.adm-card.reviewing::before{background:var(--a4);}
+.adm-card.banned::before{background:var(--a2);}
+.adm-card.dismissed::before{background:var(--ts);}
+.adm-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:5px;}
+.adm-plat{font-size:10px;font-weight:800;color:var(--a3);text-transform:uppercase;letter-spacing:1px;}
+.adm-status{font-size:9px;font-weight:700;padding:2px 8px;border-radius:8px;}
+.s-pending{background:rgba(255,107,53,.15);color:var(--a1);}
+.s-reviewing{background:rgba(247,201,72,.15);color:#b8940a;}
+.s-banned{background:rgba(0,212,170,.15);color:var(--a2);}
+.s-dismissed{background:rgba(107,122,153,.15);color:var(--ts);}
+.adm-reporter{font-size:11px;font-weight:700;color:var(--a1);margin-bottom:5px;}
+.adm-body{font-size:11px;color:var(--ts);line-height:1.6;}
+.adm-body a{color:var(--a3);word-break:break-all;}
+.adm-time{font-size:9px;color:var(--ts);margin-top:5px;opacity:.7;}
+.adm-actions{display:flex;gap:6px;margin-top:9px;}
+.adm-btn{
+  flex:1;padding:7px 0;border:none;border-radius:9px;
+  font-family:'Exo 2',sans-serif;font-size:10px;font-weight:700;
+  cursor:pointer;transition:all .2s;
+  background:var(--card-bg);box-shadow:var(--shadow-sm);
+}
+.adm-btn:active{box-shadow:var(--shadow-in);}
+.ab-ban{color:var(--red);}
+.ab-rev{color:#b8940a;}
+.ab-ok{color:var(--a2);}
+.ab-del{color:var(--ts);}
+.adm-lock{
+  text-align:center;font-size:9px;color:var(--ts);
+  margin-top:7px;padding:5px;border-radius:8px;
+  box-shadow:var(--shadow-in);
+}
+
+/* ═══════════════════════════════════════
+   SEARCH + FILTER
+═══════════════════════════════════════ */
+.search-wrap{position:relative;margin-bottom:11px;}
+.search-input{
+  width:100%;padding:11px 14px 11px 38px;border:none;outline:none;
+  border-radius:11px;background:var(--card-bg);box-shadow:var(--shadow-in);
+  font-family:'Exo 2',sans-serif;font-size:12px;color:var(--tx);
+}
+.search-input::placeholder{color:var(--ts);opacity:.7;}
+.search-ico{position:absolute;left:12px;top:50%;transform:translateY(-50%);font-size:14px;opacity:.45;}
+.filter-row{display:flex;gap:7px;margin-bottom:11px;overflow-x:auto;scrollbar-width:none;padding-bottom:2px;}
+.filter-row::-webkit-scrollbar{display:none;}
+.f-btn{
+  flex:0 0 auto;padding:5px 12px;border:none;border-radius:16px;
+  background:var(--card-bg);box-shadow:var(--shadow-sm);
+  font-family:'Exo 2',sans-serif;font-size:10px;font-weight:700;
+  color:var(--ts);cursor:pointer;transition:all .2s;
+}
+.f-btn.on{box-shadow:var(--shadow-in);color:var(--a3);}
+
+/* ═══════════════════════════════════════
+   CHART
+═══════════════════════════════════════ */
+.chart-wrap{display:flex;align-items:flex-end;gap:5px;height:60px;padding:0 2px;}
+.c-bar{
+  flex:1;border-radius:5px 5px 0 0;
+  background:linear-gradient(180deg,var(--a3),var(--a1));
+  min-height:4px;transition:height .6s cubic-bezier(.34,1.56,.64,1);
+}
+.chart-lbls{display:flex;gap:5px;margin-top:4px;}
+.c-lbl{flex:1;text-align:center;font-size:8px;color:var(--ts);}
+.prog-wrap{height:5px;border-radius:5px;background:var(--card-bg);box-shadow:var(--shadow-in);overflow:hidden;margin-top:4px;}
+.prog-fill{height:100%;border-radius:5px;background:linear-gradient(90deg,var(--a3),var(--a2));transition:width .6s ease;}
+
+/* ═══════════════════════════════════════
+   STEPS (Guide)
+═══════════════════════════════════════ */
+.steps{display:flex;flex-direction:column;gap:10px;}
+.step{
+  display:flex;align-items:flex-start;gap:12px;
+  background:var(--card-bg);border-radius:14px;
+  padding:13px;box-shadow:var(--shadow-out);
+}
+.step-num{
+  width:32px;height:32px;border-radius:50%;flex-shrink:0;
+  background:linear-gradient(135deg,var(--a3),var(--a1));
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Orbitron',monospace;font-size:12px;font-weight:900;
+  color:#fff;box-shadow:3px 3px 8px rgba(108,99,255,.35);
+}
+.step-title{font-size:12px;font-weight:700;color:var(--tx);margin-bottom:3px;}
+.step-desc{font-size:11px;color:var(--ts);line-height:1.55;}
+
+/* ═══════════════════════════════════════
+   LINKS GRID
+═══════════════════════════════════════ */
+.links-grid{display:grid;grid-template-columns:1fr 1fr;gap:11px;}
+.link-card{
+  display:flex;flex-direction:column;align-items:center;gap:5px;
+  padding:16px 8px;border-radius:16px;
+  background:var(--card-bg);box-shadow:var(--shadow-out);
+  text-decoration:none;color:var(--tx);
+  transition:all .2s;
+}
+.link-card:active{box-shadow:var(--shadow-in);transform:scale(.97);}
+.lk-icon{font-size:26px;}
+.lk-name{font-size:12px;font-weight:700;}
+.lk-sub{font-size:9px;color:var(--ts);letter-spacing:.8px;text-transform:uppercase;}
+
+/* ═══════════════════════════════════════
+   ADMIN COMPOSE
+═══════════════════════════════════════ */
+.compose-card{
+  background:var(--card-bg);border-radius:18px;
+  padding:16px;box-shadow:var(--shadow-out);margin-bottom:14px;
+}
+.compose-ttl{
+  font-family:'Orbitron',monospace;font-size:11px;font-weight:700;
+  color:var(--tx);margin-bottom:10px;display:flex;align-items:center;gap:7px;
+}
+.compose-actions{display:flex;gap:8px;margin-top:9px;}
+.comp-btn{
+  flex:1;padding:10px;border:none;border-radius:11px;
+  font-family:'Orbitron',monospace;font-size:10px;
+  font-weight:700;letter-spacing:1px;cursor:pointer;transition:all .2s;
+}
+.comp-btn:active{transform:scale(.97);}
+.cb-send{background:linear-gradient(135deg,var(--a3),var(--a2));color:#fff;box-shadow:4px 4px 12px rgba(108,99,255,.3);}
+.cb-clr{background:var(--card-bg);box-shadow:var(--shadow-sm);color:var(--ts);}
+
+/* ═══════════════════════════════════════
+   ABOUT DUA CARD
+═══════════════════════════════════════ */
+.dua-card{
+  background:linear-gradient(135deg,rgba(108,99,255,.12),rgba(0,212,170,.08));
+  border-radius:18px;padding:20px;
+  box-shadow:var(--shadow-out);margin-bottom:14px;text-align:center;
+  border:1px solid rgba(108,99,255,.15);
+}
+.dua-ar{font-size:20px;color:var(--a3);font-weight:700;direction:rtl;margin-bottom:6px;}
+.dua-tr{font-size:11px;color:var(--ts);line-height:1.6;}
+
+/* ═══════════════════════════════════════
+   BOTTOM NAV
+═══════════════════════════════════════ */
+.bottom-nav{
+  position:fixed;bottom:0;left:0;right:0;z-index:400;
+  background:var(--card-bg);
+  padding:8px 6px 14px;
+  box-shadow:0 -4px 24px rgba(0,0,0,.15);
+  display:flex;justify-content:space-around;
+  transition:background .4s;
+}
+.bn{
+  display:flex;flex-direction:column;align-items:center;gap:3px;
+  cursor:pointer;padding:5px 8px;border-radius:12px;
+  border:none;background:none;font-family:'Exo 2',sans-serif;
+  color:var(--ts);flex:1;transition:all .2s;
+}
+.bn.on{color:var(--a3);}
+.bn-ico{font-size:20px;position:relative;display:inline-block;}
+.bn-lbl{font-size:8px;font-weight:700;letter-spacing:.4px;}
+.bn-badge{
+  position:absolute;top:-3px;right:-4px;
+  background:var(--a1);color:#fff;
+  font-size:8px;font-weight:800;
+  padding:1px 4px;border-radius:8px;display:none;
+}
+
+/* ═══════════════════════════════════════
+   EMPTY STATE
+═══════════════════════════════════════ */
+.empty{text-align:center;padding:36px 0;color:var(--ts);}
+.empty-ico{font-size:38px;margin-bottom:9px;opacity:.4;}
+.empty-txt{font-size:12px;opacity:.7;}
+
+/* ═══════════════════════════════════════
+   DIVIDER
+═══════════════════════════════════════ */
+.divider{height:2px;border-radius:4px;box-shadow:var(--shadow-in);margin:14px 0;}
+
+/* ═══════════════════════════════════════
+   TOAST
+═══════════════════════════════════════ */
+.toast{
+  position:fixed;bottom:80px;left:50%;
+  transform:translateX(-50%) translateY(30px);
+  color:#fff;padding:11px 22px;border-radius:28px;
+  font-family:'Orbitron',monospace;font-size:11px;
+  font-weight:700;letter-spacing:1px;
+  box-shadow:0 8px 28px rgba(108,99,255,.4);
+  transition:all .4s cubic-bezier(.34,1.56,.64,1);
+  z-index:9998;white-space:nowrap;max-width:90vw;
+  overflow:hidden;text-overflow:ellipsis;opacity:0;
+  pointer-events:none;
+}
+.toast.show{transform:translateX(-50%) translateY(0);opacity:1;}
+
+/* ═══════════════════════════════════════
+   PULSE RIPPLE (on report submit)
+═══════════════════════════════════════ */
+@keyframes ripple{0%{transform:scale(0);opacity:.6;}100%{transform:scale(3);opacity:0;}}
+.ripple{
+  position:absolute;border-radius:50%;
+  background:rgba(255,255,255,.4);
+  width:60px;height:60px;margin-top:-30px;margin-left:-30px;
+  animation:ripple .7s linear;pointer-events:none;
+}
+
+@media(max-width:360px){.stats-grid{grid-template-columns:repeat(2,1fr);}}
+</style>
+<script>
+/* Security layer */
+(function(){
+  document.addEventListener('contextmenu',function(e){e.preventDefault();});
+  document.addEventListener('keydown',function(e){
+    if(e.key==='F12'||(e.ctrlKey&&e.shiftKey&&['I','J','C'].includes(e.key))||(e.ctrlKey&&['u','U','s','S'].includes(e.key))){
+      e.preventDefault();return false;
+    }
+  },true);
+  setInterval(function(){
+    var t=performance.now();
+    (function(){debugger;})();
+    if(performance.now()-t>100){
+      document.documentElement.innerHTML='<div style="display:flex;align-items:center;justify-content:center;height:100vh;background:#1a1e2e;color:#ff6b35;font-family:monospace;flex-direction:column;gap:12px;"><div style="font-size:48px">&#128683;</div><div style="font-weight:900">Access Denied</div></div>';
+    }
+  },3000);
+})();
+</script>
+</head>
+<body>
+
+<!-- CANVAS PARTICLE SYSTEM -->
+<canvas id="particleCanvas"></canvas>
+<div class="orb orb1"></div>
+<div class="orb orb2"></div>
+<div class="orb orb3"></div>
+
+<!-- ADMIN LOGIN OVERLAY -->
+<div class="overlay hidden" id="adminOverlay">
+  <div class="login-box">
+    <div class="login-icon">🔐</div>
+    <div class="login-title" id="lt">ADMIN ACCESS</div>
+    <div class="login-sub" id="ls">Only &#77;&#65;&#32;&#76;&#69;&#71;&#69;&#78;&#68; Can Enter</div>
+    <div class="pass-wrap">
+      <input class="login-input" type="password" id="passInput" placeholder="••••••••" onkeydown="if(event.key==='Enter')doLogin()">
+      <button class="eye-btn" onclick="toggleEye()">👁️</button>
+    </div>
+    <button class="login-btn" onclick="doLogin()" id="lbtn">🚀 LOGIN</button>
+    <div class="login-err" id="loginErr">❌ Wrong Password!</div>
+    <div class="attempt-bar" id="attBar"></div>
+    <button class="back-link" onclick="closeOverlay()" id="lback">← Go Back</button>
+  </div>
+</div>
+
+<!-- SIDEBAR BG -->
+<div class="sb-bg" id="sbBg" onclick="closeSidebar()"></div>
+
+<!-- SIDEBAR -->
+<div class="sidebar" id="sidebar">
+  <div class="sb-header">
+    <div class="sb-logo-row">
+      <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyMDAgMjAwIiB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCI+CiAgPGRlZnM+CiAgICA8cmFkaWFsR3JhZGllbnQgaWQ9ImJnR3JhZCIgY3g9IjUwJSIgY3k9IjUwJSIgcj0iNTAlIj4KICAgICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3R5bGU9InN0b3AtY29sb3I6IzFhM2ExYSIvPgogICAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0eWxlPSJzdG9wLWNvbG9yOiMwZDFmMGQiLz4KICAgIDwvcmFkaWFsR3JhZGllbnQ+CiAgICA8bGluZWFyR3JhZGllbnQgaWQ9ImdvbGRHcmFkIiB4MT0iMCUiIHkxPSIwJSIgeDI9IjEwMCUiIHkyPSIxMDAlIj4KICAgICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3R5bGU9InN0b3AtY29sb3I6I2Y3Yzk0OCIvPgogICAgICA8c3RvcCBvZmZzZXQ9IjUwJSIgc3R5bGU9InN0b3AtY29sb3I6I2ZmZDcwMCIvPgogICAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0eWxlPSJzdG9wLWNvbG9yOiNjODk2MGMiLz4KICAgIDwvbGluZWFyR3JhZGllbnQ+CiAgICA8bGluZWFyR3JhZGllbnQgaWQ9ImdyZWVuR3JhZCIgeDE9IjAlIiB5MT0iMCUiIHgyPSIxMDAlIiB5Mj0iMTAwJSI+CiAgICAgIDxzdG9wIG9mZnNldD0iMCUiIHN0eWxlPSJzdG9wLWNvbG9yOiMyZWNjNzEiLz4KICAgICAgPHN0b3Agb2Zmc2V0PSIxMDAlIiBzdHlsZT0ic3RvcC1jb2xvcjojMWE3YTQwIi8+CiAgICA8L2xpbmVhckdyYWRpZW50PgogICAgPGxpbmVhckdyYWRpZW50IGlkPSJzd29yZEdyYWQiIHgxPSIwJSIgeTE9IjAlIiB4Mj0iMTAwJSIgeTI9IjEwMCUiPgogICAgICA8c3RvcCBvZmZzZXQ9IjAlIiBzdHlsZT0ic3RvcC1jb2xvcjojZmZkNzAwIi8+CiAgICAgIDxzdG9wIG9mZnNldD0iNDAlIiBzdHlsZT0ic3RvcC1jb2xvcjojZmZmZmZmIi8+CiAgICAgIDxzdG9wIG9mZnNldD0iMTAwJSIgc3R5bGU9InN0b3AtY29sb3I6I2M4OTYwYyIvPgogICAgPC9saW5lYXJHcmFkaWVudD4KICAgIDxmaWx0ZXIgaWQ9Imdsb3ciPgogICAgICA8ZmVHYXVzc2lhbkJsdXIgc3RkRGV2aWF0aW9uPSIyLjUiIHJlc3VsdD0iY29sb3JlZEJsdXIiLz4KICAgICAgPGZlTWVyZ2U+CiAgICAgICAgPGZlTWVyZ2VOb2RlIGluPSJjb2xvcmVkQmx1ciIvPgogICAgICAgIDxmZU1lcmdlTm9kZSBpbj0iU291cmNlR3JhcGhpYyIvPgogICAgICA8L2ZlTWVyZ2U+CiAgICA8L2ZpbHRlcj4KICAgIDxmaWx0ZXIgaWQ9ImdvbGRHbG93Ij4KICAgICAgPGZlR2F1c3NpYW5CbHVyIHN0ZERldmlhdGlvbj0iMyIgcmVzdWx0PSJjb2xvcmVkQmx1ciIvPgogICAgICA8ZmVNZXJnZT4KICAgICAgICA8ZmVNZXJnZU5vZGUgaW49ImNvbG9yZWRCbHVyIi8+CiAgICAgICAgPGZlTWVyZ2VOb2RlIGluPSJTb3VyY2VHcmFwaGljIi8+CiAgICAgIDwvZmVNZXJnZT4KICAgIDwvZmlsdGVyPgogIDwvZGVmcz4KCiAgPCEtLSBCYWNrZ3JvdW5kIGNpcmNsZSAtLT4KICA8Y2lyY2xlIGN4PSIxMDAiIGN5PSIxMDAiIHI9Ijk4IiBmaWxsPSJ1cmwoI2JnR3JhZCkiIHN0cm9rZT0idXJsKCNnb2xkR3JhZCkiIHN0cm9rZS13aWR0aD0iMyIvPgoKICA8IS0tIElubmVyIHJpbmcgLS0+CiAgPGNpcmNsZSBjeD0iMTAwIiBjeT0iMTAwIiByPSI4NiIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMmVjYzcxIiBzdHJva2Utd2lkdGg9IjEiIG9wYWNpdHk9IjAuNCIvPgogIDxjaXJjbGUgY3g9IjEwMCIgY3k9IjEwMCIgcj0iODIiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI2Y3Yzk0OCIgc3Ryb2tlLXdpZHRoPSIwLjUiIG9wYWNpdHk9IjAuMyIvPgoKICA8IS0tIOKYhSA4LXBvaW50IFNUQVIgKHRvcCBjZW50ZXIpIC0tPgogIDxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDEwMCwgNjIpIiBmaWx0ZXI9InVybCgjZ29sZEdsb3cpIj4KICAgIDxwb2x5Z29uIHBvaW50cz0iMCwtMTggNC41LC00LjUgMTgsMCA0LjUsNC41IDAsMTggLTQuNSw0LjUgLTE4LDAgLTQuNSwtNC41IiBmaWxsPSJ1cmwoI2dvbGRHcmFkKSIvPgogICAgPHBvbHlnb24gcG9pbnRzPSIwLC0xOCA0LjUsLTQuNSAxOCwwIDQuNSw0LjUgMCwxOCAtNC41LDQuNSAtMTgsMCAtNC41LC00LjUiIAogICAgICAgICAgICAgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjZmZmZmZmIiBzdHJva2Utd2lkdGg9IjAuNSIgb3BhY2l0eT0iMC42IgogICAgICAgICAgICAgdHJhbnNmb3JtPSJyb3RhdGUoMjIuNSkiLz4KICAgIDwhLS0gQ2VudGVyIGRvdCAtLT4KICAgIDxjaXJjbGUgY3g9IjAiIGN5PSIwIiByPSIzLjUiIGZpbGw9IiNmZmZmZmYiIG9wYWNpdHk9IjAuOSIvPgogIDwvZz4KCiAgPCEtLSDimKogQ1JFU0NFTlQgYmVzaWRlIHN0YXIgLS0+CiAgPGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMTAwLCA2MikiPgogICAgPHBhdGggZD0iTSAxNCwtOCBBIDEwLDEwIDAgMSwxIDE0LDggQSA2LDYgMCAxLDAgMTQsLTggWiIgCiAgICAgICAgICBmaWxsPSJ1cmwoI2dyZWVuR3JhZCkiIG9wYWNpdHk9IjAuODUiIHRyYW5zZm9ybT0idHJhbnNsYXRlKDE2LCAwKSBzY2FsZSgwLjcpIi8+CiAgPC9nPgoKICA8IS0tIOKalCBTV09SRCAobWFpbiBlbGVtZW50LCBkaWFnb25hbCkgLS0+CiAgPGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMTAwLDEwOCkgcm90YXRlKC00NSkiIGZpbHRlcj0idXJsKCNnbG93KSI+CiAgICA8IS0tIEJsYWRlIC0tPgogICAgPHBvbHlnb24gcG9pbnRzPSIwLC01MiAzLC0zMCAxLjUsMzAgMCwzOCAtMS41LDMwIC0zLC0zMCIgZmlsbD0idXJsKCNzd29yZEdyYWQpIi8+CiAgICA8IS0tIEJsYWRlIGVkZ2Ugc2hpbmUgLS0+CiAgICA8bGluZSB4MT0iMSIgeTE9Ii01MCIgeDI9IjAuNSIgeTI9IjMwIiBzdHJva2U9IndoaXRlIiBzdHJva2Utd2lkdGg9IjAuNiIgb3BhY2l0eT0iMC43Ii8+CiAgICA8IS0tIEd1YXJkIChjcm9zc2d1YXJkKSAtLT4KICAgIDxyZWN0IHg9Ii0xNCIgeT0iLTYiIHdpZHRoPSIyOCIgaGVpZ2h0PSI1IiByeD0iMi41IiBmaWxsPSJ1cmwoI2dvbGRHcmFkKSIvPgogICAgPGNpcmNsZSBjeD0iLTE0IiBjeT0iLTMuNSIgcj0iMyIgZmlsbD0idXJsKCNnb2xkR3JhZCkiLz4KICAgIDxjaXJjbGUgY3g9IjE0IiBjeT0iLTMuNSIgcj0iMyIgZmlsbD0idXJsKCNnb2xkR3JhZCkiLz4KICAgIDwhLS0gR3JpcCAtLT4KICAgIDxyZWN0IHg9Ii0zIiB5PSItMSIgd2lkdGg9IjYiIGhlaWdodD0iMjAiIHJ4PSIzIiBmaWxsPSIjMWE1YzMwIi8+CiAgICA8cmVjdCB4PSItMi41IiB5PSIzIiB3aWR0aD0iNSIgaGVpZ2h0PSIyIiByeD0iMSIgZmlsbD0idXJsKCNnb2xkR3JhZCkiIG9wYWNpdHk9IjAuOCIvPgogICAgPHJlY3QgeD0iLTIuNSIgeT0iOCIgd2lkdGg9IjUiIGhlaWdodD0iMiIgcng9IjEiIGZpbGw9InVybCgjZ29sZEdyYWQpIiBvcGFjaXR5PSIwLjgiLz4KICAgIDxyZWN0IHg9Ii0yLjUiIHk9IjEzIiB3aWR0aD0iNSIgaGVpZ2h0PSIyIiByeD0iMSIgZmlsbD0idXJsKCNnb2xkR3JhZCkiIG9wYWNpdHk9IjAuOCIvPgogICAgPCEtLSBQb21tZWwgLS0+CiAgICA8ZWxsaXBzZSBjeD0iMCIgY3k9IjIyIiByeD0iNSIgcnk9IjQiIGZpbGw9InVybCgjZ29sZEdyYWQpIi8+CiAgICA8IS0tIFRpcCBnbG93IC0tPgogICAgPGVsbGlwc2UgY3g9IjAiIGN5PSItNTAiIHJ4PSIyIiByeT0iMyIgZmlsbD0id2hpdGUiIG9wYWNpdHk9IjAuOCIvPgogIDwvZz4KCiAgPCEtLSBTSElFTEQgb3V0bGluZSBiZWhpbmQgc3dvcmQgLS0+CiAgPHBhdGggZD0iTTEwMCw3OCBMMTI4LDg4IEwxMjgsMTE4IFExMjgsMTQwIDEwMCwxNTIgUTcyLDE0MCA3MiwxMTggTDcyLDg4IFoiIAogICAgICAgIGZpbGw9Im5vbmUiIHN0cm9rZT0idXJsKCNnb2xkR3JhZCkiIHN0cm9rZS13aWR0aD0iMS41IiBvcGFjaXR5PSIwLjUiLz4KCiAgPCEtLSBUZXh0OiBJU0xBTSBHVUFSRCAtLT4KICA8dGV4dCB4PSIxMDAiIHk9IjE3MCIgCiAgICAgICAgZm9udC1mYW1pbHk9Ikdlb3JnaWEsIHNlcmlmIiAKICAgICAgICBmb250LXNpemU9IjEzIiAKICAgICAgICBmb250LXdlaWdodD0iYm9sZCIgCiAgICAgICAgZmlsbD0idXJsKCNnb2xkR3JhZCkiIAogICAgICAgIHRleHQtYW5jaG9yPSJtaWRkbGUiIAogICAgICAgIGxldHRlci1zcGFjaW5nPSIzIgogICAgICAgIGZpbHRlcj0idXJsKCNnb2xkR2xvdykiPklTTEFNIEdVQVJEPC90ZXh0PgoKICA8IS0tIFRleHQ6IE1BIExFR0VORCAtLT4KICA8dGV4dCB4PSIxMDAiIHk9IjE4NCIgCiAgICAgICAgZm9udC1mYW1pbHk9Ikdlb3JnaWEsIHNlcmlmIiAKICAgICAgICBmb250LXNpemU9IjgiIAogICAgICAgIGZpbGw9IiMyZWNjNzEiIAogICAgICAgIHRleHQtYW5jaG9yPSJtaWRkbGUiIAogICAgICAgIGxldHRlci1zcGFjaW5nPSIyIgogICAgICAgIG9wYWNpdHk9IjAuODUiPkJZIE1BIExFR0VORDwvdGV4dD4KCiAgPCEtLSBDb3JuZXIgZGVjb3JhdGlvbnMgLS0+CiAgPGNpcmNsZSBjeD0iMzAiIGN5PSIzMCIgcj0iMiIgZmlsbD0iI2Y3Yzk0OCIgb3BhY2l0eT0iMC40Ii8+CiAgPGNpcmNsZSBjeD0iMTcwIiBjeT0iMzAiIHI9IjIiIGZpbGw9IiNmN2M5NDgiIG9wYWNpdHk9IjAuNCIvPgogIDxjaXJjbGUgY3g9IjMwIiBjeT0iMTcwIiByPSIyIiBmaWxsPSIjZjdjOTQ4IiBvcGFjaXR5PSIwLjQiLz4KICA8Y2lyY2xlIGN4PSIxNzAiIGN5PSIxNzAiIHI9IjIiIGZpbGw9IiNmN2M5NDgiIG9wYWNpdHk9IjAuNCIvPgo8L3N2Zz4K" style="width:48px;height:48px;border-radius:50%;box-shadow:0 2px 14px rgba(247,201,72,0.5);" alt="Islam Guard Logo">
+      <div>
+        <div class="sb-name">LEGEND PORTAL</div>
+        <div class="sb-tagline">ANTI-BLASPHEMY HUB</div>
+      </div>
+    </div>
+    <div class="sb-live"><span class="live-dot"></span><span id="sb-status">ONLINE</span></div>
+  </div>
+
+  <div class="sb-sec" id="sb-nav-lbl">NAVIGATION</div>
+  <div class="sb-link active" onclick="go('home');closeSidebar()"><span class="sb-link-icon">🏠</span><span class="sb-link-txt" id="sbl-home">Home</span></div>
+  <div class="sb-link" onclick="go('report');closeSidebar()"><span class="sb-link-icon">📋</span><span class="sb-link-txt" id="sbl-report">Submit Report</span><span class="sb-link-badge" id="sb-pend-badge"></span></div>
+  <div class="sb-link" onclick="go('public');closeSidebar()"><span class="sb-link-icon">🌍</span><span class="sb-link-txt" id="sbl-public">Public Reports</span></div>
+  <div class="sb-link" onclick="go('platforms');closeSidebar()"><span class="sb-link-icon">🔍</span><span class="sb-link-txt" id="sbl-plat">Platforms</span></div>
+  <div class="sb-link" onclick="go('guide');closeSidebar()"><span class="sb-link-icon">📖</span><span class="sb-link-txt" id="sbl-guide">How to Report</span></div>
+  <div class="sb-link" onclick="go('links');closeSidebar()"><span class="sb-link-icon">🔗</span><span class="sb-link-txt" id="sbl-links">Links</span></div>
+  <div class="sb-link" onclick="go('about');closeSidebar()"><span class="sb-link-icon">ℹ️</span><span class="sb-link-txt" id="sbl-about">About</span></div>
+  <div class="sb-link" id="sb-admin-link" style="display:none" onclick="go('admin');closeSidebar()"><span class="sb-link-icon">🛡️</span><span class="sb-link-txt" id="sbl-admin">Admin Panel</span></div>
+
+  <div class="sb-sec" id="sb-stats-lbl">LIVE STATS</div>
+  <div class="sb-stats-box">
+    <div class="sb-stats-title" id="sb-st-title">STATISTICS</div>
+    <div class="sb-stat-row"><span class="sb-stat-l" id="sb-l-total">Total Reports</span><span class="sb-stat-v" id="sb-v-total">0</span></div>
+    <div class="sb-stat-row"><span class="sb-stat-l" id="sb-l-pend">Pending</span><span class="sb-stat-v" id="sb-v-pend">0</span></div>
+    <div class="sb-stat-row"><span class="sb-stat-l" id="sb-l-ban">Banned</span><span class="sb-stat-v" id="sb-v-ban">0</span></div>
+    <div class="sb-stat-row"><span class="sb-stat-l" id="sb-l-res">Resolved</span><span class="sb-stat-v" id="sb-v-res">0</span></div>
+  </div>
+
+  <div class="sb-sec" id="sb-links-lbl">&#77;&#65;&#32;&#76;&#69;&#71;&#69;&#78;&#68; LINKS</div>
+  <div class="sb-ext-links">
+    <a href="https://islam-guard.vercel.app/" target="_blank" class="sb-ext-link"><span class="sb-ext-icon">🌐</span><span class="sb-ext-txt" id="sbl-store">Legend Store</span></a>
+    <a href="#" data-h="aHR0cHM6Ly93aGF0c2FwcC5jb20vY2hhbm5lbC8wMDI5VmFyUzQ2TzNReFJ0VFpPMHo2MHg=" target="_blank" class="sb-ext-link"><span class="sb-ext-icon">💬</span><span class="sb-ext-txt" id="sbl-wa">WhatsApp Channel</span></a>
+    <a href="#" data-h="aHR0cHM6Ly90Lm1lL2xlZ2VuZF90b29s" target="_blank" class="sb-ext-link"><span class="sb-ext-icon">✈️</span><span class="sb-ext-txt">Telegram @legend_tool</span></a>
+    <a href="#" data-h="aHR0cHM6Ly93d3cueW91dHViZS5jb20vQGxlZ2VuZG1vZDQwNw==" target="_blank" class="sb-ext-link"><span class="sb-ext-icon">▶️</span><span class="sb-ext-txt">YouTube @legendmod407</span></a>
+  </div>
+  <div class="sb-dua">
+    <div class="sb-dua-ar">بِسْمِ اللَّهِ</div>
+    <div class="sb-dua-tr" id="sb-dua-tr">In the name of Allah</div>
+  </div>
+</div>
+
+<!-- ADMIN BAR -->
+<div class="admin-bar" id="adminBar">
+  <div class="admin-bar-tag"><span class="live-dot"></span><span id="admin-bar-txt">ADMIN MODE — &#77;&#65;&#32;&#76;&#69;&#71;&#69;&#78;&#68;</span></div>
+  <div class="admin-bar-btns">
+    <button class="ab-btn" onclick="go('admin')" id="ab-inbox">📬 Inbox</button>
+    <button class="ab-btn" onclick="doLogout()" id="ab-logout">Logout</button>
+  </div>
+</div>
+
+<!-- TOP NAV -->
+<div class="topnav">
+  <button class="ham-btn" onclick="openSidebar()">☰</button>
+  <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyMDAgMjAwIiB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCI+CiAgPGRlZnM+CiAgICA8cmFkaWFsR3JhZGllbnQgaWQ9ImJnR3JhZCIgY3g9IjUwJSIgY3k9IjUwJSIgcj0iNTAlIj4KICAgICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3R5bGU9InN0b3AtY29sb3I6IzFhM2ExYSIvPgogICAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0eWxlPSJzdG9wLWNvbG9yOiMwZDFmMGQiLz4KICAgIDwvcmFkaWFsR3JhZGllbnQ+CiAgICA8bGluZWFyR3JhZGllbnQgaWQ9ImdvbGRHcmFkIiB4MT0iMCUiIHkxPSIwJSIgeDI9IjEwMCUiIHkyPSIxMDAlIj4KICAgICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3R5bGU9InN0b3AtY29sb3I6I2Y3Yzk0OCIvPgogICAgICA8c3RvcCBvZmZzZXQ9IjUwJSIgc3R5bGU9InN0b3AtY29sb3I6I2ZmZDcwMCIvPgogICAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0eWxlPSJzdG9wLWNvbG9yOiNjODk2MGMiLz4KICAgIDwvbGluZWFyR3JhZGllbnQ+CiAgICA8bGluZWFyR3JhZGllbnQgaWQ9ImdyZWVuR3JhZCIgeDE9IjAlIiB5MT0iMCUiIHgyPSIxMDAlIiB5Mj0iMTAwJSI+CiAgICAgIDxzdG9wIG9mZnNldD0iMCUiIHN0eWxlPSJzdG9wLWNvbG9yOiMyZWNjNzEiLz4KICAgICAgPHN0b3Agb2Zmc2V0PSIxMDAlIiBzdHlsZT0ic3RvcC1jb2xvcjojMWE3YTQwIi8+CiAgICA8L2xpbmVhckdyYWRpZW50PgogICAgPGxpbmVhckdyYWRpZW50IGlkPSJzd29yZEdyYWQiIHgxPSIwJSIgeTE9IjAlIiB4Mj0iMTAwJSIgeTI9IjEwMCUiPgogICAgICA8c3RvcCBvZmZzZXQ9IjAlIiBzdHlsZT0ic3RvcC1jb2xvcjojZmZkNzAwIi8+CiAgICAgIDxzdG9wIG9mZnNldD0iNDAlIiBzdHlsZT0ic3RvcC1jb2xvcjojZmZmZmZmIi8+CiAgICAgIDxzdG9wIG9mZnNldD0iMTAwJSIgc3R5bGU9InN0b3AtY29sb3I6I2M4OTYwYyIvPgogICAgPC9saW5lYXJHcmFkaWVudD4KICAgIDxmaWx0ZXIgaWQ9Imdsb3ciPgogICAgICA8ZmVHYXVzc2lhbkJsdXIgc3RkRGV2aWF0aW9uPSIyLjUiIHJlc3VsdD0iY29sb3JlZEJsdXIiLz4KICAgICAgPGZlTWVyZ2U+CiAgICAgICAgPGZlTWVyZ2VOb2RlIGluPSJjb2xvcmVkQmx1ciIvPgogICAgICAgIDxmZU1lcmdlTm9kZSBpbj0iU291cmNlR3JhcGhpYyIvPgogICAgICA8L2ZlTWVyZ2U+CiAgICA8L2ZpbHRlcj4KICAgIDxmaWx0ZXIgaWQ9ImdvbGRHbG93Ij4KICAgICAgPGZlR2F1c3NpYW5CbHVyIHN0ZERldmlhdGlvbj0iMyIgcmVzdWx0PSJjb2xvcmVkQmx1ciIvPgogICAgICA8ZmVNZXJnZT4KICAgICAgICA8ZmVNZXJnZU5vZGUgaW49ImNvbG9yZWRCbHVyIi8+CiAgICAgICAgPGZlTWVyZ2VOb2RlIGluPSJTb3VyY2VHcmFwaGljIi8+CiAgICAgIDwvZmVNZXJnZT4KICAgIDwvZmlsdGVyPgogIDwvZGVmcz4KCiAgPCEtLSBCYWNrZ3JvdW5kIGNpcmNsZSAtLT4KICA8Y2lyY2xlIGN4PSIxMDAiIGN5PSIxMDAiIHI9Ijk4IiBmaWxsPSJ1cmwoI2JnR3JhZCkiIHN0cm9rZT0idXJsKCNnb2xkR3JhZCkiIHN0cm9rZS13aWR0aD0iMyIvPgoKICA8IS0tIElubmVyIHJpbmcgLS0+CiAgPGNpcmNsZSBjeD0iMTAwIiBjeT0iMTAwIiByPSI4NiIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMmVjYzcxIiBzdHJva2Utd2lkdGg9IjEiIG9wYWNpdHk9IjAuNCIvPgogIDxjaXJjbGUgY3g9IjEwMCIgY3k9IjEwMCIgcj0iODIiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI2Y3Yzk0OCIgc3Ryb2tlLXdpZHRoPSIwLjUiIG9wYWNpdHk9IjAuMyIvPgoKICA8IS0tIOKYhSA4LXBvaW50IFNUQVIgKHRvcCBjZW50ZXIpIC0tPgogIDxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDEwMCwgNjIpIiBmaWx0ZXI9InVybCgjZ29sZEdsb3cpIj4KICAgIDxwb2x5Z29uIHBvaW50cz0iMCwtMTggNC41LC00LjUgMTgsMCA0LjUsNC41IDAsMTggLTQuNSw0LjUgLTE4LDAgLTQuNSwtNC41IiBmaWxsPSJ1cmwoI2dvbGRHcmFkKSIvPgogICAgPHBvbHlnb24gcG9pbnRzPSIwLC0xOCA0LjUsLTQuNSAxOCwwIDQuNSw0LjUgMCwxOCAtNC41LDQuNSAtMTgsMCAtNC41LC00LjUiIAogICAgICAgICAgICAgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjZmZmZmZmIiBzdHJva2Utd2lkdGg9IjAuNSIgb3BhY2l0eT0iMC42IgogICAgICAgICAgICAgdHJhbnNmb3JtPSJyb3RhdGUoMjIuNSkiLz4KICAgIDwhLS0gQ2VudGVyIGRvdCAtLT4KICAgIDxjaXJjbGUgY3g9IjAiIGN5PSIwIiByPSIzLjUiIGZpbGw9IiNmZmZmZmYiIG9wYWNpdHk9IjAuOSIvPgogIDwvZz4KCiAgPCEtLSDimKogQ1JFU0NFTlQgYmVzaWRlIHN0YXIgLS0+CiAgPGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMTAwLCA2MikiPgogICAgPHBhdGggZD0iTSAxNCwtOCBBIDEwLDEwIDAgMSwxIDE0LDggQSA2LDYgMCAxLDAgMTQsLTggWiIgCiAgICAgICAgICBmaWxsPSJ1cmwoI2dyZWVuR3JhZCkiIG9wYWNpdHk9IjAuODUiIHRyYW5zZm9ybT0idHJhbnNsYXRlKDE2LCAwKSBzY2FsZSgwLjcpIi8+CiAgPC9nPgoKICA8IS0tIOKalCBTV09SRCAobWFpbiBlbGVtZW50LCBkaWFnb25hbCkgLS0+CiAgPGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMTAwLDEwOCkgcm90YXRlKC00NSkiIGZpbHRlcj0idXJsKCNnbG93KSI+CiAgICA8IS0tIEJsYWRlIC0tPgogICAgPHBvbHlnb24gcG9pbnRzPSIwLC01MiAzLC0zMCAxLjUsMzAgMCwzOCAtMS41LDMwIC0zLC0zMCIgZmlsbD0idXJsKCNzd29yZEdyYWQpIi8+CiAgICA8IS0tIEJsYWRlIGVkZ2Ugc2hpbmUgLS0+CiAgICA8bGluZSB4MT0iMSIgeTE9Ii01MCIgeDI9IjAuNSIgeTI9IjMwIiBzdHJva2U9IndoaXRlIiBzdHJva2Utd2lkdGg9IjAuNiIgb3BhY2l0eT0iMC43Ii8+CiAgICA8IS0tIEd1YXJkIChjcm9zc2d1YXJkKSAtLT4KICAgIDxyZWN0IHg9Ii0xNCIgeT0iLTYiIHdpZHRoPSIyOCIgaGVpZ2h0PSI1IiByeD0iMi41IiBmaWxsPSJ1cmwoI2dvbGRHcmFkKSIvPgogICAgPGNpcmNsZSBjeD0iLTE0IiBjeT0iLTMuNSIgcj0iMyIgZmlsbD0idXJsKCNnb2xkR3JhZCkiLz4KICAgIDxjaXJjbGUgY3g9IjE0IiBjeT0iLTMuNSIgcj0iMyIgZmlsbD0idXJsKCNnb2xkR3JhZCkiLz4KICAgIDwhLS0gR3JpcCAtLT4KICAgIDxyZWN0IHg9Ii0zIiB5PSItMSIgd2lkdGg9IjYiIGhlaWdodD0iMjAiIHJ4PSIzIiBmaWxsPSIjMWE1YzMwIi8+CiAgICA8cmVjdCB4PSItMi41IiB5PSIzIiB3aWR0aD0iNSIgaGVpZ2h0PSIyIiByeD0iMSIgZmlsbD0idXJsKCNnb2xkR3JhZCkiIG9wYWNpdHk9IjAuOCIvPgogICAgPHJlY3QgeD0iLTIuNSIgeT0iOCIgd2lkdGg9IjUiIGhlaWdodD0iMiIgcng9IjEiIGZpbGw9InVybCgjZ29sZEdyYWQpIiBvcGFjaXR5PSIwLjgiLz4KICAgIDxyZWN0IHg9Ii0yLjUiIHk9IjEzIiB3aWR0aD0iNSIgaGVpZ2h0PSIyIiByeD0iMSIgZmlsbD0idXJsKCNnb2xkR3JhZCkiIG9wYWNpdHk9IjAuOCIvPgogICAgPCEtLSBQb21tZWwgLS0+CiAgICA8ZWxsaXBzZSBjeD0iMCIgY3k9IjIyIiByeD0iNSIgcnk9IjQiIGZpbGw9InVybCgjZ29sZEdyYWQpIi8+CiAgICA8IS0tIFRpcCBnbG93IC0tPgogICAgPGVsbGlwc2UgY3g9IjAiIGN5PSItNTAiIHJ4PSIyIiByeT0iMyIgZmlsbD0id2hpdGUiIG9wYWNpdHk9IjAuOCIvPgogIDwvZz4KCiAgPCEtLSBTSElFTEQgb3V0bGluZSBiZWhpbmQgc3dvcmQgLS0+CiAgPHBhdGggZD0iTTEwMCw3OCBMMTI4LDg4IEwxMjgsMTE4IFExMjgsMTQwIDEwMCwxNTIgUTcyLDE0MCA3MiwxMTggTDcyLDg4IFoiIAogICAgICAgIGZpbGw9Im5vbmUiIHN0cm9rZT0idXJsKCNnb2xkR3JhZCkiIHN0cm9rZS13aWR0aD0iMS41IiBvcGFjaXR5PSIwLjUiLz4KCiAgPCEtLSBUZXh0OiBJU0xBTSBHVUFSRCAtLT4KICA8dGV4dCB4PSIxMDAiIHk9IjE3MCIgCiAgICAgICAgZm9udC1mYW1pbHk9Ikdlb3JnaWEsIHNlcmlmIiAKICAgICAgICBmb250LXNpemU9IjEzIiAKICAgICAgICBmb250LXdlaWdodD0iYm9sZCIgCiAgICAgICAgZmlsbD0idXJsKCNnb2xkR3JhZCkiIAogICAgICAgIHRleHQtYW5jaG9yPSJtaWRkbGUiIAogICAgICAgIGxldHRlci1zcGFjaW5nPSIzIgogICAgICAgIGZpbHRlcj0idXJsKCNnb2xkR2xvdykiPklTTEFNIEdVQVJEPC90ZXh0PgoKICA8IS0tIFRleHQ6IE1BIExFR0VORCAtLT4KICA8dGV4dCB4PSIxMDAiIHk9IjE4NCIgCiAgICAgICAgZm9udC1mYW1pbHk9Ikdlb3JnaWEsIHNlcmlmIiAKICAgICAgICBmb250LXNpemU9IjgiIAogICAgICAgIGZpbGw9IiMyZWNjNzEiIAogICAgICAgIHRleHQtYW5jaG9yPSJtaWRkbGUiIAogICAgICAgIGxldHRlci1zcGFjaW5nPSIyIgogICAgICAgIG9wYWNpdHk9IjAuODUiPkJZIE1BIExFR0VORDwvdGV4dD4KCiAgPCEtLSBDb3JuZXIgZGVjb3JhdGlvbnMgLS0+CiAgPGNpcmNsZSBjeD0iMzAiIGN5PSIzMCIgcj0iMiIgZmlsbD0iI2Y3Yzk0OCIgb3BhY2l0eT0iMC40Ii8+CiAgPGNpcmNsZSBjeD0iMTcwIiBjeT0iMzAiIHI9IjIiIGZpbGw9IiNmN2M5NDgiIG9wYWNpdHk9IjAuNCIvPgogIDxjaXJjbGUgY3g9IjMwIiBjeT0iMTcwIiByPSIyIiBmaWxsPSIjZjdjOTQ4IiBvcGFjaXR5PSIwLjQiLz4KICA8Y2lyY2xlIGN4PSIxNzAiIGN5PSIxNzAiIHI9IjIiIGZpbGw9IiNmN2M5NDgiIG9wYWNpdHk9IjAuNCIvPgo8L3N2Zz4K" style="width:32px;height:32px;border-radius:50%;flex-shrink:0;" alt="Logo"><div class="nav-title" id="nav-title">ISLAM GUARD</div>
+  <div class="nav-right">
+    <div class="lang-wrap">
+      <button class="lang-btn on" onclick="setLang('en')">EN</button>
+      <button class="lang-btn" onclick="setLang('ur')">اردو</button>
+    </div>
+    <button class="theme-btn" onclick="toggleTheme()" id="themeBtn">🌙</button>
+    <button class="notif-btn" onclick="go('public')">🔔<div class="notif-dot" id="notifDot"></div></button>
+  </div>
+</div>
+
+<!-- BROADCAST -->
+<div class="bc-banner on" id="bcBanner">
+  <div class="bc-label">📢 Admin Message</div>
+  <div class="bc-text" id="bcTxt">⚠️ If you see any content against Islam, the Prophets ﷺ, or the Sahaba — report it here immediately. Together we can get these accounts banned. JazakAllah Khair! 🤲</div>
+  <div class="bc-time" id="bcTime">— &#77;&#65;&#32;&#76;&#69;&#71;&#69;&#78;&#68;</div>
+</div>
+
+<!-- TABS -->
+<div class="tab-bar" id="tabBar">
+  <button class="tab on" onclick="go('home')" id="tab-home">🏠 Home</button>
+  <button class="tab" onclick="go('report')" id="tab-report">📋 Report</button>
+  <button class="tab" onclick="go('public')" id="tab-public">🌍 Public</button>
+  <button class="tab" onclick="go('platforms')" id="tab-platforms">🔍 Platforms</button>
+  <button class="tab" onclick="go('guide')" id="tab-guide">📖 Guide</button>
+  <button class="tab" onclick="go('links')" id="tab-links">🔗 Links</button>
+  <button class="tab" onclick="go('about')" id="tab-about">ℹ️ About</button>
+</div>
+
+<!-- ══════════════ HOME ══════════════ -->
+<div class="page on" id="page-home">
+  <div class="stats-grid">
+    <div class="stat-box"><div class="stat-num" id="st-total">0</div><div class="stat-lbl" id="stl-total">Reports</div></div>
+    <div class="stat-box"><div class="stat-num" id="st-pend">0</div><div class="stat-lbl" id="stl-pend">Pending</div></div>
+    <div class="stat-box"><div class="stat-num" id="st-ban">0</div><div class="stat-lbl" id="stl-ban">Banned</div></div>
+    <div class="stat-box"><div class="stat-num" id="st-res">0</div><div class="stat-lbl" id="stl-res">Resolved</div></div>
+  </div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px;">
+    <button class="sub-btn" style="margin:0;font-size:10px;padding:12px;" onclick="go('report')" id="h-btn-rep">📋 Submit Report</button>
+    <button class="sub-btn teal" style="margin:0;font-size:10px;padding:12px;" onclick="go('public')" id="h-btn-pub">🌍 View Reports</button>
+  </div>
+  <div class="sec-h" id="h-chart-lbl">📊 Activity (7 Days)</div>
+  <div class="card">
+    <div class="chart-wrap" id="chartBars"></div>
+    <div class="chart-lbls" id="chartLbls"></div>
+  </div>
+  <div class="sec-h" id="h-recent-lbl">🕐 Recent Reports</div>
+  <div id="homeRecent"></div>
+</div>
+
+<!-- ══════════════ REPORT ══════════════ -->
+<div class="page" id="page-report">
+  <div class="card">
+    <div class="sec-h" id="rp-title" style="margin-bottom:14px;">📋 Submit New Report</div>
+    <div class="fg"><label class="fl" id="fl-name">👤 Your Name *</label><input class="ni" type="text" id="f-name" placeholder="Enter your name..."></div>
+    <div class="fg">
+      <label class="fl" id="fl-plat">📱 Select Platform(s) *</label>
+      <div class="sel-plat-show" id="selPlatShow"></div>
+      <div class="plat-grid" id="rptPlatGrid">
+        <div class="plat-card" onclick="togPlat(this,'TikTok')"><div class="plat-dot" style="background:#ff0050"></div><div class="plat-check">✅</div><span class="plat-icon">🎵</span><div class="plat-name">TikTok</div><div class="plat-tag" id="pt-sel-txt">TAP TO SELECT</div></div>
+        <div class="plat-card" onclick="togPlat(this,'Facebook')"><div class="plat-dot" style="background:#1877f2"></div><div class="plat-check">✅</div><span class="plat-icon">📘</span><div class="plat-name">Facebook</div><div class="plat-tag">TAP TO SELECT</div></div>
+        <div class="plat-card" onclick="togPlat(this,'Instagram')"><div class="plat-dot" style="background:#e1306c"></div><div class="plat-check">✅</div><span class="plat-icon">📸</span><div class="plat-name">Instagram</div><div class="plat-tag">TAP TO SELECT</div></div>
+        <div class="plat-card" onclick="togPlat(this,'YouTube')"><div class="plat-dot" style="background:#ff0000"></div><div class="plat-check">✅</div><span class="plat-icon">▶️</span><div class="plat-name">YouTube</div><div class="plat-tag">TAP TO SELECT</div></div>
+        <div class="plat-card" onclick="togPlat(this,'X (Twitter)')"><div class="plat-dot" style="background:#1da1f2"></div><div class="plat-check">✅</div><span class="plat-icon">🐦</span><div class="plat-name">X (Twitter)</div><div class="plat-tag">TAP TO SELECT</div></div>
+        <div class="plat-card" onclick="togPlat(this,'WhatsApp')"><div class="plat-dot" style="background:#25d366"></div><div class="plat-check">✅</div><span class="plat-icon">💬</span><div class="plat-name">WhatsApp</div><div class="plat-tag">TAP TO SELECT</div></div>
+        <div class="plat-card" onclick="togPlat(this,'Telegram')"><div class="plat-dot" style="background:#0088cc"></div><div class="plat-check">✅</div><span class="plat-icon">✈️</span><div class="plat-name">Telegram</div><div class="plat-tag">TAP TO SELECT</div></div>
+        <div class="plat-card" onclick="togPlat(this,'Snapchat')"><div class="plat-dot" style="background:#fffc00"></div><div class="plat-check">✅</div><span class="plat-icon">👻</span><div class="plat-name">Snapchat</div><div class="plat-tag">TAP TO SELECT</div></div>
+      </div>
+    </div>
+    <div class="fg"><label class="fl" id="fl-link">🔗 Account Link / URL *</label><input class="ni" type="text" id="f-link" placeholder="Paste URL or @username..."></div>
+    <div class="fg">
+      <label class="fl" id="fl-viol">🏷️ Violation Type</label>
+      <div class="chips" id="chipContainer">
+        <div class="chip" onclick="this.classList.toggle('on')">Against Islam</div>
+        <div class="chip" onclick="this.classList.toggle('on')">Blasphemy of Prophets ﷺ</div>
+        <div class="chip" onclick="this.classList.toggle('on')">Attack on Sahaba</div>
+        <div class="chip" onclick="this.classList.toggle('on')">Quran Disrespect</div>
+        <div class="chip" onclick="this.classList.toggle('on')">Scammer / Fraud</div>
+        <div class="chip" onclick="this.classList.toggle('on')">Blackmail</div>
+        <div class="chip" onclick="this.classList.toggle('on')">Hate Speech</div>
+        <div class="chip" onclick="this.classList.toggle('on')">Fake Account</div>
+        <div class="chip" onclick="this.classList.toggle('on')">Harassment</div>
+        <div class="chip" onclick="this.classList.toggle('on')">Misinformation</div>
+      </div>
+    </div>
+    <div class="fg">
+      <label class="fl" id="fl-urg">🚨 Urgency</label>
+      <div class="urg-row">
+        <button class="urg-btn ul" onclick="setUrg(this,'low')" id="ub-low">🟢 Low</button>
+        <button class="urg-btn um" onclick="setUrg(this,'med')" id="ub-med">🟡 Med</button>
+        <button class="urg-btn uh on" onclick="setUrg(this,'high')" id="ub-high">🟠 High</button>
+        <button class="urg-btn uc" onclick="setUrg(this,'crit')" id="ub-crit">🔴 Critical</button>
+      </div>
+    </div>
+    <div class="fg"><label class="fl" id="fl-det">📝 Details</label><textarea class="ni" id="f-details" placeholder="Describe what you saw, when, any extra info..."></textarea></div>
+    <div class="fg">
+      <label class="fl" id="fl-img">📸 Screenshot (optional)</label>
+      <input class="ni" type="file" id="f-img" accept="image/*" onchange="prevImg(this)" style="padding:8px;">
+      <img class="img-prev" id="imgPrev">
+    </div>
+    <button class="sub-btn" onclick="submitReport(event)" id="sub-btn-txt">⚡ SUBMIT REPORT</button>
+  </div>
+</div>
+
+<!-- ══════════════ PUBLIC ══════════════ -->
+<div class="page" id="page-public">
+  <div class="card" style="margin-bottom:12px;background:linear-gradient(135deg,rgba(108,99,255,.09),rgba(255,107,53,.05));">
+    <div style="font-size:12px;color:var(--ts);line-height:1.65;" id="pub-info-txt">👇 Help ban these accounts! Click "Report on [Platform]" to directly report on that app.</div>
+  </div>
+  <div class="search-wrap"><span class="search-ico">🔍</span><input class="search-input" type="text" id="pubSearch" placeholder="Search reports..." oninput="renderPublic()"></div>
+  <div class="filter-row">
+    <button class="f-btn on" onclick="setPubF('all',this)" id="pf-all">🗂 All</button>
+    <button class="f-btn" onclick="setPubF('TikTok',this)">🎵 TikTok</button>
+    <button class="f-btn" onclick="setPubF('Facebook',this)">📘 Facebook</button>
+    <button class="f-btn" onclick="setPubF('Instagram',this)">📸 Instagram</button>
+    <button class="f-btn" onclick="setPubF('YouTube',this)">▶️ YouTube</button>
+    <button class="f-btn" onclick="setPubF('WhatsApp',this)">💬 WhatsApp</button>
+    <button class="f-btn" onclick="setPubF('Telegram',this)">✈️ Telegram</button>
+  </div>
+  <div id="pubList"></div>
+</div>
+
+<!-- ══════════════ PLATFORMS ══════════════ -->
+<div class="page" id="page-platforms">
+  <div class="card" style="margin-bottom:12px;background:linear-gradient(135deg,rgba(108,99,255,.09),rgba(0,212,170,.06));">
+    <div style="font-size:12px;color:var(--ts);line-height:1.65;" id="plat-info-txt">Click any platform below to go directly to their reporting page and report the account there.</div>
+  </div>
+  <div class="sec-h" id="plat-sec-h">🔍 Report on Platform</div>
+  <div class="plat-grid">
+    <a href="https://www.tiktok.com/report" target="_blank" class="plat-card"><div class="plat-dot" style="background:#ff0050"></div><span class="plat-icon">🎵</span><div class="plat-name">TikTok</div><div class="plat-tag" style="color:var(--a1);">REPORT NOW →</div></a>
+    <a href="https://www.facebook.com/help/reportlinks" target="_blank" class="plat-card"><div class="plat-dot" style="background:#1877f2"></div><span class="plat-icon">📘</span><div class="plat-name">Facebook</div><div class="plat-tag" style="color:var(--a1);">REPORT NOW →</div></a>
+    <a href="https://help.instagram.com/contact/383679321740945" target="_blank" class="plat-card"><div class="plat-dot" style="background:#e1306c"></div><span class="plat-icon">📸</span><div class="plat-name">Instagram</div><div class="plat-tag" style="color:var(--a1);">REPORT NOW →</div></a>
+    <a href="https://www.youtube.com/reportabuse" target="_blank" class="plat-card"><div class="plat-dot" style="background:#ff0000"></div><span class="plat-icon">▶️</span><div class="plat-name">YouTube</div><div class="plat-tag" style="color:var(--a1);">REPORT NOW →</div></a>
+    <a href="https://twitter.com/i/flow/report" target="_blank" class="plat-card"><div class="plat-dot" style="background:#1da1f2"></div><span class="plat-icon">🐦</span><div class="plat-name">X (Twitter)</div><div class="plat-tag" style="color:var(--a1);">REPORT NOW →</div></a>
+    <a href="https://www.snapchat.com/safety/report-a-safety-concern" target="_blank" class="plat-card"><div class="plat-dot" style="background:#fffc00"></div><span class="plat-icon">👻</span><div class="plat-name">Snapchat</div><div class="plat-tag" style="color:var(--a1);">REPORT NOW →</div></a>
+    <a href="https://www.whatsapp.com/contact/?subject=report" target="_blank" class="plat-card"><div class="plat-dot" style="background:#25d366"></div><span class="plat-icon">💬</span><div class="plat-name">WhatsApp</div><div class="plat-tag" style="color:var(--a1);">REPORT NOW →</div></a>
+    <a href="https://telegram.org/faq_spam" target="_blank" class="plat-card"><div class="plat-dot" style="background:#0088cc"></div><span class="plat-icon">✈️</span><div class="plat-name">Telegram</div><div class="plat-tag" style="color:var(--a1);">REPORT NOW →</div></a>
+    <a href="https://www.linkedin.com/help/linkedin/answer/37822" target="_blank" class="plat-card"><div class="plat-dot" style="background:#0077b5"></div><span class="plat-icon">💼</span><div class="plat-name">LinkedIn</div><div class="plat-tag" style="color:var(--a1);">REPORT NOW →</div></a>
+    <a href="https://support.google.com/youtube/answer/2802027" target="_blank" class="plat-card"><div class="plat-dot" style="background:#ea4335"></div><span class="plat-icon">📧</span><div class="plat-name">Google</div><div class="plat-tag" style="color:var(--a1);">REPORT NOW →</div></a>
+  </div>
+  <div class="divider"></div>
+  <div class="sec-h" id="plat-stat-h">📊 Platform Stats</div>
+  <div class="card"><div id="platStats"><div style="font-size:11px;color:var(--ts);text-align:center;padding:8px;" id="plat-empty-txt">Submit reports to see platform stats</div></div></div>
+</div>
+
+<!-- ══════════════ GUIDE ══════════════ -->
+<div class="page" id="page-guide">
+  <div class="sec-h" id="guide-h">📖 How to Report?</div>
+  <div class="steps">
+    <div class="step"><div class="step-num">1</div><div><div class="step-title" id="s1t">See Harmful Content</div><div class="step-desc" id="s1d">If you see any content against Islam, the Prophets ﷺ, Sahaba, or the Quran — take a screenshot immediately.</div></div></div>
+    <div class="step"><div class="step-num">2</div><div><div class="step-title" id="s2t">Submit Here First</div><div class="step-desc" id="s2d">Go to the Report tab and fill in all details. This creates a public report so others can also report the account.</div></div></div>
+    <div class="step"><div class="step-num">3</div><div><div class="step-title" id="s3t">Report on the Platform</div><div class="step-desc" id="s3d">Go to the Platforms tab and click the platform to report directly in that app. More reports = faster ban!</div></div></div>
+    <div class="step"><div class="step-num">4</div><div><div class="step-title" id="s4t">Share With Friends</div><div class="step-desc" id="s4d">Share this portal with other Muslims. Together the Ummah can get these accounts removed much faster.</div></div></div>
+    <div class="step"><div class="step-num">5</div><div><div class="step-title" id="s5t">Admin Takes Action</div><div class="step-desc" id="s5d">&#77;&#65;&#32;&#76;&#69;&#71;&#69;&#78;&#68; reviews your report and takes further action. JazakAllah Khair! 🤲</div></div></div>
+  </div>
+</div>
+
+<!-- ══════════════ LINKS ══════════════ -->
+<div class="page" id="page-links">
+  <div class="sec-h" id="links-h">⚡ &#77;&#65;&#32;&#76;&#69;&#71;&#69;&#78;&#68; Official Links</div>
+  <div class="links-grid">
+    <a href="https://islam-guard.vercel.app/" target="_blank" class="link-card"><span class="lk-icon">🌐</span><span class="lk-name" id="lk-store">Legend Store</span><span class="lk-sub" id="lk-store-sub">Official Website</span></a>
+    <a href="#" data-h="aHR0cHM6Ly93aGF0c2FwcC5jb20vY2hhbm5lbC8wMDI5VmFyUzQ2TzNReFJ0VFpPMHo2MHg=" target="_blank" class="link-card"><span class="lk-icon">💬</span><span class="lk-name">WhatsApp</span><span class="lk-sub" id="lk-wa-sub">Official Channel</span></a>
+    <a href="#" data-h="aHR0cHM6Ly90Lm1lL2xlZ2VuZF90b29s" target="_blank" class="link-card"><span class="lk-icon">✈️</span><span class="lk-name">Telegram</span><span class="lk-sub">@legend_tool</span></a>
+    <a href="#" data-h="aHR0cHM6Ly93d3cueW91dHViZS5jb20vQGxlZ2VuZG1vZDQwNw==" target="_blank" class="link-card"><span class="lk-icon">▶️</span><span class="lk-name">YouTube</span><span class="lk-sub">@legendmod407</span></a>
+  </div>
+  <div class="divider"></div>
+  <div class="sec-h" id="share-h">📤 Share This Portal</div>
+  <div class="card" style="text-align:center;">
+    <div style="font-size:12px;color:var(--ts);margin-bottom:12px;line-height:1.6;" id="share-desc">Share this portal so more Muslims can report together and ban harmful accounts!</div>
+    <button class="sub-btn" style="margin:0;" onclick="sharePortal()" id="share-btn">📤 Share Now</button>
+  </div>
+</div>
+
+<!-- ══════════════ ABOUT ══════════════ -->
+<div class="page" id="page-about">
+  <div class="dua-card">
+    <div class="dua-ar">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</div>
+    <div class="dua-tr" id="dua-tr">In the name of Allah, the Most Gracious, the Most Merciful</div>
+  </div>
+  <div class="card">
+    <p style="font-size:12px;color:var(--ts);line-height:1.7;margin-bottom:9px;" id="about-p1"><strong style="color:var(--tx);">Legend Report Portal</strong> is a platform where you can report any account that creates content against Islam, the Prophets ﷺ, the Sahaba, or the Quran.</p>
+    <p style="font-size:12px;color:var(--ts);line-height:1.7;" id="about-p2">Built by <strong style="color:var(--a1);">&#77;&#65;&#32;&#76;&#69;&#71;&#69;&#78;&#68;</strong> — so that the Muslim Ummah can stand together and get these accounts removed from all platforms.</p>
+  </div>
+  <div class="card" style="text-align:center;">
+    <div style="font-size:13px;font-weight:700;color:var(--ts);margin-bottom:5px;" id="made-by">Made with ❤️ by</div>
+    <div id="secretTxt" onclick="secretTap()" style="font-family:'Orbitron',monospace;font-size:20px;font-weight:900;color:var(--a1);cursor:default;user-select:none;transition:all .2s;letter-spacing:1px;">&#77;&#65;&#32;&#76;&#69;&#71;&#69;&#78;&#68;</div>
+    <div style="font-size:11px;color:var(--ts);margin-top:7px;" id="about-tagline">Islam Ki Hifazat Hamara Farz Hai 🤲</div>
+  </div>
+</div>
+
+<!-- ══════════════ ADMIN PANEL ══════════════ -->
+<div class="page" id="page-admin">
+  <!-- Stats overview in admin -->
+  <div class="stats-grid" style="margin-bottom:14px;">
+    <div class="stat-box"><div class="stat-num" id="adm-total">0</div><div class="stat-lbl" id="adm-l-total">Total</div></div>
+    <div class="stat-box"><div class="stat-num" id="adm-pend">0</div><div class="stat-lbl" id="adm-l-pend">Pending</div></div>
+    <div class="stat-box"><div class="stat-num" id="adm-ban">0</div><div class="stat-lbl" id="adm-l-ban">Banned</div></div>
+    <div class="stat-box"><div class="stat-num" id="adm-crit">0</div><div class="stat-lbl" id="adm-l-crit">Critical</div></div>
+  </div>
+
+  <!-- Broadcast compose -->
+  <div class="compose-card">
+    <div class="compose-ttl">📢 <span id="comp-ttl">Broadcast Message (Shown to Everyone)</span></div>
+    <textarea class="ni" id="bcInput" placeholder="Write a message — everyone will see it at the top..."></textarea>
+    <div class="compose-actions">
+      <button class="comp-btn cb-send" onclick="sendBC()" id="bc-send-btn">📡 SEND</button>
+      <button class="comp-btn cb-clr" onclick="clearBC()" id="bc-clr-btn">🗑️ REMOVE</button>
+    </div>
+  </div>
+
+  <div class="search-wrap"><span class="search-ico">🔍</span><input class="search-input" type="text" id="admSearch" placeholder="Search by name, link, platform..." oninput="renderAdmin()"></div>
+  <div class="filter-row">
+    <button class="f-btn on" onclick="setAdmF('all',this)" id="af-all">🗂 All</button>
+    <button class="f-btn" onclick="setAdmF('pending',this)" id="af-pend">🟠 Pending</button>
+    <button class="f-btn" onclick="setAdmF('reviewing',this)" id="af-rev">🟡 Review</button>
+    <button class="f-btn" onclick="setAdmF('banned',this)" id="af-ban">✅ Banned</button>
+    <button class="f-btn" onclick="setAdmF('dismissed',this)" id="af-dis">🗑 Dismissed</button>
+    <button class="f-btn" onclick="setAdmF('crit',this)" id="af-crit">🔴 Critical</button>
+  </div>
+  <div id="adminList"></div>
+</div>
+
+<!-- BOTTOM NAV -->
+<div class="bottom-nav">
+  <button class="bn on" onclick="go('home')"><span class="bn-ico">🏠</span><span class="bn-lbl" id="bn-home">Home</span></button>
+  <button class="bn" onclick="go('report')"><span class="bn-ico">📋</span><span class="bn-lbl" id="bn-report">Report</span></button>
+  <button class="bn" onclick="go('public')"><span class="bn-ico">🌍<span class="bn-badge" id="bnBadge"></span></span><span class="bn-lbl" id="bn-public">Public</span></button>
+  <button class="bn" onclick="go('platforms')"><span class="bn-ico">🔍</span><span class="bn-lbl" id="bn-plat">Platforms</span></button>
+  <button class="bn" onclick="openSidebar()"><span class="bn-ico">☰</span><span class="bn-lbl" id="bn-menu">Menu</span></button>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+/* © Protected Security System */
+/* Unauthorized access or reverse engineering is prohibited */
+!function(){
+  'use strict';
+  (function(){
+  var _x=function(){};
+  try{
+    (function(){
+      var t=new Date();
+      debugger;
+      if(new Date()-t>100){
+        document.body.innerHTML='';
+        window.location.href='about:blank';
+      }
+    })();
+  }catch(_){}
+  setInterval(function(){
+    var t=new Date();
+    debugger;
+    if(new Date()-t>100){
+      document.body.innerHTML='';
+    }
+  },3000);
+})();
+}();
+
+var _oo0Ol0OI11=[
+  "Lyog4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pW",
+  "Q4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ",
+  "4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ",
+  "4pWQ4pWQ4pWQ4pWQ4pWQCiAgIFBBUlRJQ0xFIENBTlZBUyBFTkdJTkUK4pWQ",
+  "4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4p",
+  "WQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pW",
+  "Q4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4",
+  "pWQICovCihmdW5jdGlvbigpewogIGNvbnN0IGNhbnZhcyA9IGRvY3VtZW50L",
+  "mdldEVsZW1lbnRCeUlkKCdwYXJ0aWNsZUNhbnZhcyc",
+  "pOwogIGNvbnN0IGN0eCA9IGNhbnZhcy5nZXRDb250ZX",
+  "h0KCcyZCcpOwogIGxldCBXLCBILCBwYXJ0aWNsZXMgPSBbXTsK",
+  "CiAgZnVuY3Rpb24gcmVzaXplKCl7CiAgICBXID0gY2F",
+  "udmFzLndpZHRoID0gd2luZG93LmlubmVyV2lkdGg7CiAgICBIID0gY2Fu",
+  "dmFzLmhlaWdodCA9IHdpbmRvdy5pbm5lckhlaWdodDsKI",
+  "CB9CiAgcmVzaXplKCk7CiAgd2luZG93LmFkZEV2ZW50T",
+  "GlzdGVuZXIoJ3Jlc2l6ZScsIHJlc2l6ZSk7CgogIGNvbnN0IENPTE9SUyA",
+  "9IFsKICAgICdyZ2JhKDEwOCw5OSwyNTUsJywKICAgICd",
+  "yZ2JhKDI1NSwxMDcsNTMsJywKICAgICdyZ2JhKDAsMjEyLDE3",
+  "MCwnLAogICAgJ3JnYmEoMjQ3LDIwMSw3MiwnCiAgXTsKCiAgY2xhc3MgU",
+  "GFydGljbGUgewogICAgY29uc3RydWN0b3IoKXt0a",
+  "GlzLnJlc2V0KHRydWUpO30KICAgIHJlc2V0KHJhbmRvbVk9Zm",
+  "Fsc2UpewogICAgICB0aGlzLnggPSBNYXRoLnJhbmRvbSgpICogVzsKICA",
+  "gICAgdGhpcy55ID0gcmFuZG9tWSA/IE1hdGgucmFuZG9tKCkgKiB",
+  "IIDogSCArIDIwOwogICAgICB0aGlzLnIgPSBNYXRoLnJhbmRvbS",
+  "gpICogNCArIDI7CiAgICAgIHRoaXMudnkgPSAtKE1hdGg",
+  "ucmFuZG9tKCkgKiAwLjggKyAwLjMpOwogICAgICB0aGl",
+  "zLnZ4ID0gKE1hdGgucmFuZG9tKCkgLSAwLjUpICo",
+  "gMC40OwogICAgICB0aGlzLmFscGhhID0gMDsKICAgICAgdGhpcy5tYX",
+  "hBbHBoYSA9IE1hdGgucmFuZG9tKCkgKiAwLjUgKyAwLjI7CiAgICAgIHRo",
+  "aXMuY29sb3IgPSBDT0xPUlNbTWF0aC5mbG9vcihNYXRoLn",
+  "JhbmRvbSgpICogQ09MT1JTLmxlbmd0aCldOwogICAgICB0aGlzLnBoY",
+  "XNlID0gTWF0aC5yYW5kb20oKSAqIE1hdGguUEkgKiAyOwog",
+  "ICAgfQogICAgdXBkYXRlKCl7CiAgICAgIHRoaXMueSArPSB0aGlzLn",
+  "Z5OwogICAgICB0aGlzLnggKz0gdGhpcy52eCArIE1hdGgu",
+  "c2luKHRoaXMucGhhc2UgKyBEYXRlLm5vdygpKjAu",
+  "MDAxKSAqIDAuMTU7CiAgICAgIHRoaXMucGhhc2UgKz0gMC4wMjsKICAgI",
+  "CAgaWYodGhpcy55IDwgSCAqIDAuNykgdGhpcy5hbHBoYSA9IE1",
+  "hdGgubWluKHRoaXMuYWxwaGEgKyAwLjAxNSwgdGhpcy5tYXhBbHBoYSk7C",
+  "iAgICAgIGlmKHRoaXMueSA8IEggKiAwLjIpIHRoaXMuYWxwaGEgLT0gMC4w",
+  "MjsKICAgICAgaWYodGhpcy55IDwgLTIwIHx8IHRoaXMuYWxwaGEgPD0gMCkg",
+  "dGhpcy5yZXNldCgpOwogICAgfQogICAgZHJhdygpewog",
+  "ICAgICBjdHguYmVnaW5QYXRoKCk7CiAgICAgIGN0eC5hcm",
+  "ModGhpcy54LCB0aGlzLnksIHRoaXMuciwgMCwgTWF0aC5QSSoyKTsKIC",
+  "AgICAgY3R4LmZpbGxTdHlsZSA9IHRoaXMuY29sb3IgKyB0aGlzLmF",
+  "scGhhICsgJyknOwogICAgICBjdHguZmlsbCgpOwogICAgfQogIH",
+  "0KCiAgZm9yKGxldCBpPTA7aTwyNTtpKyspIHBhcnRpY2xlcy5wdXNoKG5",
+  "ldyBQYXJ0aWNsZSgpKTsKCiAgZnVuY3Rpb24gbG9vcC",
+  "gpewogICAgY3R4LmNsZWFyUmVjdCgwLDAsVyxIKTsKICAgIHBhcn",
+  "RpY2xlcy5mb3JFYWNoKHA9PntwLnVwZGF0ZSgpO3AuZHJhdyg",
+  "pO30pOwogICAgcmVxdWVzdEFuaW1hdGlvbkZyYW1lKGxvb3ApOwog",
+  "IH0KICBsb29wKCk7Cn0pKCk7CgovKiDilZDilZDilZDi",
+  "lZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDi",
+  "lZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDil",
+  "ZDilZDilZDilZDilZDilZDilZDilZDilZDilZAKICAgQ",
+  "VBQIFNUQVRFCuKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKV",
+  "kOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOK",
+  "VkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkO",
+  "KVkOKVkOKVkCAqLwpjb25zdCBQQVNTID0gJ2xlZ2",
+  "VuZDc4Nic7CmNvbnN0IE1BWF9BVFQgPSA1Owpjb25zdCBQTEFUX1VSTFM",
+  "gPSB7CiAgJ1Rpa1Rvayc6J2h0dHBzOi8vd3d3LnRpa3Rvay5jb20vcmV",
+  "wb3J0JywKICAnRmFjZWJvb2snOidodHRwczovL3d",
+  "3dy5mYWNlYm9vay5jb20vaGVscC9yZXBvcnRsaW5rcycsCiAgJ0luc3RhZ3J",
+  "hbSc6J2h0dHBzOi8vaGVscC5pbnN0YWdyYW0uY29tL2NvbnRh",
+  "Y3QvMzgzNjc5MzIxNzQwOTQ1JywKICAnWW91VHViZSc6J2h0dHBz",
+  "Oi8vd3d3LnlvdXR1YmUuY29tL3JlcG9ydGFidXNlJywKICAnWCAoVHdpd",
+  "HRlciknOidodHRwczovL3R3aXR0ZXIuY29tL2kvZmxvdy9y",
+  "ZXBvcnQnLAogICdTbmFwY2hhdCc6J2h0dHBzOi8vd3d3",
+  "LnNuYXBjaGF0LmNvbS9zYWZldHkvcmVwb3J0LWEtc2FmZXR5L",
+  "WNvbmNlcm4nLAogICdXaGF0c0FwcCc6J2h0dHBzOi8vd3d",
+  "3LndoYXRzYXBwLmNvbS9jb250YWN0Lz9zdWJqZWN0PXJ",
+  "lcG9ydCcsCiAgJ1RlbGVncmFtJzonaHR0cHM6Ly90ZWxlZ3JhbS",
+  "5vcmcvZmFxX3NwYW0nLAogICdMaW5rZWRJbic6J2",
+  "h0dHBzOi8vd3d3LmxpbmtlZGluLmNvbS9oZWxwL2xpbmtlZGluL2Fuc",
+  "3dlci8zNzgyMicsCiAgJ0dvb2dsZSc6J2h0dHBzOi8vc3VwcG9ydC5nb2",
+  "9nbGUuY29tL3lvdXR1YmUvYW5zd2VyLzI4MDIwMjcnCn07CmNvbnN0IFBMQ",
+  "VRfSUNPTiA9IHsnVGlrVG9rJzon8J+OtScsJ0ZhY2Vib",
+  "29rJzon8J+TmCcsJ0luc3RhZ3JhbSc6J/Cfk7gnLCdZb3VU",
+  "dWJlJzon4pa277iPJywnWCAoVHdpdHRlciknOifwn5CmJywnV2hhdHNBcH",
+  "AnOifwn5KsJywnVGVsZWdyYW0nOifinIjvuI8nLCdTbmFw",
+  "Y2hhdCc6J/CfkbsnLCdMaW5rZWRJbic6J/CfkrwnLCdHb2",
+  "9nbGUnOifwn5OnJ307CgovKiDilZDilZDilZDilZDilZDilZDilZ",
+  "DilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDil",
+  "ZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZD",
+  "ilZDilZDilZDilZDilZDilZDilZDilZAKICAgRklSRUJBU0UgQ09",
+  "ORklHCuKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkO",
+  "KVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVk",
+  "OKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkOKVkCAqL",
+  "wpjb25zdCBGQl9VUkwgPSAnaHR0cHM6Ly9yZXBvcnQ",
+  "td2ViLTQwNjViLWRlZmF1bHQtcnRkYi5maXJlYmFzZWlvLmN",
+  "vbSc7Cgphc3luYyBmdW5jdGlvbiBmYkdldChwYXRoKXsKICB0cnl7",
+  "CiAgICBjb25zdCByZXMgPSBhd2FpdCBmZXRjaChgJHtGQl9VUkx9L",
+  "yR7cGF0aH0uanNvbmApOwogICAgcmV0dXJuIGF3YWl0IHJlcy5",
+  "qc29uKCk7CiAgfSBjYXRjaChlKXsgcmV0dXJuIG51bG",
+  "w7IH0KfQphc3luYyBmdW5jdGlvbiBmYlNldChwYXRoLC",
+  "BkYXRhKXsKICB0cnl7CiAgICBhd2FpdCBmZXRjaChgJHtGQl9VU",
+  "kx9LyR7cGF0aH0uanNvbmAsIHsKICAgICAgbWV0aG9kOid",
+  "QVVQnLCBoZWFkZXJzOnsnQ29udGVudC1UeXBlJzonYXBwbGljY",
+  "XRpb24vanNvbid9LAogICAgICBib2R5OiBKU09OLnN0cml",
+  "uZ2lmeShkYXRhKQogICAgfSk7CiAgICByZXR1cm4gdHJ1ZTsKICB9IGN",
+  "hdGNoKGUpeyByZXR1cm4gZmFsc2U7IH0KfQphc3luYyBmdW5jdG",
+  "lvbiBmYlB1c2gocGF0aCwgZGF0YSl7CiAgdHJ5ewogICAgY29u",
+  "c3QgcmVzID0gYXdhaXQgZmV0Y2goYCR7RkJfVVJMfS8ke3B",
+  "hdGh9Lmpzb25gLCB7CiAgICAgIG1ldGhvZDonUE9TVCcsI",
+  "GhlYWRlcnM6eydDb250ZW50LVR5cGUnOidhcHBsaWNhdGl",
+  "vbi9qc29uJ30sCiAgICAgIGJvZHk6IEpTT04uc3RyaW5naWZ5KG",
+  "RhdGEpCiAgICB9KTsKICAgIGNvbnN0IGpzb24gPSBhd2FpdCByZXMu",
+  "anNvbigpOwogICAgcmV0dXJuIGpzb24ubmFtZTsgLy8gRm",
+  "lyZWJhc2Uga2V5CiAgfSBjYXRjaChlKXsgcmV0dXJuIG51bG",
+  "w7IH0KfQphc3luYyBmdW5jdGlvbiBmYlBhdGNoKHBhdGgsIGRhdG",
+  "EpewogIHRyeXsKICAgIGF3YWl0IGZldGNoKGAke0ZCX1V",
+  "STH0vJHtwYXRofS5qc29uYCwgewogICAgICBtZXRob2Q",
+  "6J1BBVENIJywgaGVhZGVyczp7J0NvbnRlbnQtVHlwZSc6J2FwcGxpY2F",
+  "0aW9uL2pzb24nfSwKICAgICAgYm9keTogSlNPTi5zdHJpbmdpZnkoZGF",
+  "0YSkKICAgIH0pOwogICAgcmV0dXJuIHRydWU7CiAgfSBjYXRjaCh",
+  "lKXsgcmV0dXJuIGZhbHNlOyB9Cn0KYXN5bmMgZnVu",
+  "Y3Rpb24gZmJEZWxldGUocGF0aCl7CiAgdHJ5ewogI",
+  "CAgYXdhaXQgZmV0Y2goYCR7RkJfVVJMfS8ke3Bhd",
+  "Gh9Lmpzb25gLCB7IG1ldGhvZDonREVMRVRFJyB9KTsKICAgIHJldHVybiB0c",
+  "nVlOwogIH0gY2F0Y2goZSl7IHJldHVybiBmYWxzZTsgfQp9C",
+  "govLyBSZWFsLXRpbWUgbGlzdGVuZXIgdXNpbmcgU1NF",
+  "IChTZXJ2ZXItU2VudCBFdmVudHMpCmZ1bmN0aW9uIGZi",
+  "TGlzdGVuKHBhdGgsIGNhbGxiYWNrKXsKICB0cnl7CiAgICBjb25zdCB",
+  "ldnRTcmMgPSBuZXcgRXZlbnRTb3VyY2UoYCR7RkJfVVJMfS8ke3BhdG",
+  "h9Lmpzb25gKTsKICAgIGV2dFNyYy5hZGRFdmVudExpc3RlbmVyKCdwdXQnL",
+  "CBlID0+IHsKICAgICAgdHJ5eyBjYWxsYmFjayhKU09OLnBhcnNlKGUuZ",
+  "GF0YSkpOyB9IGNhdGNoKF8pe30KICAgIH0pOwogICAgZXZ0U3J",
+  "jLmFkZEV2ZW50TGlzdGVuZXIoJ3BhdGNoJywgZSA9PiB7Ci",
+  "AgICAgIHRyeXsgY2FsbGJhY2soSlNPTi5wYXJzZShlLmRhdGEpKTsgfSBjYX",
+  "RjaChfKXt9CiAgICB9KTsKICAgIHJldHVybiBldnRTcmM7CiAgfSBjYXRj",
+  "aChlKXsgcmV0dXJuIG51bGw7IH0KfQoKLyog4pWQ",
+  "4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pW",
+  "Q4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ",
+  "4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ4pWQ",
+  "CiAgIEFQUCBTVEFURQrilZDilZDilZDilZDilZDilZDilZDi",
+  "lZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDil",
+  "ZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDi",
+  "lZDilZDilZDilZDilZDilZDilZDilZAgKi8KbGV0IGlzQWRtaW49ZmFs",
+  "c2UsIGxvZ2luQXR0ZW1wdHM9MCwgbG9ja1VudGlsPTA7CmxldCByZX",
+  "BvcnRzPVtdLCB0b3RhbEJhbm5lZD0wLCB0b3RhbFJ",
+  "lc29sdmVkPTA7CmxldCBjdXJMYW5nPSdlbicsIGN1clVyZz0naGlnaCcsIG",
+  "N1clRoZW1lPSdsaWdodCc7CmxldCBzZWxlY3RlZFBsYXRzPVtdOwp",
+  "sZXQgcHViRmlsdGVyPSdhbGwnLCBhZG1GaWx0ZXI9J",
+  "2FsbCc7CmxldCBzZWNyZXRDb3VudD0wLCBzZWNyZXR",
+  "UaW1lcj1udWxsOwpsZXQgY2hhcnREYXRhPVswLDAsMCwwLDAsMCwwXTsKY",
+  "29uc3QgREFZUz1bJ1N1bicsJ01vbicsJ1R1ZScsJ1dlZCcsJ1RodScsJ",
+  "0ZyaScsJ1NhdCddOwpsZXQgZmJMaXN0ZW5lcj1udWxsOwoKLy",
+  "og4pWQ4pWQ4pWQIExPQURJTkcgU0NSRUVOIOKVkOKVkOKVk",
+  "CAqLwpmdW5jdGlvbiBzaG93TG9hZGVyKG1zZz0nTG9hZGlu",
+  "Zy4uLicpewogIGxldCBsZCA9IGRvY3VtZW50LmdldEVsZW1lbnRCe",
+  "UlkKCdmYkxvYWRlcicpOwogIGlmKCFsZCl7CiAgICBsZCA9IGRvY3V",
+  "tZW50LmNyZWF0ZUVsZW1lbnQoJ2RpdicpOwogICAgbGQuaWQgPSA",
+  "nZmJMb2FkZXInOwogICAgbGQuc3R5bGUuY3NzVGV4dCA9ICdw",
+  "b3NpdGlvbjpmaXhlZDtpbnNldDowO2JhY2tncm91bmQ6dmFyKC0t",
+  "b3ZlcmxheS1iZyk7YmFja2Ryb3AtZmlsdGVyOmJsdXIo",
+  "OHB4KTt6LWluZGV4Ojk5OTA7ZGlzcGxheTpmbGV4O2ZsZXg",
+  "tZGlyZWN0aW9uOmNvbHVtbjthbGlnbi1pdGVtczpjZW",
+  "50ZXI7anVzdGlmeS1jb250ZW50OmNlbnRlcjtnYXA6MTRweDsnOw",
+  "ogICAgbGQuaW5uZXJIVE1MID0gYAogICAgICA8ZGl2IHN0eWxlPSJ3aWR",
+  "0aDo0OHB4O2hlaWdodDo0OHB4O2JvcmRlci1yYWRpdXM6NTAlO2",
+  "JvcmRlcjo0cHggc29saWQgcmdiYSgxMDgsOTksMjU1LC4",
+  "yKTtib3JkZXItdG9wLWNvbG9yOnZhcigtLWEzKTthbmltYXRpb246c3BpbiA",
+  "uOHMgbGluZWFyIGluZmluaXRlOyI+PC9kaXY+CiAgIC",
+  "AgIDxkaXYgc3R5bGU9ImZvbnQtZmFtaWx5OidPcmJpdHJvb",
+  "icsbW9ub3NwYWNlO2ZvbnQtc2l6ZToxMnB4O2ZvbnQtd2VpZ2",
+  "h0OjcwMDtjb2xvcjp2YXIoLS10eCk7bGV0dGVyLXNwYWNpbmc6MXB4Oy",
+  "IgaWQ9ImxvYWRlck1zZyI+JHttc2d9PC9kaXY+CiAgICAgID",
+  "xzdHlsZT5Aa2V5ZnJhbWVzIHNwaW57dG97dHJhbnNmb3JtOnJvdG",
+  "F0ZSgzNjBkZWcpO319PC9zdHlsZT4KICAgIGA7CiA",
+  "gICBkb2N1bWVudC5ib2R5LmFwcGVuZENoaWxkKGxkKTsKICB",
+  "9IGVsc2UgewogICAgZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SW",
+  "QoJ2xvYWRlck1zZycpLnRleHRDb250ZW50ID0gbXNn",
+  "OwogICAgbGQuc3R5bGUuZGlzcGxheSA9ICdmbGV4",
+  "JzsKICB9Cn0KZnVuY3Rpb24gaGlkZUxvYWRlcigpewogIGNvbnN0IGxkID0g",
+  "ZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoJ2ZiTG9hZGVyJyk7CiAgaWYobGQ",
+  "pIGxkLnN0eWxlLmRpc3BsYXkgPSAnbm9uZSc7Cn0KCi8qIOKVkOKVkO",
+  "KVkCBJTklUIOKAlCBGSVJFQkFTRSBMT0FEIOKVkOKVkOKVkCA",
+  "qLwp3aW5kb3cuYWRkRXZlbnRMaXN0ZW5lcignRE9NQ29udGVudE",
+  "xvYWRlZCcsIGFzeW5jICgpPT57CiAgc2hvd0xvYWRlcignQ29ubmV",
+  "jdGluZyB0byBGaXJlYmFzZS4uLicpOwoKICAvLyBMb2FkI",
+  "GJyb2FkY2FzdCBmcm9tIEZpcmViYXNlCiAgdHJ5ewogICAgY29uc3QgYmMg",
+  "PSBhd2FpdCBmYkdldCgnYnJvYWRjYXN0Jyk7CiAgICBpZihiYyAmJiBiYy5",
+  "0ZXh0KXsKICAgICAgZG9jdW1lbnQuZ2V0RWxlbWV",
+  "udEJ5SWQoJ2JjVHh0JykudGV4dENvbnRlbnQgPSBiYy50ZXh0OwogI",
+  "CAgICBkb2N1bWVudC5nZXRFbGVtZW50QnlJZCgnYmNU",
+  "aW1lJykudGV4dENvbnRlbnQgPSBiYy50aW1lIHx8ICfigJQgTUEgTEV",
+  "HRU5EJzsKICAgICAgZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoJ2J",
+  "jQmFubmVyJykuY2xhc3NMaXN0LmFkZCgnb24nKTsKICAgI",
+  "H0gZWxzZSB7CiAgICAgIGRvY3VtZW50LmdldEVsZ",
+  "W1lbnRCeUlkKCdiY0Jhbm5lcicpLmNsYXNzTGlzdC5hZGQo",
+  "J29uJyk7CiAgICB9CiAgfSBjYXRjaChlKXt9CgogIC8vIExvYWQgc3",
+  "RhdHMgY291bnRlcnMKICB0cnl7CiAgICBjb25zdCBzdGF0cyA",
+  "9IGF3YWl0IGZiR2V0KCdzdGF0cycpOwogICAgaWYo",
+  "c3RhdHMpewogICAgICB0b3RhbEJhbm5lZCA9IHN0YXR",
+  "zLmJhbm5lZCB8fCAwOwogICAgICB0b3RhbFJlc29sdmVkID0g",
+  "c3RhdHMucmVzb2x2ZWQgfHwgMDsKICAgICAgY2hhcnREYXRhID0gc3RhdH",
+  "MuY2hhcnREYXRhIHx8IFswLDAsMCwwLDAsMCwwXTsKICAgIH0K",
+  "ICB9IGNhdGNoKGUpe30KCiAgLy8gTG9hZCBhbGwgcmVwb3J0cwogIG",
+  "F3YWl0IGxvYWRBbGxSZXBvcnRzKCk7CiAgaGlkZUxvYWRlcigp",
+  "OwoKICAvLyBTdGFydCByZWFsLXRpbWUgbGlzdGVuZXIKIC",
+  "BzdGFydFJlYWx0aW1lTGlzdGVuZXIoKTsKCiAgcmVuZGVyQ2h",
+  "hcnQoKTsKICByZW5kZXJIb21lUmVjZW50KCk7CiAgdXBkYXRlU3RhdH",
+  "MoKTsKICByZW5kZXJQdWJsaWMoKTsKfSk7CgovKiDilZ",
+  "DilZDilZAgTE9BRCBBTEwgUkVQT1JUUyBGUk9NIEZJUkVCQVNFIOKVkOKV",
+  "kOKVkCAqLwphc3luYyBmdW5jdGlvbiBsb2FkQWxsU",
+  "mVwb3J0cygpewogIHRyeXsKICAgIGNvbnN0IGRhdGEgPSBhd2FpdC",
+  "BmYkdldCgncmVwb3J0cycpOwogICAgaWYoZGF0YSAmJiB0eXBlb2Yg",
+  "ZGF0YSA9PT0gJ29iamVjdCcpewogICAgICByZXBvcnRzID",
+  "0gT2JqZWN0LmVudHJpZXMoZGF0YSkubWFwKChbZmJLZ",
+  "XksIHJdKSA9PiAoey4uLnIsIGZiS2V5fSkpOwogICAgICAvLyBTb3J0IGJ5",
+  "IHRpbWVzdGFtcCBkZXNjZW5kaW5nCiAgICAgIHJlcG9ydHMuc29y",
+  "dCgoYSxiKSA9PiAoYi5pZHx8MCkgLSAoYS5pZHx8MCkpOwogICAgfSBlb",
+  "HNlIHsKICAgICAgcmVwb3J0cyA9IFtdOwogICAgfQogIH0gY2F0Y2goZ",
+  "Sl7IHJlcG9ydHMgPSBbXTsgfQp9CgovKiDilZDilZDilZAgUkVBTC1USU",
+  "1FIExJU1RFTkVSIOKVkOKVkOKVkCAqLwpmdW5jdGlv",
+  "biBzdGFydFJlYWx0aW1lTGlzdGVuZXIoKXsKICBpZihmYkxpc3Rlbm",
+  "VyKSBmYkxpc3RlbmVyLmNsb3NlKCk7CiAgZmJMaXN0ZW5lciA9IGZ",
+  "iTGlzdGVuKCdyZXBvcnRzJywgYXN5bmMgKGRhdGEpPT57CiAgICB",
+  "pZihkYXRhICYmIGRhdGEuZGF0YSl7CiAgICAgIGNvbnN0IGl",
+  "uY29taW5nID0gZGF0YS5kYXRhOwogICAgICBpZihpb",
+  "mNvbWluZyAmJiB0eXBlb2YgaW5jb21pbmcgPT09IC",
+  "dvYmplY3QnKXsKICAgICAgICByZXBvcnRzID0gT2JqZWN0LmVudHJpZXMoaW",
+  "5jb21pbmcpLm1hcCgoW2ZiS2V5LCByXSkgPT4gKHs",
+  "uLi5yLCBmYktleX0pKTsKICAgICAgICByZXBvcnRzLnNvcnQoK",
+  "GEsYikgPT4gKGIuaWR8fDApIC0gKGEuaWR8fDApKTsKICAgICAgfSB",
+  "lbHNlIHsKICAgICAgICByZXBvcnRzID0gW107CiAgICAgIH0KICAgICAgdXB",
+  "kYXRlU3RhdHMoKTsKICAgICAgcmVuZGVyUHVibGljKCk7C",
+  "iAgICAgIHJlbmRlckhvbWVSZWNlbnQoKTsKICAgICAgaW",
+  "YoaXNBZG1pbikgcmVuZGVyQWRtaW4oKTsKICAgICAgdX",
+  "BkYXRlQmFkZ2UoKTsKICAgIH0KICB9KTsKfQoKLyog4pWQ4pWQ4pWQ",
+  "IFRIRU1FIOKVkOKVkOKVkCAqLwpmdW5jdGlvbiB0",
+  "b2dnbGVUaGVtZSgpewogIGN1clRoZW1lID0gY3VyVGhlbWU9PT0nbGlnaH",
+  "QnPydkYXJrJzonbGlnaHQnOwogIGRvY3VtZW50Lm",
+  "RvY3VtZW50RWxlbWVudC5zZXRBdHRyaWJ1dGUoJ2RhdGEtdGhlbW",
+  "UnLGN1clRoZW1lKTsKICBkb2N1bWVudC5nZXRFbGVtZW50Q",
+  "nlJZCgndGhlbWVCdG4nKS50ZXh0Q29udGVudCA9IGN1clRoZW1lPT0",
+  "9J2xpZ2h0Jz8n8J+MmSc6J+KYgO+4jyc7CiAgc2hvd",
+  "1RvYXN0KGN1clRoZW1lPT09J2RhcmsnPyfwn4yZIERhcmsgTW9kZS",
+  "BPbic6J+KYgO+4jyBMaWdodCBNb2RlIE9uJywnIz",
+  "ZjNjNmZicpOwp9CgovKiDilZDilZDilZAgTEFOR1VBR0U",
+  "g4pWQ4pWQ4pWQICovCmNvbnN0IFRFWFRTID0gewogIGVuOnsKICA",
+  "gICduYXYtdGl0bGUnOidMRUdFTkQgUkVQT1JUIFBPU",
+  "lRBTCcsJ2x0JzonQURNSU4gQUNDRVNTJywnbHMnOidPbmx5IE",
+  "1BIExFR0VORCBDYW4gRW50ZXInLAogICAgJ2xidG4nOifwn5qAIExPR0lOJ",
+  "ywnbGJhY2snOifihpAgR28gQmFjaycsJ2FkbWluLWJhci1",
+  "0eHQnOidBRE1JTiBNT0RFIOKAlCBNQSBMRUdFTkQnLAogICAgJ2FiLWluYm",
+  "94Jzon8J+TrCBJbmJveCcsJ2FiLWxvZ291dCc6J0xvZ291dCcsJ",
+  "3NiLXN0YXR1cyc6J09OTElORScsJ3NiLW5hdi1sYmwnOidOQVZJR0FUSU9OJ",
+  "ywKICAgICdzYmwtaG9tZSc6J0hvbWUnLCdzYmwtcmVwb3J0JzonU3Vi",
+  "bWl0IFJlcG9ydCcsJ3NibC1wdWJsaWMnOidQdWJsaWMgUmVwb",
+  "3J0cycsCiAgICAnc2JsLXBsYXQnOidQbGF0Zm9ybX",
+  "MnLCdzYmwtZ3VpZGUnOidIb3cgdG8gUmVwb3J0Jywnc2JsLWxpbmtzJzonT",
+  "Glua3MnLCdzYmwtYWJvdXQnOidBYm91dCcsCiAgICAnc2",
+  "JsLWFkbWluJzonQWRtaW4gUGFuZWwnLCdzYi1zdG",
+  "F0cy1sYmwnOidMSVZFIFNUQVRTJywnc2Itc3QtdGl",
+  "0bGUnOidTVEFUSVNUSUNTJywKICAgICdzYi1sLXRvdGF",
+  "sJzonVG90YWwgUmVwb3J0cycsJ3NiLWwtcGVuZCc6",
+  "J1BlbmRpbmcnLCdzYi1sLWJhbic6J0Jhbm5lZCcsJ3NiLWwtcmVz",
+  "JzonUmVzb2x2ZWQnLAogICAgJ3NiLWxpbmtzLWxibCc6J01BIE",
+  "xFR0VORCBMSU5LUycsJ3NibC1zdG9yZSc6J0xlZ2VuZCBTdG9yZScs",
+  "J3NibC13YSc6J1doYXRzQXBwIENoYW5uZWwnLAogICAgJ3N",
+  "iLWR1YS10cic6J0luIHRoZSBuYW1lIG9mIEFsbGFoJywKICAgICd",
+  "0YWItaG9tZSc6J/Cfj6AgSG9tZScsJ3RhYi1yZXBvcnQnOi",
+  "fwn5OLIFJlcG9ydCcsJ3RhYi1wdWJsaWMnOifwn4yNI",
+  "FB1YmxpYycsCiAgICAndGFiLXBsYXRmb3Jtcyc6J/CflI0gUGxhdG",
+  "Zvcm1zJywndGFiLWd1aWRlJzon8J+TliBHdWlkZScsJ3RhYi1sa",
+  "W5rcyc6J/CflJcgTGlua3MnLCd0YWItYWJvdXQnOifihLnvuI8gQWJvdXQ",
+  "nLAogICAgJ3N0bC10b3RhbCc6J1JlcG9ydHMnLCdzd",
+  "GwtcGVuZCc6J1BlbmRpbmcnLCdzdGwtYmFuJzonQm",
+  "FubmVkJywnc3RsLXJlcyc6J1Jlc29sdmVkJywKICAgICdoLWNoYXJ0LW",
+  "xibCc6J/Cfk4ogQWN0aXZpdHkgKDcgRGF5cyknLCdoLXJ",
+  "lY2VudC1sYmwnOifwn5WQIFJlY2VudCBSZXBvcnRzJywKICAgICdo",
+  "LWJ0bi1yZXAnOifwn5OLIFN1Ym1pdCBSZXBvcnQnLCdoLWJ0b",
+  "i1wdWInOifwn4yNIFZpZXcgUmVwb3J0cycsCiAgIC",
+  "AncnAtdGl0bGUnOifwn5OLIFN1Ym1pdCBOZXcgUmVwb3J0",
+  "JywnZmwtbmFtZSc6J/CfkaQgWW91ciBOYW1lIConLCd",
+  "mbC1wbGF0Jzon8J+TsSBTZWxlY3QgUGxhdGZvcm0ocykgKicsCiAgICA",
+  "nZmwtbGluayc6J/CflJcgQWNjb3VudCBMaW5rIC8gVVJMIConLCdmbC12aW",
+  "9sJzon8J+Pt++4jyBWaW9sYXRpb24gVHlwZScsJ2ZsLX",
+  "VyZyc6J/CfmqggVXJnZW5jeScsCiAgICAnZmwtZGV0Jzon8J",
+  "+TnSBEZXRhaWxzJywnZmwtaW1nJzon8J+TuCBTY3",
+  "JlZW5zaG90IChvcHRpb25hbCknLAogICAgJ3ViLWxvdyc6J/Cfn6IgTG93J",
+  "ywndWItbWVkJzon8J+foSBNZWQnLCd1Yi1oaWdoJzon8J+foCBIaWdo",
+  "JywndWItY3JpdCc6J/CflLQgQ3JpdGljYWwnLAogICAgJ3N1Yi1idG4td",
+  "Hh0Jzon4pqhIFNVQk1JVCBSRVBPUlQnLAogICAgJ3",
+  "B1Yi1pbmZvLXR4dCc6J/CfkYcgSGVscCBiYW4gdGhlc2",
+  "UgYWNjb3VudHMhIENsaWNrICJSZXBvcnQgb24gW1B",
+  "sYXRmb3JtXSIgdG8gZGlyZWN0bHkgcmVwb3J0IG9",
+  "uIHRoYXQgYXBwLicsCiAgICAncGYtYWxsJzon8J+XgiBBbGwnLCdwbGF",
+  "0LWluZm8tdHh0JzonQ2xpY2sgYW55IHBsYXRmb3JtIGJlbG93IHR",
+  "vIGdvIHRvIHRoZWlyIHJlcG9ydGluZyBwYWdlLicsCiAgICAncGxhdC1zZWM",
+  "taCc6J/CflI0gUmVwb3J0IG9uIFBsYXRmb3JtJywncGxhdC1zd",
+  "GF0LWgnOifwn5OKIFBsYXRmb3JtIFN0YXRzJywKICAgICdwbGF0LWVtcHR5",
+  "LXR4dCc6J1N1Ym1pdCByZXBvcnRzIHRvIHNlZSBwbGF0Zm9ybSBzdGF0cyc",
+  "sCiAgICAnZ3VpZGUtaCc6J/Cfk5YgSG93IHRvIFJlcG9ydD8nLAo",
+  "gICAgJ3MxdCc6J1NlZSBIYXJtZnVsIENvbnRlbnQnLCdzMWQnOidJZiB5b",
+  "3Ugc2VlIGFueSBjb250ZW50IGFnYWluc3QgSXNsYW0sIHRoZSB",
+  "Qcm9waGV0cyDvt7osIFNhaGFiYSwgb3IgdGhlIFF1cmFuIOKAlCB0",
+  "YWtlIGEgc2NyZWVuc2hvdCBpbW1lZGlhdGVseS4nLAogICAgJ3MydCc",
+  "6J1N1Ym1pdCBIZXJlIEZpcnN0JywnczJkJzonR28gdG8gdGhlIFJlc",
+  "G9ydCB0YWIgYW5kIGZpbGwgaW4gYWxsIGRldGFpbHMuIFRoaX",
+  "MgY3JlYXRlcyBhIHB1YmxpYyByZXBvcnQgc28gb3RoZXJzIGNhbiBhbHNvI",
+  "HJlcG9ydC4nLAogICAgJ3MzdCc6J1JlcG9ydCBvbiB0aGU",
+  "gUGxhdGZvcm0nLCdzM2QnOidHbyB0byB0aGUgUGxhdGZvcm1zIHRhYiBhbm",
+  "QgY2xpY2sgdGhlIHBsYXRmb3JtIHRvIHJlcG9ydCBkaXJlY3Rse",
+  "SBpbiB0aGF0IGFwcC4gTW9yZSByZXBvcnRzID0gZmFzdGVyIGJhbiEnLAo",
+  "gICAgJ3M0dCc6J1NoYXJlIFdpdGggRnJpZW5kcycsJ3M0ZCc6J1NoYXJl",
+  "IHRoaXMgcG9ydGFsIHdpdGggb3RoZXIgTXVzbGltcyBzbyB0aGUg",
+  "VW1tYWggY2FuIGdldCB0aGVzZSBhY2NvdW50cyByZW1vdmVkI",
+  "G11Y2ggZmFzdGVyLicsCiAgICAnczV0JzonQWRtaW4gVGFrZX",
+  "MgQWN0aW9uJywnczVkJzonTUEgTEVHRU5EIHJldmlld3MgeW91ciB",
+  "yZXBvcnQgYW5kIHRha2VzIGZ1cnRoZXIgYWN0aW9uLiBKY",
+  "Xpha0FsbGFoIEtoYWlyISDwn6SyJywKICAgICdsaW5rcy1oJzon4pqhIE1B",
+  "IExFR0VORCBPZmZpY2lhbCBMaW5rcycsJ2xrLXN0b3",
+  "JlJzonTGVnZW5kIFN0b3JlJywnbGstc3RvcmUtc3",
+  "ViJzonT2ZmaWNpYWwgV2Vic2l0ZScsCiAgICAnbGstd2Etc3ViJz",
+  "onT2ZmaWNpYWwgQ2hhbm5lbCcsJ3NoYXJlLWgnOifw",
+  "n5OkIFNoYXJlIFRoaXMgUG9ydGFsJywKICAgICdzaGFy",
+  "ZS1kZXNjJzonU2hhcmUgdGhpcyBwb3J0YWwgc28gbW9yZSBNdXNsaW",
+  "1zIGNhbiByZXBvcnQgdG9nZXRoZXIgYW5kIGJhbiBoYX",
+  "JtZnVsIGFjY291bnRzIScsCiAgICAnc2hhcmUtYnRuJzon8J+TpCBTa",
+  "GFyZSBOb3cnLAogICAgJ2R1YS10cic6J0luIHRoZSBuYW1lIG9mIEFsbGFoL",
+  "CB0aGUgTW9zdCBHcmFjaW91cywgdGhlIE1vc3QgTWVyY2",
+  "lmdWwnLAogICAgJ2Fib3V0LXAxJzonPHN0cm9uZyBzdHlsZT",
+  "0iY29sb3I6dmFyKC0tdHgpOyI+TGVnZW5kIFJlcG",
+  "9ydCBQb3J0YWw8L3N0cm9uZz4gaXMgYSBwbGF0Zm9y",
+  "bSB3aGVyZSB5b3UgY2FuIHJlcG9ydCBhbnkgYWNj",
+  "b3VudCB0aGF0IGNyZWF0ZXMgY29udGVudCBhZ2FpbnN0IElzbGFtLCB",
+  "0aGUgUHJvcGhldHMg77e6LCB0aGUgU2FoYWJhLCBvciB0aGUgUXVyY",
+  "W4uJywKICAgICdhYm91dC1wMic6J0J1aWx0IGJ5IDxzdHJvbmcgc3R5b",
+  "GU9ImNvbG9yOnZhcigtLWExKTsiPk1BIExFR0VORDwvc3Ryb25nPiDig",
+  "JQgc28gdGhhdCB0aGUgTXVzbGltIFVtbWFoIGNhbiBzdGFu",
+  "ZCB0b2dldGhlciBhbmQgZ2V0IHRoZXNlIGFjY291bnRzIHJlbW92ZW",
+  "QgZnJvbSBhbGwgcGxhdGZvcm1zLicsCiAgICAnbWFkZS1i",
+  "eSc6J01hZGUgd2l0aCDinaTvuI8gYnknLCdhYm91dC10YWdsaW5lJzonSXNs",
+  "YW0gS2kgSGlmYXphdCBIYW1hcmEgRmFyeiBIYWkg8J+ksics",
+  "CiAgICAnY29tcC10dGwnOidCcm9hZGNhc3QgTWVzc2FnZS",
+  "AoU2hvd24gdG8gRXZlcnlvbmUpJywKICAgICdiYy1",
+  "zZW5kLWJ0bic6J/Cfk6EgU0VORCcsJ2JjLWNsci1idG4nOifwn5eR",
+  "77iPIFJFTU9WRScsCiAgICAnYWYtYWxsJzon8J+X",
+  "giBBbGwnLCdhZi1wZW5kJzon8J+foCBQZW5kaW5nJy",
+  "wnYWYtcmV2Jzon8J+foSBSZXZpZXcnLCdhZi1iYW4nOifinIUgQmFu",
+  "bmVkJywnYWYtZGlzJzon8J+XkSBEaXNtaXNzZWQnLCdhZi1jcml0Jzon",
+  "8J+UtCBDcml0aWNhbCcsCiAgICAnYWRtLWwtdG90",
+  "YWwnOidUb3RhbCcsJ2FkbS1sLXBlbmQnOidQZW5kaW5nJywnYWRtLWwtYm",
+  "FuJzonQmFubmVkJywnYWRtLWwtY3JpdCc6J0NyaXRpY2FsJywKI",
+  "CAgICdibi1ob21lJzonSG9tZScsJ2JuLXJlcG9yd",
+  "Cc6J1JlcG9ydCcsJ2JuLXB1YmxpYyc6J1B1YmxpYycsJ2J",
+  "uLXBsYXQnOidQbGF0Zm9ybXMnLCdibi1tZW51JzonTWVudScsCiAgICAnc",
+  "HQtc2VsLXR4dCc6J1RBUCBUTyBTRUxFQ1QnLAogIH0sCiA",
+  "gdXI6ewogICAgJ25hdi10aXRsZSc6J9mE24zYrNmG2ogg2LHZvtmI2LH",
+  "ZuSDZvtmI2LHZudmEJywnbHQnOifYp9uM2ojZhdmGINmE2K",
+  "far9mGJywnbHMnOifYtdix2YEgTUEgTEVHRU5EINiv2KfYrtmEINu",
+  "B2Ygg2LPaqdiq2Kcg24HbkicsCiAgICAnbGJ0bic6J/CfmoAg",
+  "2YTYp9qv2YYnLCdsYmFjayc6J+KGkCDZiNin2b7YsyDYrNin2KQnLC",
+  "dhZG1pbi1iYXItdHh0Jzon2KfbjNqI2YXZhiDZhdmI2ogg4",
+  "oCUIE1BIExFR0VORCcsCiAgICAnYWItaW5ib3gnOifwn5",
+  "OsINin2YYg2KjYp9qp2LMnLCdhYi1sb2dvdXQnOifZhNin2q8g2KLYpNm5",
+  "Jywnc2Itc3RhdHVzJzon2KLZhiDZhNin2KbZhicsJ3NiLW5hdi1sYmwn",
+  "OifZhtuM2YjbjNqv24zYtNmGJywKICAgICdzYmwtaG9tZSc6J",
+  "9uB2YjZhScsJ3NibC1yZXBvcnQnOifYsdm+2YjYsdm5INio2r",
+  "7bjNis24zauicsJ3NibC1wdWJsaWMnOifYudmI2KfZhduMINix2b",
+  "7ZiNix2bnYsycsCiAgICAnc2JsLXBsYXQnOifZvtmE24zZuSDZgdin2LHZ",
+  "hdiyJywnc2JsLWd1aWRlJzon2LHZvtmI2LHZuSDaqduM2LPbkiDaq",
+  "dix24zauicsJ3NibC1saW5rcyc6J9mE2YbaqdizJ",
+  "ywnc2JsLWFib3V0Jzon2KrYudin2LHZgScsCiAgICAnc2JsLWFkbWluJ",
+  "zon2KfbjNqI2YXZhiDZvtuM2YbZhCcsJ3NiLXN0YXRzLWxi",
+  "bCc6J9mE2KfYptuM2Ygg2KfYudiv2KfYrycsJ3NiLXN0L",
+  "XRpdGxlJzon2KfYudiv2KfYryDZiCDYtNmF2KfYsScsCiAgICAnc",
+  "2ItbC10b3RhbCc6J9qp2YQg2LHZvtmI2LHZudizJ",
+  "ywnc2ItbC1wZW5kJzon2LLbjNixINin2YTYqtmI2KfYoScsJ3NiLWwt",
+  "YmFuJzon2KjbjNmGJywnc2ItbC1yZXMnOifYrdmEI",
+  "Ni02K/bgScsCiAgICAnc2ItbGlua3MtbGJsJzonTUEgTEVHRU5EI",
+  "NmE2YbaqdizJywnc2JsLXN0b3JlJzon2YTbjNis2YbaiCDYp9iz2bnZiNix",
+  "Jywnc2JsLXdhJzon2YjYp9m52LMg2KfbjNm+INqG24zZh",
+  "tmEJywKICAgICdzYi1kdWEtdHInOifYp9mE2YTbgSDaqduSINm",
+  "G2KfZhSDYs9uSJywKICAgICd0YWItaG9tZSc6J/Cfj6Ag24HZiNmFJ",
+  "ywndGFiLXJlcG9ydCc6J/Cfk4sg2LHZvtmI2LHZuScsJ3RhYi1wdWJsaWMn",
+  "Oifwn4yNINi52YjYp9mF24wnLAogICAgJ3RhYi1wbGF0Zm9ybXMnO",
+  "ifwn5SNINm+2YTbjNm5INmB2KfYsdmFJywndGFiLWd",
+  "1aWRlJzon8J+TliDar9in2KbbjNqIJywndGFiLWxpbmtzJzon8J+UlyDZhNm",
+  "G2qnYsycsJ3RhYi1hYm91dCc6J+KEue+4jyDYqti52KfYsdmBJywKICAgICd",
+  "zdGwtdG90YWwnOifYsdm+2YjYsdm52LMnLCdzdGw",
+  "tcGVuZCc6J9m+24zZhtqI2YbarycsJ3N0bC1iYW4nO",
+  "ifYqNuM2YYnLCdzdGwtcmVzJzon2K3ZhCcsCiAgI",
+  "CAnaC1jaGFydC1sYmwnOifwn5OKINiz2LHar9ix2YXbjCAo",
+  "NyDYr9mGKScsJ2gtcmVjZW50LWxibCc6J/CflZAg2K3Yp9mE24zb",
+  "gSDYsdm+2YjYsdm52LMnLAogICAgJ2gtYnRuLXJlcCc6J/Cfk",
+  "4sg2LHZvtmI2LHZuSDYqNq+24zYrNuM2ronLCdoLWJ0bi1wdWI",
+  "nOifwn4yNINix2b7ZiNix2bnYsyDYr9uM2qnavtuM2ronLAogICAgJ",
+  "3JwLXRpdGxlJzon8J+TiyDZhtim24wg2LHZvtmI2LHZuSDYqNq",
+  "+24zYrNuM2ronLCdmbC1uYW1lJzon8J+RpCDYotm+INqp2Kcg2YbY",
+  "p9mFIConLCdmbC1wbGF0Jzon8J+TsSDZvtmE24zZuS",
+  "DZgdin2LHZhSDZhdmG2KrYrtioINqp2LHbjNq6IConL",
+  "AogICAgJ2ZsLWxpbmsnOifwn5SXINin2qnYp9ik2YbZuSD",
+  "ZhNmG2qkgLyBVUkwgKicsJ2ZsLXZpb2wnOifwn4+377iPINiu2Y",
+  "TYp9mBINmI2LHYstuMINqp24wg2YLYs9mFJywnZmwtdXJnJzon8J+aqCDZg",
+  "dmI2LHbjCDYp9uB2YXbjNiqJywKICAgICdmbC1kZXQnOifwn5OdINiq2YHY",
+  "tduM2YQnLCdmbC1pbWcnOifwn5O4INin2LPaqdix24zZhiDYtNin2bkgKNi",
+  "n2K7YqtuM2KfYsduMKScsCiAgICAndWItbG93Jzon8J+foiDaqdm",
+  "FJywndWItbWVkJzon8J+foSDYr9ix2YXbjNin2Ybbg",
+  "ScsJ3ViLWhpZ2gnOifwn5+gINiy24zYp9iv24EnLCd1Yi1",
+  "jcml0Jzon8J+UtCDYp9mG2Krbgdin2KbbjCcsCiA",
+  "gICAnc3ViLWJ0bi10eHQnOifimqEg2LHZvtmI2LHZuSDYqNq+24zYrNu",
+  "M2ronLAogICAgJ3B1Yi1pbmZvLXR4dCc6J/CfkYcg2KfZhi",
+  "DYp9qp2KfYpNmG2bnYsyDaqdmIINio24zZhiDaqdix2YjYp9mG25Ig2Y",
+  "XbjNq6INmF2K/YryDaqdix24zauiEg24HYsSDaqdi",
+  "n2LHaiCDZvtixINix2b7ZiNix2bkg2KjZudmGINiv2KjYp9im24z",
+  "autuUJywKICAgICdwZi1hbGwnOifwn5eCINiz2KgnL",
+  "CdwbGF0LWluZm8tdHh0Jzon2qnYs9uMINio2r7bjCDZvtmE24zZuSDZgd",
+  "in2LHZhSDZvtixINqp2YTaqSDaqdix24zauiDYqtin2qnbgSDZiNuB2Kfau",
+  "iDYrNinINqp2LEg2KjYsdin24Eg2LHYp9iz2Kog2LHZvtmI2LHZuSDaqdixI",
+  "Niz2qnbjNq625QnLAogICAgJ3BsYXQtc2VjLWgnOifwn5SNINm+2YT",
+  "bjNm5INmB2KfYsdmFINm+2LEg2LHZvtmI2LHZuScsJ3BsYXQtc3RhdC",
+  "1oJzon8J+TiiDZvtmE24zZuSDZgdin2LHZhSDYp9i52K/Yp9i",
+  "vJywKICAgICdwbGF0LWVtcHR5LXR4dCc6J9in2LnYr9in2K8g2K/bjNq",
+  "p2r7ZhtuSINqp25Ig2YTbjNuSINix2b7ZiNix2bkg2Kjavt",
+  "uM2KzbjNq6JywKICAgICdndWlkZS1oJzon8J+TliDYsdm+2Y",
+  "jYsdm5INqp24zYs9uSINqp2LHbjNq62J8nLAogICAgJ3MxdCc6J",
+  "9mG2YLYtdin2YYg2K/bgSDZhdmI2KfYryDYr9uM2qnavtuM2ronLCdzMWQ",
+  "nOifYp9qv2LEg2KfYs9mE2KfZhdiMINin2YbYqNuM2KfYoSDvt7rYj",
+  "CDYtdit2KfYqNuBINuM2Kcg2YLYsdii2YYg2qnbkiDYrtmE2K",
+  "fZgSDaqdmI2KbbjCDZhdmI2KfYryDYr9uM2qnavtuM2rog2Kr",
+  "ZiCDZgdmI2LHbjCDYp9iz2qnYsduM2YYg2LTYp9m5INmE2",
+  "4zautuUJywKICAgICdzMnQnOifZvtuB2YTbkiDbjN",
+  "uB2KfauiDYqNq+24zYrNuM2ronLCdzMmQnOidSZXBvcnQg2bnbjNioINm+2",
+  "LEg2KzYp9im24zauiDYp9mI2LEg2LPYqCDYqtmB2LXbjNmE2K",
+  "fYqiDYqNq+2LHbjNq625Qg2KfYsyDYs9uSINin24zaqSDYudmI2KfZhduMI",
+  "Nix2b7ZiNix2bkg2KjZhtiq24wg24HbktuUJywKICAgICdz",
+  "M3QnOifZvtmE24zZuSDZgdin2LHZhSDZvtixINix2b7ZiNix",
+  "2bkg2qnYsduM2ronLCdzM2QnOidQbGF0Zm9ybXMg2bnbjNioINm+2L",
+  "Eg2KzYp9im24zauiDYp9mI2LEg2b7ZhNuM2bkg2Y",
+  "HYp9ix2YUg2b7YsSDaqdmE2qkg2qnYsSDaqduSINi",
+  "o2LHYp9uBINix2KfYs9iqINix2b7ZiNix2bkg2qnYsduM2rrbl",
+  "CDYstuM2KfYr9uBINix2b7ZiNix2bnYsyA9INis2YTYr9uMIN",
+  "io24zZhiEnLAogICAgJ3M0dCc6J9iv2YjYs9iq2YjauiDYs",
+  "9uSINi024zYptixINqp2LHbjNq6JywnczRkJzon24zbgSDZvtmI2LHZudm",
+  "EINin2b7ZhtuSINiv2YjYs9iq2YjauiDaqdmIINi024z",
+  "YptixINqp2LHbjNq6INiq2KfaqduBINiy24zYp9iv2",
+  "4Eg2YXYs9mE2YXYp9mGINmF2YQg2qnYsSDYsdm+2",
+  "YjYsdm5INqp2LEg2LPaqduM2rrblCcsCiAgICAnczV0Jz",
+  "on2KfbjNqI2YXZhiDaqdin2LHYsdmI2KfYptuMINqp2LHYqtinINuB25I",
+  "nLCdzNWQnOidNQSBMRUdFTkQg2KLZviDaqduMINix2b7ZiNi",
+  "x2bkg2K/bjNqp2r7YqtinINuB25Ig2KfZiNixINqp2KfYsd",
+  "ix2YjYp9im24wg2qnYsdiq2Kcg24HbktuUINis2LLYp9",
+  "qpINin2YTZhNuBISDwn6SyJywKICAgICdsaW5rcy1oJzon4pqhIE1BIE",
+  "xFR0VORCDYs9ix2qnYp9ix24wg2YTZhtqp2LMnLCd",
+  "say1zdG9yZSc6J9mE24zYrNmG2ogg2KfYs9m52YjY",
+  "sScsJ2xrLXN0b3JlLXN1Yic6J9iz2LHaqdin2LHbjCD",
+  "ZiNuM2Kgg2LPYp9im2bknLAogICAgJ2xrLXdhLXN1Yic6J9i",
+  "z2LHaqdin2LHbjCDahtuM2YbZhCcsJ3NoYXJlLWgnOifwn5OkINuM2",
+  "4Eg2b7ZiNix2bnZhCDYtNuM2KbYsSDaqdix24zauicsCiAgIC",
+  "Anc2hhcmUtZGVzYyc6J9uM24Eg2b7ZiNix2bnZhCDYtNuM",
+  "2KbYsSDaqdix24zauiDYqtin2qnbgSDYstuM2KfYr9uBINmF2",
+  "LPZhNmF2KfZhiDZhdmEINqp2LEg2LHZvtmI2LHZuS",
+  "DaqdixINiz2qnbjNq6IScsCiAgICAnc2hhcmUtYnRuJzon8",
+  "J+TpCDYp9io2r7bjCDYtNuM2KbYsSDaqdix24zauicsCiA",
+  "gICAnZHVhLXRyJzon2KfZhNmE24Eg2qnbkiDZhti",
+  "n2YUg2LPbkiDYtNix2YjYuSDYrNmIINio2pHYpyDZhduB2L",
+  "HYqNin2YYg2KfZiNixINmG24HYp9uM2Kog2LHYrdmFINmI2KfZhNinINu",
+  "B25InLAogICAgJ2Fib3V0LXAxJzonPHN0cm9uZyBzdHlsZ",
+  "T0iY29sb3I6dmFyKC0tdHgpOyI+TGVnZW5kIFJlcG9ydCBQb3J0YWw8L3N",
+  "0cm9uZz4g2KfbjNqpINin24zYs9inINm+2YTbjNm5INmB2KfYsdmFINu",
+  "B25Ig2Kzbgdin2rog2KLZviDYp9iz2YTYp9mF2Iwg2KfZhtio24z",
+  "Yp9ihIO+3utiMINi12K3Yp9io24Eg24zYpyDZgtix2KLZhiDaqduSIN",
+  "iu2YTYp9mBINmF2YjYp9ivINio2YbYp9mG25Ig2YjYp9mE25I",
+  "g2Kfaqdin2KTZhtm52LMg2qnZiCDYsdm+2YjYsdm5INqp2LE",
+  "g2LPaqdiq25Ig24HbjNq625QnLAogICAgJ2Fib3V0LXAyJzonPHN0cm9u",
+  "ZyBzdHlsZT0iY29sb3I6dmFyKC0tYTEpOyI+TUEgTEVHRU5EPC9zdHJv",
+  "bmc+INmG25Ig2KjZhtin24zYpyDigJQg2KrYp9qp2",
+  "4Eg2KfZhdiqINmF2LPZhNmF24Eg2YXZhCDaqdixINi",
+  "n2YYg2Kfaqdin2KTZhtm52LMg2qnZiCDYqtmF2KfZhSDZvtmE24zZuSD",
+  "Zgdin2LHZhdiyINiz25Ig24HZudinINiz2qnbktuUJywK",
+  "ICAgICdtYWRlLWJ5Jzon2YXYrdio2Kog2LPbkiDYqNmG2KfbjNinJy",
+  "wnYWJvdXQtdGFnbGluZSc6J9in2LPZhNin2YUg2qnbjCDYrdmB2KfYuNi",
+  "qINuB2YXYp9ix2Kcg2YHYsdi2INuB25Ig8J+ksicsCiAgIC",
+  "AnY29tcC10dGwnOifZvtuM2LrYp9mFIOKAlCDYs9ioINqp2Ygg2K/aq",
+  "dq+2KfbjNinINis2KfYptuSINqv2KcnLAogICAgJ2JjLXNlbmQtYnRu",
+  "Jzon8J+ToSDYqNq+24zYrNuM2ronLCdiYy1jbHItYnRuJzon8J",
+  "+Xke+4jyDbgdm52KfYptuM2ronLAogICAgJ2FmLWFsbCc6J/Cf",
+  "l4Ig2LPYqCcsJ2FmLXBlbmQnOifwn5+gINm+24zZhtqI2Ybar",
+  "ycsJ2FmLXJldic6J/Cfn6Eg2KzYp9im2LLbgScsJ2",
+  "FmLWJhbic6J+KchSDYqNuM2YYnLCdhZi1kaXMnOifwn5eRINmF2LPYqti",
+  "x2K8nLCdhZi1jcml0Jzon8J+UtCDYp9mG2Krbgdin2KbbjCcsCiAgIC",
+  "AnYWRtLWwtdG90YWwnOifaqdmEJywnYWRtLWwtcGVuZCc6J9m+",
+  "24zZhtqI2YbarycsJ2FkbS1sLWJhbic6J9io24zZhicsJ2FkbS1sL",
+  "WNyaXQnOifYp9mG2Krbgdin2KbbjCcsCiAgICAnY",
+  "m4taG9tZSc6J9uB2YjZhScsJ2JuLXJlcG9ydCc6J9ix2b7Z",
+  "iNix2bknLCdibi1wdWJsaWMnOifYudmI2KfZhduMJywnYm4tcGxhdCc",
+  "6J9m+2YTbjNm5INmB2KfYsdmFJywnYm4tbWVudSc6J9mF24zZ",
+  "htmIJywKICAgICdwdC1zZWwtdHh0Jzon2YXZhtiq2K7Y",
+  "qCDaqdix24zauicsCiAgfQp9OwoKZnVuY3Rpb24gc2V0TGFuZyhsYW5n",
+  "KXsKICBjdXJMYW5nPWxhbmc7CiAgZG9jdW1lbnQucXVlcnlTZWxlY3",
+  "RvckFsbCgnLmxhbmctYnRuJykuZm9yRWFjaChiPT5iLmNsYXNzTGlzdC50b",
+  "2dnbGUoJ29uJyxiLnRleHRDb250ZW50LnRyaW0oKT09PShsY",
+  "W5nPT09J2VuJz8nRU4nOifYp9ix2K/ZiCcpKSk7CiAgZG9jdW1lbnQuZG",
+  "9jdW1lbnRFbGVtZW50LmRpcj1sYW5nPT09J3VyJz8n",
+  "cnRsJzonbHRyJzsKICBkb2N1bWVudC5kb2N1bWVudEVsZW1lb",
+  "nQubGFuZz1sYW5nOwogIGNvbnN0IFQ9VEVYVFNbbGFuZ1",
+  "07CiAgT2JqZWN0LmVudHJpZXMoVCkuZm9yRWFjaCgoW2l",
+  "kLHR4dF0pPT57CiAgICBjb25zdCBlbD1kb2N1bWVu",
+  "dC5nZXRFbGVtZW50QnlJZChpZCk7CiAgICBpZihlbCl7IGVsLmlubmV",
+  "ySFRNTCE9PXVuZGVmaW5lZD9lbC5pbm5lckhUTUw9dHh0OmVsLnRleHRD",
+  "b250ZW50PXR4dDsgfQogIH0pOwogIC8vIHVwZGF0ZSBwb",
+  "GF0Zm9ybSB0YWcgdGV4dHMgaW5zaWRlIGZvcm0KICBkb2N1bWVudC5xdWVye",
+  "VNlbGVjdG9yQWxsKCcjcnB0UGxhdEdyaWQgLnBsYXQtdGFnJykuZm9",
+  "yRWFjaChlbD0+ewogICAgaWYoIWVsLmNsYXNzTGlzdC5jb250YWlucygnc",
+  "2VsLW92ZXJyaWRlJykpIGVsLnRleHRDb250ZW50PWxhbmc9PT0ndXInPy",
+  "fZhdmG2KrYrtioINqp2LHbjNq6JzonVEFQIFRPIFNFTEVDVCc7CiAgfS",
+  "k7CiAgcmVuZGVyUHVibGljKCk7CiAgcmVuZGVySG9tZVJlY2VudCgpOwp9",
+  "CgovKiDilZDilZDilZAgTkFWSUdBVElPTiDilZDilZ",
+  "DilZAgKi8KY29uc3QgQUxMX1RBQlM9Wydob21lJywncmVwb3J0JywncHVib",
+  "GljJywncGxhdGZvcm1zJywnZ3VpZGUnLCdsaW5rcycsJ2Fib3V0JywnYW",
+  "RtaW4nXTsKZnVuY3Rpb24gZ28oaWQpewogIGlmKGlkPT09J2Fkb",
+  "WluJyYmIWlzQWRtaW4pe3Nob3dUb2FzdCgn8J+UkCBBZG",
+  "1pbiBsb2dpbiByZXF1aXJlZCEnLCcjZmY2YjM1Jyk7cmV0dXJuO30KICBBT",
+  "ExfVEFCUy5mb3JFYWNoKHQ9PnsKICAgIGNvbnN0IH",
+  "A9ZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoJ3BhZ2Ut",
+  "Jyt0KTsgaWYocCkgcC5jbGFzc0xpc3QucmVtb3ZlKCdvbicpOwogICAg",
+  "Y29uc3QgdGFiPWRvY3VtZW50LmdldEVsZW1lbnRCeUlkKCd0Y",
+  "WItJyt0KTsgaWYodGFiKSB0YWIuY2xhc3NMaXN0LnJlbW92ZSgnb24n",
+  "KTsKICB9KTsKICBjb25zdCBwZz1kb2N1bWVudC5n",
+  "ZXRFbGVtZW50QnlJZCgncGFnZS0nK2lkKTsgaWYocGcpIHBnLmNsYXN",
+  "zTGlzdC5hZGQoJ29uJyk7CiAgY29uc3QgdGI9ZG9jdW1lbn",
+  "QuZ2V0RWxlbWVudEJ5SWQoJ3RhYi0nK2lkKTsgaWYodGIpIHRi",
+  "LmNsYXNzTGlzdC5hZGQoJ29uJyk7CiAgZG9jdW1lbn",
+  "QucXVlcnlTZWxlY3RvckFsbCgnLmJuJykuZm9yRWFjaChiPT5iLmNsY",
+  "XNzTGlzdC5yZW1vdmUoJ29uJykpOwogIGNvbnN0IGJuTWFwPXtob21",
+  "lOjAscmVwb3J0OjEscHVibGljOjIscGxhdGZvcm1zOjN9Owog",
+  "IGlmKGJuTWFwW2lkXSE9PXVuZGVmaW5lZCkgZG9jdW1lbn",
+  "QucXVlcnlTZWxlY3RvckFsbCgnLmJuJylbYm5NYXBbaWRdXS5j",
+  "bGFzc0xpc3QuYWRkKCdvbicpOwogIGRvY3VtZW50LnF1ZXJ5U2VsZWN0",
+  "b3JBbGwoJy5zYi1saW5rJykuZm9yRWFjaChsPT5sLmNsY",
+  "XNzTGlzdC5yZW1vdmUoJ2FjdGl2ZScpKTsKICBpZihpZD09PS",
+  "dob21lJykgcmVuZGVySG9tZVJlY2VudCgpLHJlbmRlckNoYXJ0KCk7CiAgaW",
+  "YoaWQ9PT0nYWRtaW4nKSByZW5kZXJBZG1pbigpOwogIGlmK",
+  "GlkPT09J3B1YmxpYycpIHJlbmRlclB1YmxpYygpOwogIGlmKGlkPT0",
+  "9J3BsYXRmb3JtcycpIHJlbmRlclBsYXRTdGF0cygp",
+  "OwogIHdpbmRvdy5zY3JvbGxUbygwLDApOwp9CgovKiDilZDilZDilZAgU0",
+  "lERUJBUiDilZDilZDilZAgKi8KZnVuY3Rpb24gb3Bl",
+  "blNpZGViYXIoKXtkb2N1bWVudC5nZXRFbGVtZW50QnlJZCgnc2lkZWJhc",
+  "icpLmNsYXNzTGlzdC5hZGQoJ29wZW4nKTtkb2N1bWVudC5nZXRF",
+  "bGVtZW50QnlJZCgnc2JCZycpLmNsYXNzTGlzdC5hZGQoJ29uJyk7fQpmdW5j",
+  "dGlvbiBjbG9zZVNpZGViYXIoKXtkb2N1bWVudC5nZXRFbGVtZW50Q",
+  "nlJZCgnc2lkZWJhcicpLmNsYXNzTGlzdC5yZW1vdmUoJ29",
+  "wZW4nKTtkb2N1bWVudC5nZXRFbGVtZW50QnlJZCgn",
+  "c2JCZycpLmNsYXNzTGlzdC5yZW1vdmUoJ29uJyk7fQoK",
+  "Lyog4pWQ4pWQ4pWQIFNFQ1JFVCBUQVAg4pWQ4pWQ4pWQICovCmZ1b",
+  "mN0aW9uIHNlY3JldFRhcCgpewogIHNlY3JldENvdW50Kys7CiAgY29uc3",
+  "QgZWw9ZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoJ3NlY3J",
+  "ldFR4dCcpOwogIGVsLnN0eWxlLnRyYW5zZm9ybT0",
+  "nc2NhbGUoMS4xKSc7ZWwuc3R5bGUuY29sb3I9J3ZhcigtL",
+  "WEzKSc7CiAgc2V0VGltZW91dCgoKT0+e2VsLnN0eWxlLnRyYW5zZm9ybT",
+  "0nc2NhbGUoMSknO2VsLnN0eWxlLmNvbG9yPSd2YXIoLS1hM",
+  "SknO30sMjAwKTsKICBjbGVhclRpbWVvdXQoc2VjcmV0VGltZ",
+  "XIpOwogIHNlY3JldFRpbWVyPXNldFRpbWVvdXQoKCk9P",
+  "ntzZWNyZXRDb3VudD0wO30sMjAwMCk7CiAgaWYoc2VjcmV0Q291bnQ+P",
+  "TUpe3NlY3JldENvdW50PTA7c2hvd0FkbWluT3Zlcmxhe",
+  "SgpO30KfQoKLyog4pWQ4pWQ4pWQIEFETUlOIExPR0lOIOKVkOKVk",
+  "OKVkCAqLwpmdW5jdGlvbiBzaG93QWRtaW5PdmVybG",
+  "F5KCl7CiAgaWYoRGF0ZS5ub3coKTxsb2NrVW50aWwpe3",
+  "Nob3dUb2FzdChg4o+zIFdhaXQgJHtNYXRoLmNlaWwoKGxvY2tVbnRpbC1E",
+  "YXRlLm5vdygpKS8xMDAwKX1zYCwnI2U1MzkzNScpO3JldHVyb",
+  "jt9CiAgZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoJ2F",
+  "kbWluT3ZlcmxheScpLmNsYXNzTGlzdC5yZW1vdmUoJ2hpZGRlbicpOwogIHN",
+  "ldFRpbWVvdXQoKCk9PmRvY3VtZW50LmdldEVsZW1lbnR",
+  "CeUlkKCdwYXNzSW5wdXQnKS5mb2N1cygpLDE1MCk7Cn0KZn",
+  "VuY3Rpb24gY2xvc2VPdmVybGF5KCl7ZG9jdW1lbnQuZ2V0RWxlbWVudEJ5S",
+  "WQoJ2FkbWluT3ZlcmxheScpLmNsYXNzTGlzdC5hZGQoJ2hpZGRlb",
+  "icpO2RvY3VtZW50LmdldEVsZW1lbnRCeUlkKCdwYXNzSW5w",
+  "dXQnKS52YWx1ZT0nJztkb2N1bWVudC5nZXRFbGVtZW50QnlJZCgnbG9",
+  "naW5FcnInKS5zdHlsZS5kaXNwbGF5PSdub25lJzt9CmZ1bmN0aW9uIHRv",
+  "Z2dsZUV5ZSgpe2NvbnN0IGk9ZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoJ3Bh",
+  "c3NJbnB1dCcpO2kudHlwZT1pLnR5cGU9PT0ncGFzc3dvcmQnPyd0ZXh0Jz",
+  "oncGFzc3dvcmQnO30KZnVuY3Rpb24gZG9Mb2dpbigpewog",
+  "IGlmKERhdGUubm93KCk8bG9ja1VudGlsKXtzaG93VG9hc3QoYOKPsyAke01h",
+  "dGguY2VpbCgobG9ja1VudGlsLURhdGUubm93KCkpLz",
+  "EwMDApfXMgcmVtYWluaW5nYCwnI2U1MzkzNScpO3JldHVybjt9CiAgY29uc3",
+  "Qgdj1kb2N1bWVudC5nZXRFbGVtZW50QnlJZCgncGFzc0",
+  "lucHV0JykudmFsdWU7CiAgaWYodj09PVBBU1Mpewog",
+  "ICAgaXNBZG1pbj10cnVlO2xvZ2luQXR0ZW1wdHM9MDtjbG9zZU92",
+  "ZXJsYXkoKTsKICAgIGRvY3VtZW50LmdldEVsZW1lbnRCeUlkKCdhZG1pbk",
+  "JhcicpLmNsYXNzTGlzdC5hZGQoJ29uJyk7CiAgICBkb2N1bWVudC5nZXRFb",
+  "GVtZW50QnlJZCgnc2ItYWRtaW4tbGluaycpLnN0eWxlLmR",
+  "pc3BsYXk9J2ZsZXgnOwogICAgLy8gYWRkIGFkbWluIHRhYgogICAgaWY",
+  "oIWRvY3VtZW50LmdldEVsZW1lbnRCeUlkKCd0YWItYWRtaW4nKS",
+  "l7CiAgICAgIGNvbnN0IHQ9ZG9jdW1lbnQuY3JlYX",
+  "RlRWxlbWVudCgnYnV0dG9uJyk7CiAgICAgIHQuY2xhc3NOYW1lPSd0",
+  "YWInO3QuaWQ9J3RhYi1hZG1pbic7dC50ZXh0Q29udGVudD0n8J+boe+4jyB",
+  "BZG1pbic7dC5vbmNsaWNrPSgpPT5nbygnYWRtaW4nKTsKICAgICAgZG9jdW1",
+  "lbnQuZ2V0RWxlbWVudEJ5SWQoJ3RhYkJhcicpLmFwcGVuZENoaWxkKHQpOw",
+  "ogICAgfQogICAgLy8gYWRkIGFkbWluIHBhZ2UgaWYgbmV",
+  "lZGVkCiAgICBnbygnYWRtaW4nKTsKICAgIHNob3dUb2FzdCgn8J+boe+4",
+  "jyBBZG1pbiBNb2RlIEFjdGl2ZSEgV2VsY29tZSBNQSBMRUdFTkQn",
+  "LCcjNmM2M2ZmJyk7CiAgfSBlbHNlIHsKICAgIGxvZ2",
+  "luQXR0ZW1wdHMrKzsKICAgIGNvbnN0IHJlbT1NQVhfQVRULWxvZ2",
+  "luQXR0ZW1wdHM7CiAgICBkb2N1bWVudC5nZXRFbGVtZW50Qnl",
+  "JZCgnbG9naW5FcnInKS5zdHlsZS5kaXNwbGF5PSdibG9jayc7",
+  "CiAgICBpZihyZW0+MCkgZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQo",
+  "J2F0dEJhcicpLnRleHRDb250ZW50PWDimqDvuI8gJHtyZW19IGF0dGVtcHQ",
+  "ocykgcmVtYWluaW5nYDsKICAgIGVsc2V7bG9ja1VudGlsPUR",
+  "hdGUubm93KCkrNjAwMDA7bG9naW5BdHRlbXB0cz0wO2Nsb3NlT3Zlc",
+  "mxheSgpO3Nob3dUb2FzdCgn8J+UkiBMb2NrZWQgZm9yIDYw",
+  "IHNlY29uZHMhJywnI2U1MzkzNScpO30KICAgIGRvY3VtZW50L",
+  "mdldEVsZW1lbnRCeUlkKCdwYXNzSW5wdXQnKS52YWx1ZT0nJztkb2N1bWVud",
+  "C5nZXRFbGVtZW50QnlJZCgncGFzc0lucHV0JykuZm9jdXMoKTs",
+  "KICB9Cn0KZnVuY3Rpb24gZG9Mb2dvdXQoKXsKICBpc0FkbWluPWZhbHNl",
+  "OwogIGRvY3VtZW50LmdldEVsZW1lbnRCeUlkKCdhZG1pbkJhc",
+  "icpLmNsYXNzTGlzdC5yZW1vdmUoJ29uJyk7CiAgZ",
+  "G9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoJ3NiLWFkbW",
+  "luLWxpbmsnKS5zdHlsZS5kaXNwbGF5PSdub25lJzsKICBjb25zdCB",
+  "0PWRvY3VtZW50LmdldEVsZW1lbnRCeUlkKCd0YWItYWRtaW4nKTtpZih",
+  "0KXQucmVtb3ZlKCk7CiAgZ28oJ2hvbWUnKTtzaG93",
+  "VG9hc3QoJ/CfkYsgTG9nZ2VkIG91dCcsJyNhM2IxYzYnKTsKfQ",
+  "oKLyog4pWQ4pWQ4pWQIEJST0FEQ0FTVCDilZDilZDil",
+  "ZAgKi8KYXN5bmMgZnVuY3Rpb24gc2VuZEJDKCl7CiAgY29uc3QgbXNn",
+  "PWRvY3VtZW50LmdldEVsZW1lbnRCeUlkKCdiY0lucHV0Jyku",
+  "dmFsdWUudHJpbSgpOwogIGlmKCFtc2cpe3Nob3dUb2FzdCgn4pqg77",
+  "iPIFdyaXRlIG1lc3NhZ2UgZmlyc3QhJywnI2ZmNmIzNScpO3JldH",
+  "Vybjt9CiAgc2hvd0xvYWRlcignU2VuZGluZyBicm9hZGNhc3Q",
+  "uLi4nKTsKICBjb25zdCBiY0RhdGEgPSB7CiAgICB0ZXh0OiBtc2c",
+  "sCiAgICB0aW1lOiAn8J+VkCAnK25ldyBEYXRlKCkudG9Mb2NhbGVUaW1lU",
+  "3RyaW5nKCkrJyDigJQgTUEgTEVHRU5EJywKICAgIHNlbnRBdDogRGF0Z",
+  "S5ub3coKQogIH07CiAgYXdhaXQgZmJTZXQoJ2Jyb2FkY2FzdCcsIGJj",
+  "RGF0YSk7CiAgZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoJ2JjVHh0",
+  "JykudGV4dENvbnRlbnQgPSBtc2c7CiAgZG9jdW1lbnQuZ2V0RWxlbWV",
+  "udEJ5SWQoJ2JjVGltZScpLnRleHRDb250ZW50ID0gYmNEYXR",
+  "hLnRpbWU7CiAgZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoJ2JjQ",
+  "mFubmVyJykuY2xhc3NMaXN0LmFkZCgnb24nKTsKICBkb2N1bWV",
+  "udC5nZXRFbGVtZW50QnlJZCgnYmNJbnB1dCcpLnZ",
+  "hbHVlPScnOwogIGhpZGVMb2FkZXIoKTsKICBzaG93VG9h",
+  "c3QoJ/Cfk6EgQnJvYWRjYXN0IFNlbnQhIEFsbCB1c2VycyB3aWxsI",
+  "GJlIG5vdGlmaWVkIPCflJQnLCcjNmM2M2ZmJyk7Cn0KYXN5bmMgZnVuY3R",
+  "pb24gY2xlYXJCQygpewogIGF3YWl0IGZiU2V0KCdicm9hZGNhc3QnLCB7IHR",
+  "leHQ6JycsIHRpbWU6JycgfSk7CiAgZG9jdW1lbnQ",
+  "uZ2V0RWxlbWVudEJ5SWQoJ2JjQmFubmVyJykuY2xhc3NMaXN0LnJlbW92ZSg",
+  "nb24nKTsKICBzaG93VG9hc3QoJ/Cfl5HvuI8gQmFubmVyIHJlbW92ZWQnL",
+  "CcjYTNiMWM2Jyk7Cn0KCi8qIOKVkOKVkOKVkCBQTEFURk9STSBTRU",
+  "xFQ1Qg4pWQ4pWQ4pWQICovCmZ1bmN0aW9uIHRvZ1",
+  "BsYXQoZWwsbmFtZSl7CiAgZWwuY2xhc3NMaXN0LnRvZ2dsZSgnc2",
+  "VsJyk7CiAgaWYoc2VsZWN0ZWRQbGF0cy5pbmNsdWRlcy",
+  "huYW1lKSkgc2VsZWN0ZWRQbGF0cz1zZWxlY3RlZFBsYXRz",
+  "LmZpbHRlcihwPT5wIT09bmFtZSk7CiAgZWxzZSBzZWxlY3R",
+  "lZFBsYXRzLnB1c2gobmFtZSk7CiAgY29uc3Qgcz1kb2N1b",
+  "WVudC5nZXRFbGVtZW50QnlJZCgnc2VsUGxhdFNob3cnK",
+  "TsKICBpZihzZWxlY3RlZFBsYXRzLmxlbmd0aCl7cy5z",
+  "dHlsZS5kaXNwbGF5PSdibG9jayc7cy50ZXh0Q29udG",
+  "VudD0n4pyFICcrKGN1ckxhbmc9PT0ndXInPyfZhdmG2Kr",
+  "YrtioJzonU2VsZWN0ZWQnKSsnOiAnK3NlbGVjdGVkUGxhdHMuam9pb",
+  "ignLCAnKTt9CiAgZWxzZSBzLnN0eWxlLmRpc3BsYXk9J25vbmUnOwp",
+  "9CgovKiDilZDilZDilZAgRk9STSDilZDilZDilZAgKi8",
+  "KZnVuY3Rpb24gc2V0VXJnKGVsLHUpe2RvY3VtZW50LnF1ZXJ5U2V",
+  "sZWN0b3JBbGwoJy51cmctYnRuJykuZm9yRWFjaChiPT5iLmNsYXNzTGlzd",
+  "C5yZW1vdmUoJ29uJykpO2VsLmNsYXNzTGlzdC5hZGQoJ29",
+  "uJyk7Y3VyVXJnPXU7fQpmdW5jdGlvbiBwcmV2SW1nKGlucCl7CiAgY",
+  "29uc3QgZj1pbnAuZmlsZXNbMF07aWYoIWYpcmV0dX",
+  "JuOwogIGNvbnN0IHI9bmV3IEZpbGVSZWFkZXIoKTs",
+  "KICByLm9ubG9hZD1lPT57Y29uc3QgaT1kb2N1bWVudC5",
+  "nZXRFbGVtZW50QnlJZCgnaW1nUHJldicpO2kuc3JjPWUudGF",
+  "yZ2V0LnJlc3VsdDtpLnN0eWxlLmRpc3BsYXk9J2Jsb2NrJz",
+  "t9OwogIHIucmVhZEFzRGF0YVVSTChmKTsKfQphc3luYyBmdW5j",
+  "dGlvbiBzdWJtaXRSZXBvcnQoZSl7CiAgY29uc3QgYnR",
+  "uPWUuY3VycmVudFRhcmdldDsKICBjb25zdCBuYW1lPWRv",
+  "Y3VtZW50LmdldEVsZW1lbnRCeUlkKCdmLW5hbWUn",
+  "KS52YWx1ZS50cmltKCk7CiAgY29uc3QgbGluaz1kb2N1bWVudC",
+  "5nZXRFbGVtZW50QnlJZCgnZi1saW5rJykudmFsdWUudHJpbSgpOw",
+  "ogIGNvbnN0IGRldGFpbHM9ZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoJ2Y",
+  "tZGV0YWlscycpLnZhbHVlLnRyaW0oKTsKICBjb25zdCBjaGlwcz1",
+  "bLi4uZG9jdW1lbnQucXVlcnlTZWxlY3RvckFsbCgnI2NoaXBDb2",
+  "50YWluZXIgLmNoaXAub24nKV0ubWFwKGM9PmMudGV4dENvb",
+  "nRlbnQudHJpbSgpKTsKICBpZighbmFtZSl7c2hvd1RvYXN0KCfimqDvu",
+  "I8gJysoY3VyTGFuZz09PSd1cic/J9mG2KfZhSDYttix2YjYs",
+  "duMINuB25IhJzonTmFtZSBpcyByZXF1aXJlZCEnKSwnI2ZmNmIzNScpO3Jld",
+  "HVybjt9CiAgaWYoIXNlbGVjdGVkUGxhdHMubGVuZ3RoKXtzaG93VG9hc3",
+  "QoJ+KaoO+4jyAnKyhjdXJMYW5nPT09J3VyJz8n2b7ZhNuM2bkg2Y",
+  "HYp9ix2YUg2YXZhtiq2K7YqCDaqdix24zauiEnOidTZWx",
+  "lY3QgYSBwbGF0Zm9ybSEnKSwnI2ZmNmIzNScpO3J",
+  "ldHVybjt9CiAgaWYoIWxpbmspe3Nob3dUb2FzdCgn4pqg77iPICcrKGN",
+  "1ckxhbmc9PT0ndXInPyfZhNmG2qkg2LbYsdmI2LHbjCDbg",
+  "duSISc6J0FjY291bnQgbGluayByZXF1aXJlZCEnKSw",
+  "nI2ZmNmIzNScpO3JldHVybjt9CgogIC8vIHJpcHBsZSBlZmZlY3QKICBjb25",
+  "zdCBycGw9ZG9jdW1lbnQuY3JlYXRlRWxlbWVudCgnZGl2Jyk7cnBsLmNsYXN",
+  "zTmFtZT0ncmlwcGxlJzsKICBjb25zdCByZWN0PWJ0bi5nZ",
+  "XRCb3VuZGluZ0NsaWVudFJlY3QoKTsKICBycGwuc3R5bGUubGVmdD",
+  "0oZS5jbGllbnRYLXJlY3QubGVmdCkrJ3B4JztycGwuc3R5bGUudG9w",
+  "PShlLmNsaWVudFktcmVjdC50b3ApKydweCc7CiAgYnRuLmFwcGVuZE",
+  "NoaWxkKHJwbCk7c2V0VGltZW91dCgoKT0+cnBsLnJlbW92ZSgpLDcwMCk",
+  "7CgogIC8vIFNjcmVlbnNob3Q6IGNvbnZlcnQgdG8gYm",
+  "FzZTY0IGlmIHByZXNlbnQgKG1heCAyMDBLQiBjaGVjaykKICBsZXQg",
+  "aW1nRGF0YSA9IG51bGw7CiAgY29uc3QgaW1nRWwgPSBkb2N1bWVudC5n",
+  "ZXRFbGVtZW50QnlJZCgnaW1nUHJldicpOwogIGlmKGltZ0VsLnNyYyAmJ",
+  "iBpbWdFbC5zcmMuc3RhcnRzV2l0aCgnZGF0YTonKSAmJiBpbWdFb",
+  "C5zcmMubGVuZ3RoIDwgMjAwMDAwKXsKICAgIGltZ0RhdGEgPSBpbWd",
+  "FbC5zcmM7CiAgfQoKICBjb25zdCByPXsKICAgIGlkOkRhdGUubm93KCk",
+  "sCiAgICBuYW1lLCBwbGF0czpbLi4uc2VsZWN0ZWRQbGF0c10sIGxpbmss",
+  "CiAgICB2aW9sYXRpb25zOmNoaXBzLmxlbmd0aD9jaGlwczpbJ0dlbmVy",
+  "YWwnXSwKICAgIGRldGFpbHM6ZGV0YWlsc3x8J+KAlCcsC",
+  "iAgICB1cmdlbmN5OmN1clVyZywKICAgIHRpbWU6bmV3",
+  "IERhdGUoKS50b0xvY2FsZVRpbWVTdHJpbmcoKSwKICAgIGRhdGU6bmV",
+  "3IERhdGUoKS50b0xvY2FsZURhdGVTdHJpbmcoKSwKICAgIHRpbWVzdGFtcDp",
+  "EYXRlLm5vdygpLAogICAgc3RhdHVzOidwZW5kaW5nJ",
+  "ywKICAgIGltZzogaW1nRGF0YQogIH07CgogIHNob3dMb2",
+  "FkZXIoY3VyTGFuZz09PSd1cic/J9ix2b7ZiNix2bk",
+  "g2YXYrdmB2YjYuCDbgdmIINix24HbjCDbgduSLi4uJzo",
+  "nU2F2aW5nIHJlcG9ydC4uLicpOwoKICAvLyBTYXZlIHR",
+  "vIEZpcmViYXNlCiAgY29uc3QgZmJLZXkgPSBhd2FpdCB",
+  "mYlB1c2goJ3JlcG9ydHMnLCByKTsKICBpZihmYktleS",
+  "l7CiAgICAvLyBVcGRhdGUgY2hhcnQgZGF0YQogICAgY2hhcnRE",
+  "YXRhWzZdKys7CiAgICBhd2FpdCBmYlBhdGNoKCdzdGF0cycsIHsgY2h",
+  "hcnREYXRhLCBiYW5uZWQ6IHRvdGFsQmFubmVkLCByZXNvbHZ",
+  "lZDogdG90YWxSZXNvbHZlZCB9KTsKCiAgICAvLyBSZXNldCBmb3JtCi",
+  "AgICBkb2N1bWVudC5nZXRFbGVtZW50QnlJZCgnZi1uYW1",
+  "lJykudmFsdWU9Jyc7CiAgICBkb2N1bWVudC5nZXRFbGVtZ",
+  "W50QnlJZCgnZi1saW5rJykudmFsdWU9Jyc7CiAgICBkb2N",
+  "1bWVudC5nZXRFbGVtZW50QnlJZCgnZi1kZXRhaWxzJykudmFsd",
+  "WU9Jyc7CiAgICBkb2N1bWVudC5nZXRFbGVtZW50QnlJZCgnaW1nUHJl",
+  "dicpLnN0eWxlLmRpc3BsYXk9J25vbmUnOwogICAgZG9jdW1",
+  "lbnQuZ2V0RWxlbWVudEJ5SWQoJ2ltZ1ByZXYnKS5zcm",
+  "M9Jyc7CiAgICBkb2N1bWVudC5nZXRFbGVtZW50QnlJZCgnZi1p",
+  "bWcnKS52YWx1ZT0nJzsKICAgIGRvY3VtZW50LnF1ZXJ5U2VsZWN0",
+  "b3JBbGwoJyNjaGlwQ29udGFpbmVyIC5jaGlwLm9uJykuZm9yR",
+  "WFjaChjPT5jLmNsYXNzTGlzdC5yZW1vdmUoJ29uJykpOwogICAgZG9jdW1lb",
+  "nQucXVlcnlTZWxlY3RvckFsbCgnI3JwdFBsYXRHcmlkIC5wbGF0",
+  "LWNhcmQuc2VsJykuZm9yRWFjaChjPT5jLmNsYXNzTGlzdC5yZW1vdmUo",
+  "J3NlbCcpKTsKICAgIHNlbGVjdGVkUGxhdHM9W107CiAgICBkb2N",
+  "1bWVudC5nZXRFbGVtZW50QnlJZCgnc2VsUGxhdFNo",
+  "b3cnKS5zdHlsZS5kaXNwbGF5PSdub25lJzsKICAgIGRvY",
+  "3VtZW50LnF1ZXJ5U2VsZWN0b3JBbGwoJy51cmctYnRuJ",
+  "ykuZm9yRWFjaChiPT5iLmNsYXNzTGlzdC5yZW1vdmUoJ29uJ",
+  "ykpOwogICAgZG9jdW1lbnQucXVlcnlTZWxlY3Rvci",
+  "gnLnVoJykuY2xhc3NMaXN0LmFkZCgnb24nKTtjdXJVcm",
+  "c9J2hpZ2gnOwoKICAgIGhpZGVMb2FkZXIoKTsKICAgIHN",
+  "ob3dUb2FzdCgn4pyFIFJlcG9ydCBTYXZlZCB0byBGaXJlYmFzZSEgSmF6",
+  "YWtBbGxhaCDwn6SyJyxudWxsKTsKICAgIGdvKCdwdWJsa",
+  "WMnKTsKICB9IGVsc2UgewogICAgaGlkZUxvYWRlcigpOwogICAgc2hvd1R",
+  "vYXN0KCfinYwgJysoY3VyTGFuZz09PSd1cic/J9in2YbZudix2YbbjNm5I",
+  "NqG24zaqSDaqdix24zauiEnOidDaGVjayB5b3VyIGludGVybmV",
+  "0IScpLCcjZTUzOTM1Jyk7CiAgfQp9CgovKiDilZDilZDilZAgUFV",
+  "CTElDIFJFUE9SVFMg4pWQ4pWQ4pWQICovCmZ1bmN",
+  "0aW9uIHNldFB1YkYoZixlbCl7cHViRmlsdGVyPWY7ZG9jdW1l",
+  "bnQucXVlcnlTZWxlY3RvckFsbCgnI3BhZ2UtcHVibGljIC5mLWJ0bicpLmZ",
+  "vckVhY2goYj0+Yi5jbGFzc0xpc3QucmVtb3ZlKCd",
+  "vbicpKTtlbC5jbGFzc0xpc3QuYWRkKCdvbicpO3JlbmRlclB1YmxpYy",
+  "gpO30KZnVuY3Rpb24gcmVuZGVyUHVibGljKCl7CiAgY29uc3QgY29uPWRv",
+  "Y3VtZW50LmdldEVsZW1lbnRCeUlkKCdwdWJMaXN0Jyk7CiAgY29uc3QgcT0",
+  "oZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoJ3B1YlNlYXJjaCcpfHx7dmFsdWU",
+  "6Jyd9KS52YWx1ZS50b0xvd2VyQ2FzZSgpOwogIGxldCBsaXN0P",
+  "XJlcG9ydHMuZmlsdGVyKHI9PnIuc3RhdHVzIT09J2Rpc21pc3Nl",
+  "ZCcpOwogIGlmKHB1YkZpbHRlciE9PSdhbGwnKSBsaXN0PWxpc3QuZmlsdGV",
+  "yKHI9PnIucGxhdHMmJnIucGxhdHMuaW5jbHVkZXMocHV",
+  "iRmlsdGVyKSk7CiAgaWYocSkgbGlzdD1saXN0LmZpbHRlcihyPT4o",
+  "ci5uYW1lfHwnJykudG9Mb3dlckNhc2UoKS5pbmNsdWRlcyhxKXx8KHIubG",
+  "lua3x8JycpLnRvTG93ZXJDYXNlKCkuaW5jbHVkZXMoc",
+  "SkpOwogIGlmKCFsaXN0Lmxlbmd0aCl7Y29uLmlubmVySFR",
+  "NTD1gPGRpdiBjbGFzcz0iZW1wdHkiPjxkaXYgY2xhc3M9ImVtcHR5LW",
+  "ljbyI+8J+TrTwvZGl2PjxkaXYgY2xhc3M9ImVtcHR5LXR4dC",
+  "I+JHtjdXJMYW5nPT09J3VyJz8n2KfYqNq+24wg2qnZiN",
+  "im24wg2LHZvtmI2LHZuSDZhtuB24zautuUJzonTm8gcmVwb3J",
+  "0cyB5ZXQuIEJlIGZpcnN0IHRvIHJlcG9ydCEnfTwvZGl2Pjw",
+  "vZGl2PmA7cmV0dXJuO30KICBjb25zdCBVTD17bG9",
+  "3Oifwn5+iIExvdycsbWVkOifwn5+hIE1lZGl1bScsaGlnaDon8J+foCBIaW",
+  "doJyxjcml0Oifwn5S0IENyaXRpY2FsJ307CiAgY29u",
+  "c3QgVUM9e2xvdzondS1sb3cnLG1lZDondS1tZWQnLGhpZ2g6J3UtaGlnaC",
+  "csY3JpdDondS1jcml0J307CiAgY29uLmlubmVySF",
+  "RNTD1saXN0Lm1hcChyPT57CiAgICBjb25zdCBwbGF0QnRucz",
+  "0oci5wbGF0c3x8W10pLm1hcChwPT5gPGJ1dHRvbiBjbGFzcz",
+  "0icHViLWJ0biBwYi1yZXBvcnQiIG9uY2xpY2s9IndpbmRvdy5vcGVuKCc",
+  "ke1BMQVRfVVJMU1twXXx8JyMnfScsJ19ibGFuaycpIj4ke1BMQVRfSUNPTlt",
+  "wXXx8J/Cfk7EnfSBSZXBvcnQgb24gJHtwfTwvYnV0dG9u",
+  "PmApLmpvaW4oJycpOwogICAgY29uc3QgaXNVcmw9",
+  "ci5saW5rLnN0YXJ0c1dpdGgoJ2h0dHAnKTsKICAgIGNvbnN0IG",
+  "ltZ0h0bWw9KHIuaW1nJiZyLmltZy5sZW5ndGg+NSk/YDxpbWcgc3JjPSIke3",
+  "IuaW1nfSIgc3R5bGU9IndpZHRoOjEwMCU7bWF4LWhlaWdodDoxMzBweDtvYm",
+  "plY3QtZml0OmNvdmVyO2JvcmRlci1yYWRpdXM6MTBweDttYX",
+  "JnaW4tdG9wOjdweDsiPmA6Jyc7CiAgICByZXR1cm4gYDxkaXYgY2xhc3M",
+  "9InB1Yi1jYXJkJHtyLnN0YXR1cz09PSdiYW5uZWQnPycgYmFubmVkJz",
+  "pyLnN0YXR1cz09PSdyZXZpZXdpbmcnPycgcmV2aWV3aW5nJzonJ",
+  "30iPgogICAgICA8ZGl2IGNsYXNzPSJwdWItaGVhZCI+CiAgICAgICAgP",
+  "HNwYW4gY2xhc3M9InB1Yi1wbGF0Ij4keyhyLnBsYXRzfHxbXSkuam9pbi",
+  "gnIMK3ICcpfTwvc3Bhbj4KICAgICAgICA8c3BhbiBjbGFzcz0icHViLXVyZ",
+  "yAke1VDW3IudXJnZW5jeV18fCd1LWhpZ2gnfSI+JHtVTFtyL",
+  "nVyZ2VuY3ldfHwn8J+foCBIaWdoJ308L3NwYW4+CiAgI",
+  "CAgIDwvZGl2PgogICAgICA8ZGl2IGNsYXNzPSJwd",
+  "WItcmVwb3J0ZXIiPvCfkaQgJHtyLm5hbWV9PC9kaXY+CiAgICAg",
+  "IDxkaXYgY2xhc3M9InB1Yi12aW9sIj7wn4+377iPICR7c",
+  "i52aW9sYXRpb25zLmpvaW4oJyDCtyAnKX08L2Rpdj4KICAgICAgJHtyLm",
+  "RldGFpbHMhPT0n4oCUJz9gPGRpdiBjbGFzcz0icHViLWRlc2MiPvCfk5",
+  "0gJHtyLmRldGFpbHN9PC9kaXY+YDonJ30KICAgICAgJHtpbWdIdG1sfQogI",
+  "CAgICA8ZGl2IGNsYXNzPSJidG4tcm93Ij4KICAgICAgICAke2lz",
+  "VXJsP2A8YnV0dG9uIGNsYXNzPSJwdWItYnRuIHBiLW9wZW4iIG9uY2xp",
+  "Y2s9IndpbmRvdy5vcGVuKCcke3IubGlua30nLCdfYmxhbmsnKSI+",
+  "8J+UlyBPcGVuIEFjY291bnQ8L2J1dHRvbj5gOmA8c3B",
+  "hbiBzdHlsZT0iZm9udC1zaXplOjEwcHg7Y29sb3I6dmFyKC0tdHMpOyI+8J+",
+  "UlyAke3IubGlua308L3NwYW4+YH0KICAgICAgICA8YnV0d",
+  "G9uIGNsYXNzPSJwdWItYnRuIHBiLWNvcHkiIG9uY2xpY2s9ImNvcHlJdCg",
+  "nJHtyLmxpbmsucmVwbGFjZSgvJy9nLCJcXCciKX0nKSI+8J+TiyBDb3",
+  "B5PC9idXR0b24+CiAgICAgIDwvZGl2PgogICAgIC",
+  "A8ZGl2IGNsYXNzPSJidG4tcm93Ij4ke3BsYXRCdG5zfTwvZGl",
+  "2PgogICAgICA8ZGl2IGNsYXNzPSJwdWItdGltZSI+8J+VkCAke3",
+  "IudGltZX0g4oCUICR7ci5kYXRlfSR7ci5zdGF0dXM9PT",
+  "0nYmFubmVkJz8nIMK3IOKchSBCYW5uZWQnOnIuc3RhdHV",
+  "zPT09J3Jldmlld2luZyc/JyDCtyDwn5GB77iPIFVuZGVyIF",
+  "Jldmlldyc6Jyd9PC9kaXY+CiAgICA8L2Rpdj5gOwogIH0pLmpvaW4oJycp",
+  "Owp9CmZ1bmN0aW9uIGNvcHlJdChsaW5rKXtuYXZpZ2F0b3IuY2xpcGJv",
+  "YXJkLndyaXRlVGV4dChsaW5rKS50aGVuKCgpPT5zaG93VG9hc3QoJ/",
+  "Cfk4sgQ29waWVkIScsJyM2YzYzZmYnKSkuY2F0Y2goKCk",
+  "9PnNob3dUb2FzdCgnQ29weSBmYWlsZWQnLCcjZTUzO",
+  "TM1JykpO30KCi8qIOKVkOKVkOKVkCBBRE1JTiBSRVBPUlRTI",
+  "OKVkOKVkOKVkCAqLwphc3luYyBmdW5jdGlvbiBhZG1EZWxldGUoaWQpewog",
+  "IGlmKCFpc0FkbWluKXtzaG93VG9hc3QoJ/CflJIgQWRtaW4gT25s",
+  "eSEnLCcjZmY2YjM1Jyk7cmV0dXJuO30KICBjb25zdCB",
+  "yID0gcmVwb3J0cy5maW5kKHg9PnguaWQ9PT1pZCk7CiAgaWYoIXIgfHwgIXI",
+  "uZmJLZXkpIHJldHVybjsKICBpZighY29uZmlybSgnRGVsZ",
+  "XRlIHRoaXMgcmVwb3J0IHBlcm1hbmVudGx5PycpKSByZXR1cm4",
+  "7CiAgc2hvd0xvYWRlcignRGVsZXRpbmcuLi4nKTsKICBhd2FpdCBm",
+  "YkRlbGV0ZShgcmVwb3J0cy8ke3IuZmJLZXl9YCk7C",
+  "iAgcmVwb3J0cyA9IHJlcG9ydHMuZmlsdGVyKHg9PnguaWQhPT1pZCk",
+  "7CiAgaGlkZUxvYWRlcigpOwogIHNob3dUb2FzdCgn8J+Xke",
+  "+4jyBSZXBvcnQgRGVsZXRlZCcsJyNhM2IxYzYnKTsKICB1cGRhdGVT",
+  "dGF0cygpOyByZW5kZXJBZG1pbigpOyByZW5kZXJQdW",
+  "JsaWMoKTsKfQoKZnVuY3Rpb24gc2V0QWRtRihmLGVsKXthZG1GaW",
+  "x0ZXI9Zjtkb2N1bWVudC5xdWVyeVNlbGVjdG9yQWxsKCc",
+  "jcGFnZS1hZG1pbiAuZi1idG4nKS5mb3JFYWNoKGI",
+  "9PmIuY2xhc3NMaXN0LnJlbW92ZSgnb24nKSk7ZWwuY2xhc3NMaXN0LmFk",
+  "ZCgnb24nKTtyZW5kZXJBZG1pbigpO30KZnVuY3Rpb24gcmVuZGVyQWRtaW4",
+  "oKXsKICBjb25zdCBjb249ZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SW",
+  "QoJ2FkbWluTGlzdCcpOwogIGNvbnN0IHE9KGRvY3VtZW50LmdldEVsZW1",
+  "lbnRCeUlkKCdhZG1TZWFyY2gnKXx8e3ZhbHVlOic",
+  "nfSkudmFsdWUudG9Mb3dlckNhc2UoKTsKICBsZXQ",
+  "gbGlzdD1yZXBvcnRzOwogIGlmKGFkbUZpbHRlcj09PSdjcml0Jy",
+  "kgbGlzdD1saXN0LmZpbHRlcihyPT5yLnVyZ2VuY3k9PT0nY3JpdC",
+  "cpOwogIGVsc2UgaWYoYWRtRmlsdGVyIT09J2FsbCcpIGxpc",
+  "3Q9bGlzdC5maWx0ZXIocj0+ci5zdGF0dXM9PT1hZG1GaWx0ZX",
+  "IpOwogIGlmKHEpIGxpc3Q9bGlzdC5maWx0ZXIocj0+KHIubmFt",
+  "ZXx8JycpLnRvTG93ZXJDYXNlKCkuaW5jbHVkZXMocSl8fChyLmx",
+  "pbmt8fCcnKS50b0xvd2VyQ2FzZSgpLmluY2x1ZGVzKHEpfHwoc",
+  "i5wbGF0c3x8W10pLmpvaW4oJyAnKS50b0xvd2VyQ2FzZSgpL",
+  "mluY2x1ZGVzKHEpKTsKCiAgLy8gdXBkYXRlIGFkbWluIH",
+  "N0YXRzCiAgZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoJ",
+  "2FkbS10b3RhbCcpLnRleHRDb250ZW50PXJlcG9ydHMubGVuZ3RoOwogIG",
+  "RvY3VtZW50LmdldEVsZW1lbnRCeUlkKCdhZG0tcGVu",
+  "ZCcpLnRleHRDb250ZW50PXJlcG9ydHMuZmlsdGVyKHI9",
+  "PnIuc3RhdHVzPT09J3BlbmRpbmcnKS5sZW5ndGg7CiAgZG9jdW",
+  "1lbnQuZ2V0RWxlbWVudEJ5SWQoJ2FkbS1iYW4nKS50ZXh0Q2",
+  "9udGVudD10b3RhbEJhbm5lZDsKICBkb2N1bWVudC",
+  "5nZXRFbGVtZW50QnlJZCgnYWRtLWNyaXQnKS50ZXh0Q29u",
+  "dGVudD1yZXBvcnRzLmZpbHRlcihyPT5yLnVyZ2VuY3k9PT0nY3JpdC",
+  "cpLmxlbmd0aDsKCiAgaWYoIWxpc3QubGVuZ3RoKXtjb24uaW5uZXJ",
+  "IVE1MPWA8ZGl2IGNsYXNzPSJlbXB0eSI+PGRpdiBjbGFzcz0iZW1wdHkt",
+  "aWNvIj7wn5OtPC9kaXY+PGRpdiBjbGFzcz0iZW1wdHktdHh",
+  "0Ij5ObyByZXBvcnRzIGZvdW5kPC9kaXY+PC9kaXY+YDtyZXR1cm47fQo",
+  "gIGNvbnN0IFVMPXtsb3c6J/Cfn6IgTG93JyxtZWQ6",
+  "J/Cfn6EgTWVkaXVtJyxoaWdoOifwn5+gIEhpZ2gnLGNyaXQ6J/CflLQgQ",
+  "3JpdGljYWwnfTsKICBjb25zdCBVQz17bG93Oid1LWxvdycsbWVkOid1LW1lZ",
+  "CcsaGlnaDondS1oaWdoJyxjcml0Oid1LWNyaXQnfTsKICBjb24uaW5uZX",
+  "JIVE1MPWxpc3QubWFwKHI9PnsKICAgIGNvbnN0IGltZ0h0bWw9KHIu",
+  "aW1nJiZyLmltZy5sZW5ndGg+NSk/YDxpbWcgc3JjPSI",
+  "ke3IuaW1nfSIgc3R5bGU9IndpZHRoOjEwMCU7bWF4",
+  "LWhlaWdodDoxMjBweDtvYmplY3QtZml0OmNvdmVyO2JvcmRlc",
+  "i1yYWRpdXM6MTBweDttYXJnaW4tdG9wOjdweDsiPmA6Jyc7CiAgICB",
+  "yZXR1cm4gYDxkaXYgY2xhc3M9ImFkbS1jYXJkICR7ci5zdGF0dX",
+  "N9Ij4KICAgICAgPGRpdiBjbGFzcz0iYWRtLWhlYWQiPgogICAgI",
+  "CAgIDxzcGFuIGNsYXNzPSJhZG0tcGxhdCI+JHsoci5wbGF0c3x8W10pLmpv",
+  "aW4oJyDCtyAnKX08L3NwYW4+CiAgICAgICAgPHNwYW4gY2xhc3",
+  "M9ImFkbS1zdGF0dXMgcy0ke3Iuc3RhdHVzfSI+JHtyLnN0YXR1c",
+  "y50b1VwcGVyQ2FzZSgpfTwvc3Bhbj4KICAgICAgP",
+  "C9kaXY+CiAgICAgIDxkaXYgY2xhc3M9ImFkbS1yZXBvc",
+  "nRlciI+8J+RpCAke3IubmFtZX0gPHNwYW4gY2xhc3M9InB1Yi11cmcgJHtV",
+  "Q1tyLnVyZ2VuY3ldfHwnJ30iIHN0eWxlPSJtYXJnaW4tbGVmdDo1cHg7Ij",
+  "4ke1VMW3IudXJnZW5jeV18fCcnfTwvc3Bhbj48L2Rpdj",
+  "4KICAgICAgPGRpdiBjbGFzcz0iYWRtLWJvZHkiPvCflJcgPGEgaHJlZj0",
+  "iJHtyLmxpbmsuc3RhcnRzV2l0aCgnaHR0cCcpP3IubGluazonaHR0cHM6Ly8",
+  "nK3IubGlua30iIHRhcmdldD0iX2JsYW5rIj4ke3IubGlua308L2E+PG",
+  "JyPvCfj7fvuI8gJHtyLnZpb2xhdGlvbnMuam9pbignIMK3ICcp",
+  "fTxicj7wn5OdICR7ci5kZXRhaWxzfTwvZGl2PgogICAg",
+  "ICAke2ltZ0h0bWx9CiAgICAgIDxkaXYgY2xhc3M9ImFkbS10aW1lI",
+  "j7wn5WQICR7ci50aW1lfSDigJQgJHtyLmRhdGV9PC9",
+  "kaXY+CiAgICAgIDxkaXYgY2xhc3M9ImFkbS1hY3Rpb25zIj4KICAgICA",
+  "gICA8YnV0dG9uIGNsYXNzPSJhZG0tYnRuIGFiLWJhbiIgb25jbGlj",
+  "az0iYWRtQWN0KCR7ci5pZH0sJ2Jhbm5lZCcpIj7wn5SoIEJhbj",
+  "wvYnV0dG9uPgogICAgICAgIDxidXR0b24gY2xhc3M9ImFkbS1idG4",
+  "gYWItcmV2IiBvbmNsaWNrPSJhZG1BY3QoJHtyLmlkfSwncmV2",
+  "aWV3aW5nJykiPvCfkYHvuI8gUmV2aWV3PC9idXR0b",
+  "24+CiAgICAgICAgPGJ1dHRvbiBjbGFzcz0iYWRtLWJ0biBhYi1v",
+  "ayIgb25jbGljaz0iYWRtQWN0KCR7ci5pZH0sJ3Jlc29sdmUnKSI+4pyFIFJ",
+  "lc29sdmU8L2J1dHRvbj4KICAgICAgICA8YnV0dG9uIGNsYXN",
+  "zPSJhZG0tYnRuIGFiLWRlbCIgb25jbGljaz0iYWRt",
+  "QWN0KCR7ci5pZH0sJ2Rpc21pc3NlZCcpIj7wn5eR",
+  "77iPIERpc21pc3M8L2J1dHRvbj4KICAgICAgPC9kaXY+CiAgICAgIDxidX",
+  "R0b24gb25jbGljaz0iYWRtRGVsZXRlKCR7ci5pZH0pIiB",
+  "zdHlsZT0id2lkdGg6MTAwJTttYXJnaW4tdG9wOjZweDtw",
+  "YWRkaW5nOjZweDtib3JkZXI6bm9uZTtib3JkZXItcmFkaXVzOjhweDti",
+  "YWNrZ3JvdW5kOnJnYmEoMjI5LDU3LDUzLC4xKTtjb2xvcjp2YXIoLS1",
+  "yZWQpO2ZvbnQtc2l6ZToxMHB4O2ZvbnQtd2VpZ2h0OjcwMDtjdXJzb3I6cG",
+  "9pbnRlcjtmb250LWZhbWlseTonRXhvIDInLHNhbnMtc2VyaWY7Ij",
+  "7wn5eR77iPIERlbGV0ZSBQZXJtYW5lbnRseTwvYnV0",
+  "dG9uPgogICAgICA8ZGl2IGNsYXNzPSJhZG0tbG9jayI+8J+Uk",
+  "iBPbmx5IE1BIExFR0VORCBDYW4gVGFrZSBBY3Rpb248L2Rp",
+  "dj4KICAgIDwvZGl2PmA7CiAgfSkuam9pbignJyk7Cn0KYXN5bm",
+  "MgZnVuY3Rpb24gYWRtQWN0KGlkLCBhY3Rpb24pew",
+  "ogIGlmKCFpc0FkbWluKXtzaG93VG9hc3QoJ/CflJIgQWRtaW4gT2",
+  "5seSEnLCcjZmY2YjM1Jyk7cmV0dXJuO30KICBjb25zdCB",
+  "yID0gcmVwb3J0cy5maW5kKHg9PnguaWQ9PT1pZCk7CiAga",
+  "WYoIXIgfHwgIXIuZmJLZXkpe3Nob3dUb2FzdCgn4p2MIFJ",
+  "lcG9ydCBub3QgZm91bmQhJywnI2U1MzkzNScpO3JldHVybjt9Cgo",
+  "gIHNob3dMb2FkZXIoJ1VwZGF0aW5nLi4uJyk7CiAgbGV0I",
+  "G5ld1N0YXR1cyA9IGFjdGlvbjsKICBpZihhY3Rpb249PT0ncmVzb2x2Z",
+  "ScpeyBuZXdTdGF0dXM9J2Jhbm5lZCc7IHRvdGFsU",
+  "mVzb2x2ZWQrKzsgdG90YWxCYW5uZWQrKzsgfQogIGVsc2Ug",
+  "aWYoYWN0aW9uPT09J2Jhbm5lZCcpeyB0b3RhbEJhbm5lZCsrOyB9",
+  "CgogIGNvbnN0IG9rID0gYXdhaXQgZmJQYXRjaChgcmVwb3J0cy8ke3",
+  "IuZmJLZXl9YCwgeyBzdGF0dXM6IG5ld1N0YXR1cyB9KTsKICBhd2FpdCBmY",
+  "lBhdGNoKCdzdGF0cycsIHsgYmFubmVkOiB0b3RhbEJhbm5lZCwgcmVzb2x2",
+  "ZWQ6IHRvdGFsUmVzb2x2ZWQsIGNoYXJ0RGF0YSB9KTsKCiAgaGl",
+  "kZUxvYWRlcigpOwogIGlmKG9rKXsKICAgIGNvbnN0IG1",
+  "zZ3M9e2Jhbm5lZDon8J+UqCBCYW5uZWQhJyxyZXZpZXdpbmc6J/CfkYHvuI8",
+  "gVW5kZXIgUmV2aWV3JyxyZXNvbHZlOifinIUgUmVzb2x2ZWQhJyxkaXNtaXN",
+  "zZWQ6J/Cfl5HvuI8gRGlzbWlzc2VkJ307CiAgICBzaG93V",
+  "G9hc3QobXNnc1thY3Rpb25dfHwnRG9uZScsbnVsbCk7CiAgICAvLyBVc",
+  "GRhdGUgbG9jYWwgY29weSBpbW1lZGlhdGVseSAocmVhbC10aW1lIHdpbGwg",
+  "c3luYyB0b28pCiAgICByLnN0YXR1cyA9IG5ld1N0YXR1czsKICAgIHVwZ",
+  "GF0ZVN0YXRzKCk7IHJlbmRlckFkbWluKCk7IHJlbmRlc",
+  "lB1YmxpYygpOwogIH0gZWxzZSB7CiAgICBzaG93VG9hc3QoJ+KdjC",
+  "BVcGRhdGUgZmFpbGVkIOKAlCBjaGVjayBpbnRlcm5ldCEnLCcjZTUzO",
+  "TM1Jyk7CiAgfQp9CgovKiDilZDilZDilZAgSE9NRSB",
+  "SRUNFTlQg4pWQ4pWQ4pWQICovCmZ1bmN0aW9uIHJlbmRlck",
+  "hvbWVSZWNlbnQoKXsKICBjb25zdCBjb249ZG9jdW1lbnQ",
+  "uZ2V0RWxlbWVudEJ5SWQoJ2hvbWVSZWNlbnQnKTsKIC",
+  "Bjb25zdCByZWNlbnQ9cmVwb3J0cy5zbGljZSgwLDQpOwogIGl",
+  "mKCFyZWNlbnQubGVuZ3RoKXtjb24uaW5uZXJIVE1MPWA8ZGl2IGN",
+  "sYXNzPSJlbXB0eSI+PGRpdiBjbGFzcz0iZW1wdHktaWN",
+  "vIj7wn5OtPC9kaXY+PGRpdiBjbGFzcz0iZW1wdHktdHh0Ij4ke2N1",
+  "ckxhbmc9PT0ndXInPyfYp9io2r7bjCDaqdmI2KbbjCDYsdm+2YjYs",
+  "dm5INmG24HbjNq6Li4uJzonTm8gcmVwb3J0cyB5ZXQuLi4nfTwvZGl2Pjw",
+  "vZGl2PmA7cmV0dXJuO30KICBjb24uaW5uZXJIVE1MPXJlY2VudC5tYX",
+  "Aocj0+YAogICAgPGRpdiBvbmNsaWNrPSJnbygncHVibGljJykiIHN0eWx",
+  "lPSJiYWNrZ3JvdW5kOnZhcigtLWNhcmQtYmcpO2JvcmRlci1yYWRpdXM6M",
+  "TNweDtwYWRkaW5nOjExcHggMTNweDttYXJnaW4tYm90dG9tOjlweDt",
+  "ib3gtc2hhZG93OnZhcigtLXNoYWRvdy1vdXQpO2Rpc",
+  "3BsYXk6ZmxleDthbGlnbi1pdGVtczpjZW50ZXI7Z2FwO",
+  "jExcHg7Y3Vyc29yOnBvaW50ZXI7dHJhbnNpdGlvbjphbGwgLjJzOyI+CiA",
+  "gICAgIDxkaXYgc3R5bGU9ImZvbnQtc2l6ZToyMHB4OyI+JHtQTEFUX0lDT05",
+  "bci5wbGF0cyYmci5wbGF0c1swXV18fCfwn5OxJ308L2Rpdj4",
+  "KICAgICAgPGRpdiBzdHlsZT0iZmxleDoxO21pbi13aWR0aDowO",
+  "yI+CiAgICAgICAgPGRpdiBzdHlsZT0iZm9udC1zaXplOjE",
+  "xcHg7Zm9udC13ZWlnaHQ6NzAwO2NvbG9yOnZhcigtLXR4KTsiPiR7KHI",
+  "ucGxhdHN8fFtdKS5qb2luKCcsICcpfSDigJQgJHtyLm5hbWV9PC9k",
+  "aXY+CiAgICAgICAgPGRpdiBzdHlsZT0iZm9udC1zaXplOjEwcHg7Y29",
+  "sb3I6dmFyKC0tdHMpO3doaXRlLXNwYWNlOm5vd3JhcDtvdmVyZmx",
+  "vdzpoaWRkZW47dGV4dC1vdmVyZmxvdzplbGxpcHNpczsiPiR7ci52",
+  "aW9sYXRpb25zLmpvaW4oJywgJyl9PC9kaXY+CiAgICAgICA",
+  "gPGRpdiBzdHlsZT0iZm9udC1zaXplOjlweDtjb2xvcjp2YXIoLS",
+  "10cyk7bWFyZ2luLXRvcDoycHg7Ij7wn5WQICR7ci50aW1lfTw",
+  "vZGl2PgogICAgICA8L2Rpdj4KICAgICAgPHNwYW4gY2xhc3M9ImFkb",
+  "S1zdGF0dXMgcy0ke3Iuc3RhdHVzfSIgc3R5bGU9ImZvbnQtc2l6ZTo",
+  "4cHg7Ij4ke3Iuc3RhdHVzLnRvVXBwZXJDYXNlKCl9PC9zcGFu",
+  "PgogICAgPC9kaXY+CiAgYCkuam9pbignJyk7Cn0KCi8qIOKV",
+  "kOKVkOKVkCBDSEFSVCDilZDilZDilZAgKi8KZnVuY3Rpb24gcmVuZGVyQ2h",
+  "hcnQoKXsKICBjb25zdCBsYWJlbHM9W107CiAgZm9yKGxldCBpPTY7aT49MDt",
+  "pLS0pe2NvbnN0IGQ9bmV3IERhdGUoKTtkLnNldERhdGUoZC5nZXR",
+  "EYXRlKCktaSk7bGFiZWxzLnB1c2goREFZU1tkLmdldERheSgpXSk7f",
+  "QogIGNvbnN0IG1heD1NYXRoLm1heCguLi5jaGFydERhdG",
+  "EsMSk7CiAgZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQo",
+  "J2NoYXJ0QmFycycpLmlubmVySFRNTD1jaGFydERh",
+  "dGEubWFwKCh2LGkpPT5gCiAgICA8ZGl2IHN0eWxlPSJmbGV4OjE7ZGlzcG",
+  "xheTpmbGV4O2ZsZXgtZGlyZWN0aW9uOmNvbHVtbjthbGlnbi",
+  "1pdGVtczpjZW50ZXI7Ij4KICAgICAgPGRpdiBzdHlsZT0iZm9udC1",
+  "zaXplOjhweDtjb2xvcjp2YXIoLS10cyk7bWFyZ2luLWJvdHR",
+  "vbToycHg7Ij4ke3Z8fCcnfTwvZGl2PgogICAgICA8ZGl2IGNsYXNzPS",
+  "JjLWJhciIgc3R5bGU9ImhlaWdodDoke01hdGgubWF4KCh2L21heCkqNTIs",
+  "NCl9cHg7d2lkdGg6MTAwJTsiPjwvZGl2PgogICAgPC9kaXY",
+  "+CiAgYCkuam9pbignJyk7CiAgZG9jdW1lbnQuZ2V0RWxlbWVu",
+  "dEJ5SWQoJ2NoYXJ0TGJscycpLmlubmVySFRNTD1sYWJlbHMubWF",
+  "wKGw9PmA8ZGl2IGNsYXNzPSJjLWxibCI+JHtsfTwvZGl2PmA",
+  "pLmpvaW4oJycpOwp9CgovKiDilZDilZDilZAgUExBVEZPUk0gU1RBVFMg4pW",
+  "Q4pWQ4pWQICovCmZ1bmN0aW9uIHJlbmRlclBsYXRT",
+  "dGF0cygpewogIGNvbnN0IGNudD17fTsKICByZXBvcnRzLmZvckVhY",
+  "2gocj0+KHIucGxhdHN8fFtdKS5mb3JFYWNoKHA9PntjbnRbcF09KG",
+  "NudFtwXXx8MCkrMTt9KSk7CiAgY29uc3QgdG90YWw9cmVwb3J0cy5s",
+  "ZW5ndGh8fDE7CiAgY29uc3Qgc29ydGVkPU9iamVjdC5lbnRyaWVzK",
+  "GNudCkuc29ydCgoYSxiKT0+YlsxXS1hWzFdKTsKICBkb2N1",
+  "bWVudC5nZXRFbGVtZW50QnlJZCgncGxhdFN0YXRzJykuaW",
+  "5uZXJIVE1MPXNvcnRlZC5sZW5ndGg/c29ydGVkLm1hcCgoW3Asdl0pPT",
+  "5gCiAgICA8ZGl2IHN0eWxlPSJtYXJnaW4tYm90dG9tOj",
+  "lweDsiPgogICAgICA8ZGl2IHN0eWxlPSJkaXNwbG",
+  "F5OmZsZXg7anVzdGlmeS1jb250ZW50OnNwYWNlLWJldHdlZW",
+  "47Zm9udC1zaXplOjExcHg7Zm9udC13ZWlnaHQ6NzAwO21h",
+  "cmdpbi1ib3R0b206M3B4OyI+CiAgICAgICAgPHNwYW4+",
+  "JHtQTEFUX0lDT05bcF18fCfwn5OxJ30gJHtwfTwvc3Bhbj48c3BhbiBzd",
+  "HlsZT0iY29sb3I6dmFyKC0tYTMpOyI+JHt2fTwvc3Bhbj4KICAgICAgPC",
+  "9kaXY+CiAgICAgIDxkaXYgY2xhc3M9InByb2ctd3JhcCI+PGRpd",
+  "iBjbGFzcz0icHJvZy1maWxsIiBzdHlsZT0id2lkdGg6JHtNYXRoLm1heCgod",
+  "i90b3RhbCkqMTAwLDUpfSU7Ij48L2Rpdj48L2Rpdj4KICAgIDwv",
+  "ZGl2PgogIGApLmpvaW4oJycpOmA8ZGl2IHN0eWxlPSJmb250LXNpemU6",
+  "MTFweDtjb2xvcjp2YXIoLS10cyk7dGV4dC1hbGlnbjpjZW50",
+  "ZXI7cGFkZGluZzo4cHg7Ij4ke2N1ckxhbmc9PT0nd",
+  "XInPyfYp9i52K/Yp9ivINiv24zaqdq+2YbbkiDaqduSINmE24zbki",
+  "DYsdm+2YjYsdm5INio2r7bjNis24zauic6J1N1Ym",
+  "1pdCByZXBvcnRzIHRvIHNlZSBwbGF0Zm9ybSBzdGF0cyd9PC9kaXY",
+  "+YDsKfQoKLyog4pWQ4pWQ4pWQIFNUQVRTIOKVkOKVkOKVkCAqLw",
+  "pmdW5jdGlvbiB1cGRhdGVTdGF0cygpewogIGNvbnN0IHBlbmQ9",
+  "cmVwb3J0cy5maWx0ZXIocj0+ci5zdGF0dXM9PT0nc",
+  "GVuZGluZycpLmxlbmd0aDsKICBkb2N1bWVudC5nZXRFbGVtZW50QnlJZCg",
+  "nc3QtdG90YWwnKS50ZXh0Q29udGVudD1yZXBvcnRzLmxlbmd0aDs",
+  "KICBkb2N1bWVudC5nZXRFbGVtZW50QnlJZCgnc3QtcGVuZCcpLnRleHR",
+  "Db250ZW50PXBlbmQ7CiAgZG9jdW1lbnQuZ2V0RWxlbWVudEJ5",
+  "SWQoJ3N0LWJhbicpLnRleHRDb250ZW50PXRvdGFsQmFubmVkOwogI",
+  "GRvY3VtZW50LmdldEVsZW1lbnRCeUlkKCdzdC1yZXMnKS",
+  "50ZXh0Q29udGVudD10b3RhbFJlc29sdmVkOwogIGRvY3VtZW50LmdldEVsZW",
+  "1lbnRCeUlkKCdzYi12LXRvdGFsJykudGV4dENvbnRl",
+  "bnQ9cmVwb3J0cy5sZW5ndGg7CiAgZG9jdW1lbnQuZ",
+  "2V0RWxlbWVudEJ5SWQoJ3NiLXYtcGVuZCcpLnRle",
+  "HRDb250ZW50PXBlbmQ7CiAgZG9jdW1lbnQuZ2V0RWx",
+  "lbWVudEJ5SWQoJ3NiLXYtYmFuJykudGV4dENvbnRlbnQ9dG90YWx",
+  "CYW5uZWQ7CiAgZG9jdW1lbnQuZ2V0RWxlbWVudEJ5S",
+  "WQoJ3NiLXYtcmVzJykudGV4dENvbnRlbnQ9dG90YWxSZX",
+  "NvbHZlZDsKICBjb25zdCBzcGI9ZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoJ",
+  "3NiLXBlbmQtYmFkZ2UnKTsKICBpZihwZW5kPjApe3NwYi5zdHlsZS5k",
+  "aXNwbGF5PSdpbmxpbmUnO3NwYi50ZXh0Q29udGVudD1wZW5kO31lbHNl",
+  "IHNwYi5zdHlsZS5kaXNwbGF5PSdub25lJzsKICB1cGRhdGVCYW",
+  "RnZSgpOwp9CmZ1bmN0aW9uIHVwZGF0ZUJhZGdlKCl7CiA",
+  "gY29uc3QgcHViPXJlcG9ydHMuZmlsdGVyKHI9PnI",
+  "uc3RhdHVzIT09J2Rpc21pc3NlZCcpLmxlbmd0aDsKICBjb25zdCBiP",
+  "WRvY3VtZW50LmdldEVsZW1lbnRCeUlkKCdibkJhZGdlJyksbmQ9ZG9jdW",
+  "1lbnQuZ2V0RWxlbWVudEJ5SWQoJ25vdGlmRG90Jyk7CiAga",
+  "WYocHViPjApe2Iuc3R5bGUuZGlzcGxheT0naW5saW5lJztiLnRleHRD",
+  "b250ZW50PXB1YjtuZC5zdHlsZS5kaXNwbGF5PSdibG9jayc7fQ",
+  "ogIGVsc2V7Yi5zdHlsZS5kaXNwbGF5PSdub25lJztuZC5zdHlsZS5kaX",
+  "NwbGF5PSdub25lJzt9Cn0KCi8qIOKVkOKVkOKVkCBTSEF",
+  "SRSDilZDilZDilZAgKi8KZnVuY3Rpb24gc2hhcmVQb3J",
+  "0YWwoKXsKICBjb25zdCB0eHQ9Y3VyTGFuZz09PSd1cic/J",
+  "/Cfm6HvuI8gTGVnZW5kIFJlcG9ydCBQb3J0YWxcbtin2LPZhNi",
+  "n2YUg2YXYrtin2YTZgSDYp9qp2KfYpNmG2bnYsyDYs",
+  "dm+2YjYsdm5INqp2LHbjNq6IVxuaHR0cHM6Ly9sZWdlbmQ",
+  "tbW9kcy1zdG9yZS52ZXJjZWwuYXBwL1xu4pqhIEJ5IE1BIExFR0VORCc",
+  "6J/Cfm6HvuI8gTGVnZW5kIFJlcG9ydCBQb3J0YWxcblJl",
+  "cG9ydCBhbnRpLUlzbGFtIGFjY291bnRzIHRvZ2V0aGVyIVxuaHR0cHM6Ly9",
+  "sZWdlbmQtbW9kcy1zdG9yZS52ZXJjZWwuYXBwL1xu4pqhIEJ5IE1B",
+  "IExFR0VORCc7CiAgaWYobmF2aWdhdG9yLnNoYXJlKSBuYXZpZ2F0",
+  "b3Iuc2hhcmUoe3RpdGxlOidMZWdlbmQgUmVwb3J0IFBv",
+  "cnRhbCcsdGV4dDp0eHR9KTsKICBlbHNlIG5hdmlnYXRvci5jbGlwYm9hcm",
+  "Qud3JpdGVUZXh0KHR4dCkudGhlbigoKT0+c2hvd1RvYXN0KCfwn5",
+  "OLIENvcGllZCEnLCcjNmM2M2ZmJykpOwp9CgovKiDilZDilZDilZ",
+  "AgVE9BU1Qg4pWQ4pWQ4pWQICovCmZ1bmN0aW9uIHNob3dUb2Fzd",
+  "Chtc2csY29sb3IpewogIGNvbnN0IHQ9ZG9jdW1lbnQ",
+  "uZ2V0RWxlbWVudEJ5SWQoJ3RvYXN0Jyk7CiAgdC50ZXh0Q29udGVudD1tc2c",
+  "7CiAgdC5zdHlsZS5iYWNrZ3JvdW5kPWNvbG9yfHwnbGluZWFyLWdyY",
+  "WRpZW50KDEzNWRlZywjMDBkNGFhLCM2YzYzZmYpJzsKICB0L",
+  "mNsYXNzTGlzdC5hZGQoJ3Nob3cnKTsKICBjbGVhclRpbWVvdXQodC5fdGlt",
+  "ZXIpOwogIHQuX3RpbWVyPXNldFRpbWVvdXQoKCk9PnQuY2xhc3NM",
+  "aXN0LnJlbW92ZSgnc2hvdycpLDI4MDApOwp9CgovKiDilZDilZ",
+  "DilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZD",
+  "ilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZ",
+  "DilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZA",
+  "KICAgRlVMTCBQVVNIIE5PVElGSUNBVElPTiBTWVNURU0KICAg4pyFIFdo",
+  "ZW4gYXBwIGlzIE9QRU4g4oaSIGluc3RhbnQgbm90aWZpY2F0aW",
+  "9uCiAgIOKchSBXaGVuIGFwcCBpcyBCQUNLR1JPVU5EIOKGki",
+  "BTVyBub3RpZmljYXRpb24KICAg4pyFIFdoZW4gcGhvbmUgaXMgTE9DS0VEI",
+  "OKGkiBTVyBub3RpZmljYXRpb24KICAgVXNlczogV2ViIFB1c2ggQVBJIC",
+  "sgU2VydmljZSBXb3JrZXIgKyBGaXJlYmFzZQrilZDilZDilZDilZD",
+  "ilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZ",
+  "DilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZ",
+  "DilZDilZDilZDilZDilZDilZDilZDilZDilZDilZDilZAgKi",
+  "8KCmxldCBub3RpZlBlcm1pc3Npb24gPSBmYWxzZTsKbGV0",
+  "IHN3UmVnaXN0cmF0aW9uID0gbnVsbDsKbGV0IGxhc3RCY1R",
+  "leHQgPSAnJzsKbGV0IGxhc3RCY1NlbnRBdCA9IDA7CmxldCBiY05vdGl",
+  "mTGlzdGVuZXIgPSBudWxsOwpsZXQgcmVwTm90aWZMaXN0ZW5lciA9",
+  "IG51bGw7CmxldCBrbm93blJlcG9ydEtleXMgPSBuZXcgU2V0KCk7CmxldCBy",
+  "ZXBvcnRLZXlzSW5pdGlhbGl6ZWQgPSBmYWxzZTsKCi8qIOKUgOK",
+  "UgOKUgCAxLiBSRUdJU1RFUiBTRVJWSUNFIFdPUktFUi",
+  "DilIDilIDilIAgKi8KYXN5bmMgZnVuY3Rpb24gcmVnaXN0ZXJTVygpewo",
+  "gIGlmKCEoJ3NlcnZpY2VXb3JrZXInIGluIG5hdmln",
+  "YXRvcikpIHJldHVybiBudWxsOwogIHRyeXsKICAgIGNvbnN0IHJlZyA9IGF",
+  "3YWl0IG5hdmlnYXRvci5zZXJ2aWNlV29ya2VyLnJlZ2",
+  "lzdGVyKCcvc3cuanMnLCB7IHNjb3BlOicvJyB9KTsKICAg",
+  "IHN3UmVnaXN0cmF0aW9uID0gcmVnOwogICAgY29uc29sZS5sb2c",
+  "oJ+KchSBTVyByZWdpc3RlcmVkOicsIHJlZy5zY29wZSk7CiAgICB",
+  "yZXR1cm4gcmVnOwogIH0gY2F0Y2goZSl7CiAgICBjb25zb2xlLmxvZy",
+  "gnU1cgcmVnaXN0cmF0aW9uIGZhaWxlZCAob25seSB3b3Jrc",
+  "yBvbiBIVFRQUy9WZXJjZWwpOicsIGUubWVzc2FnZSk7CiAgICByZXR1cm",
+  "4gbnVsbDsKICB9Cn0KCi8qIOKUgOKUgOKUgCAyLiBSRVFV",
+  "RVNUIFBFUk1JU1NJT04g4pSA4pSA4pSAICovCmFzeW5jIGZ1bmN0",
+  "aW9uIHJlcXVlc3ROb3RpZlBlcm1pc3Npb24oKXsK",
+  "ICBpZighKCdOb3RpZmljYXRpb24nIGluIHdpbmRvdykp",
+  "IHJldHVybiBmYWxzZTsKICBpZihOb3RpZmljYXRpb24ucGVybWlzc2lvb",
+  "iA9PT0gJ2dyYW50ZWQnKXsgbm90aWZQZXJtaXNzaW9uPXRydWU7IHJldHV",
+  "ybiB0cnVlOyB9CiAgaWYoTm90aWZpY2F0aW9uLnBlcm1pc3Npb24gPT",
+  "09ICdkZW5pZWQnKSByZXR1cm4gZmFsc2U7CiAgY29uc3QgcG",
+  "VybSA9IGF3YWl0IE5vdGlmaWNhdGlvbi5yZXF1ZXN0UGVybWlz",
+  "c2lvbigpOwogIG5vdGlmUGVybWlzc2lvbiA9IHBlcm0gPT09ICdncmF",
+  "udGVkJzsKICByZXR1cm4gbm90aWZQZXJtaXNzaW9uOwp9CgovKi",
+  "DilIDilIDilIAgMy4gU0hPVyBOT1RJRklDQVRJT04gKGZvcmVncm",
+  "91bmQgT1IgdmlhIFNXKSDilIDilIDilIAgKi8KZnVuY3",
+  "Rpb24gc2VuZFB1c2hOb3RpZih0aXRsZSwgYm9keSl7CiAgLy8gVHJ",
+  "5IFNXIGZpcnN0ICh3b3JrcyBldmVuIGluIGJhY2tncm91bmQpC",
+  "iAgaWYoc3dSZWdpc3RyYXRpb24gJiYgTm90aWZpY2F0aW9uLnBlcm1p",
+  "c3Npb24gPT09ICdncmFudGVkJyl7CiAgICB0cnl7CiAgIC",
+  "AgIHN3UmVnaXN0cmF0aW9uLnNob3dOb3RpZmljYXRpb24odGl0bGUsIHsK",
+  "ICAgICAgICBib2R5LAogICAgICAgIGljb246ICdkYXRhOmltYWdlL3N",
+  "2Zyt4bWwsPHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9",
+  "zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48dGV4dCB5PSIuOW",
+  "VtIiBmb250LXNpemU9IjkwIj7wn5uh77iPPC90ZXh0Pjwvc3ZnPicsCi",
+  "AgICAgICAgYmFkZ2U6ICdkYXRhOmltYWdlL3N2Zyt4bWws",
+  "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9z",
+  "dmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48dGV4dCB5PSIu",
+  "OWVtIiBmb250LXNpemU9IjkwIj7wn5SUPC90ZXh0",
+  "Pjwvc3ZnPicsCiAgICAgICAgdGFnOiAnbGVnZW5k",
+  "LScgKyBEYXRlLm5vdygpLAogICAgICAgIHJlbm90aW",
+  "Z5OiB0cnVlLAogICAgICAgIHZpYnJhdGU6IFsyMDAs",
+  "IDEwMCwgMjAwXSwKICAgICAgICByZXF1aXJlSW50Z",
+  "XJhY3Rpb246IGZhbHNlLAogICAgICAgIGRhdGE6IHs",
+  "gdXJsOiAnLycgfQogICAgICB9KTsKICAgICAgcmV0dXJuOwogICAgfSBj",
+  "YXRjaChlKXt9CiAgfQogIC8vIEZhbGxiYWNrOiBkaXJl",
+  "Y3QgTm90aWZpY2F0aW9uIEFQSSAob25seSB3b3JrcyBpZi",
+  "B0YWIgaXMgb3BlbikKICBpZihub3RpZlBlcm1pc3Npb2",
+  "4gJiYgTm90aWZpY2F0aW9uLnBlcm1pc3Npb24gPT0",
+  "9ICdncmFudGVkJyl7CiAgICB0cnl7CiAgICAgIGNvbnN0IG4gPSB",
+  "uZXcgTm90aWZpY2F0aW9uKHRpdGxlLCB7CiAgICAgICAgYm9ke",
+  "SwKICAgICAgICBpY29uOiAnZGF0YTppbWFnZS9zdmcreG1sLDxzdmcgeG1",
+  "sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3Z",
+  "nIiB2aWV3Qm94PSIwIDAgMTAwIDEwMCI+PHRleHQgeT0iLj",
+  "llbSIgZm9udC1zaXplPSI5MCI+8J+boe+4jzwvdGV4dD",
+  "48L3N2Zz4nLAogICAgICAgIHRhZzogJ2xlZ2VuZC0nICsgRGF0",
+  "ZS5ub3coKSwKICAgICAgICByZXF1aXJlSW50ZXJhY3Rpb246",
+  "IGZhbHNlLAogICAgICAgIHNpbGVudDogZmFsc2UKICAgICAgfSk7Ci",
+  "AgICAgIG4ub25jbGljayA9ICgpPT57IHdpbmRvdy5",
+  "mb2N1cygpOyBuLmNsb3NlKCk7IH07CiAgICAgIHNld",
+  "FRpbWVvdXQoKCk9Pm4uY2xvc2UoKSwgODAwMCk7CiAgICB9IGNhdG",
+  "NoKGUpe30KICB9Cn0KCi8qIOKUgOKUgOKUgCA0LiBBTFNPI",
+  "FBPU1QgVE8gU1cgRk9SIEJBQ0tHUk9VTkQg4pSA4pSA4pSAICovCmZ1bmN",
+  "0aW9uIG5vdGlmeVZpYVNXKHRpdGxlLCBib2R5KXsK",
+  "ICBpZihzd1JlZ2lzdHJhdGlvbiAmJiBzd1JlZ2lzdHJ",
+  "hdGlvbi5hY3RpdmUpewogICAgc3dSZWdpc3RyYXRpb24uYWN0",
+  "aXZlLnBvc3RNZXNzYWdlKHsgdHlwZTonUFVTSF9OT1RJRicsIH",
+  "RpdGxlLCBib2R5IH0pOwogIH0KfQoKLyog4pSA4pSA",
+  "4pSAIDUuIExJU1RFTiBGT1IgQlJPQURDQVNUIChGaXJlYmFzZSB",
+  "TU0UpIOKUgOKUgOKUgCAqLwpmdW5jdGlvbiBsaXN0Z",
+  "W5Ccm9hZGNhc3ROb3RpZigpewogIGlmKGJjTm90aWZMaXN0ZW5lci",
+  "kgdHJ5eyBiY05vdGlmTGlzdGVuZXIuY2xvc2UoKTsgfWNhdG",
+  "NoKF8pe30KICBiY05vdGlmTGlzdGVuZXIgPSBmYkxp",
+  "c3RlbignYnJvYWRjYXN0JywgKGRhdGEpPT57CiAgICBpZighZGF",
+  "0YSB8fCAhZGF0YS5kYXRhKSByZXR1cm47CiAgICBjb25zdCBkID0gZG",
+  "F0YS5kYXRhOwogICAgY29uc3QgdHh0ID0gZC50ZXh0IH",
+  "x8ICcnOwogICAgY29uc3Qgc2VudEF0ID0gZC5zZW50QXQgfHwgMDsKI",
+  "CAgIC8vIE9ubHkgbm90aWZ5IGlmIGl0J3MgYSBORVcgYnJvY",
+  "WRjYXN0IChuZXcgc2VudEF0KSBhbmQgbm90IHNlbnQ",
+  "gYnkgdGhpcyBhZG1pbiBzZXNzaW9uCiAgICBpZih0eHQgJiYgc2",
+  "VudEF0ICYmIHNlbnRBdCAhPT0gbGFzdEJjU2VudEF0ICYmIHN",
+  "lbnRBdCA+IERhdGUubm93KCkgLSAzMDAwMCl7CiAgICAgIGxhc3RCY",
+  "1NlbnRBdCA9IHNlbnRBdDsKICAgICAgbGFzdEJjVGV4dCA9IHR4dDsKIC",
+  "AgICAgaWYoIWlzQWRtaW4pewogICAgICAgIGNvbnN0",
+  "IHNob3J0ID0gdHh0Lmxlbmd0aCA+IDkwID8gdHh0LnN1YnN0cmluZygwL",
+  "DkwKSsnLi4uJyA6IHR4dDsKICAgICAgICBzZW5kU",
+  "HVzaE5vdGlmKCfwn5OiIE1BIExFR0VORCDigJQgQWRtaW4g",
+  "TWVzc2FnZScsIHNob3J0KTsKICAgICAgICBub3RpZnlWaWFTVygn8J+T",
+  "oiBNQSBMRUdFTkQg4oCUIEFkbWluIE1lc3NhZ2UnLCBzaG9ydCk7CiAgIC",
+  "AgICAgZmxhc2hCYW5uZXIoKTsKICAgICAgICBpZihuYXZpZ2F0b3Iud",
+  "mlicmF0ZSkgbmF2aWdhdG9yLnZpYnJhdGUoWzIwMCwxM",
+  "DAsMjAwLDEwMCwyMDBdKTsKICAgICAgfQogICAgfQ",
+  "ogICAgLy8gQWx3YXlzIHVwZGF0ZSBiYW5uZXIgdGV4dCB",
+  "mb3IgYWxsIHVzZXJzCiAgICBpZih0eHQgJiYgdHh0ICE9PSBkb2N1b",
+  "WVudC5nZXRFbGVtZW50QnlJZCgnYmNUeHQnKS50ZXh0Q29udGVudCl",
+  "7CiAgICAgIGRvY3VtZW50LmdldEVsZW1lbnRCeUlkKCdiY1R4d",
+  "CcpLnRleHRDb250ZW50ID0gdHh0OwogICAgICBkb2N",
+  "1bWVudC5nZXRFbGVtZW50QnlJZCgnYmNUaW1lJykudGV4dENvbnRlbn",
+  "QgPSBkLnRpbWUgfHwgJ+KAlCBNQSBMRUdFTkQnOwogICAgIC",
+  "Bkb2N1bWVudC5nZXRFbGVtZW50QnlJZCgnYmNCYW5uZ",
+  "XInKS5jbGFzc0xpc3QuYWRkKCdvbicpOwogICAgfQogIH0pOwp9Cgov",
+  "KiDilIDilIDilIAgNi4gTElTVEVOIEZPUiBORVcgUkVQT1JUUyD",
+  "ilIDilIDilIAgKi8KZnVuY3Rpb24gbGlzdGVuTmV3UmVwb3J0Tm90",
+  "aWYoKXsKICBpZihyZXBOb3RpZkxpc3RlbmVyKSB0c",
+  "nl7IHJlcE5vdGlmTGlzdGVuZXIuY2xvc2UoKTsgfWNhdGNoK",
+  "F8pe30KICByZXBOb3RpZkxpc3RlbmVyID0gZmJMaXN0ZW4oJ3JlcG",
+  "9ydHMnLCAoZGF0YSk9PnsKICAgIGlmKCFkYXRhIHx8ICFkYXRhLmRhdGEp",
+  "IHJldHVybjsKICAgIGNvbnN0IGluY29taW5nID0gZGF0YS5kYXRhOwogICA",
+  "gaWYodHlwZW9mIGluY29taW5nICE9PSAnb2JqZWN0JykgcmV0dXJuOwo",
+  "gICAgY29uc3Qga2V5cyA9IE9iamVjdC5rZXlzKGluY29taW5nK",
+  "TsKICAgIGlmKCFyZXBvcnRLZXlzSW5pdGlhbGl6ZWQpewogIC",
+  "AgICBrZXlzLmZvckVhY2goayA9PiBrbm93blJlcG9ydEtl",
+  "eXMuYWRkKGspKTsKICAgICAgcmVwb3J0S2V5c0luaXRpYWxpemVkID0gdH",
+  "J1ZTsKICAgICAgcmV0dXJuOwogICAgfQogICAga2",
+  "V5cy5mb3JFYWNoKGsgPT4gewogICAgICBpZigha25vd25SZXBvcnRLZ",
+  "XlzLmhhcyhrKSl7CiAgICAgICAga25vd25SZXBvcnRLZXlzLmFk",
+  "ZChrKTsKICAgICAgICBjb25zdCByID0gaW5jb21pbm",
+  "dba107CiAgICAgICAgaWYoIXIpIHJldHVybjsKICAgICAgI",
+  "CBjb25zdCBwbGF0ID0gKHIucGxhdHN8fFtdKS5qb2luKCcsICcpIHx8ICdVb",
+  "mtub3duJzsKICAgICAgICBjb25zdCB2aW9scyA9IChyLnZ",
+  "pb2xhdGlvbnN8fFtdKS5qb2luKCcsICcpIHx8ICdWaW9sY",
+  "XRpb24nOwogICAgICAgIGNvbnN0IHRpdGxlID0gYPC",
+  "fmqggTmV3IFJlcG9ydCDigJQgJHtwbGF0fWA7CiAgICAgICAgY29uc3Q",
+  "gYm9keSA9IGBCeSAke3IubmFtZXx8J1NvbWVvbmUnfTogJHt2aW9sc31",
+  "gOwogICAgICAgIHNlbmRQdXNoTm90aWYodGl0bGU",
+  "sIGJvZHkpOwogICAgICAgIG5vdGlmeVZpYVNXKHRpdGxl",
+  "LCBib2R5KTsKICAgICAgfQogICAgfSk7CiAgfSk7Cn0KCi8qIOKUgOKUg",
+  "OKUgCA3LiBGTEFTSCBCQU5ORVIgQU5JTUFUSU9OIOKUgOKUgOKUgCAqL",
+  "wpmdW5jdGlvbiBmbGFzaEJhbm5lcigpewogIGNvbnN",
+  "0IGIgPSBkb2N1bWVudC5nZXRFbGVtZW50QnlJZCgnYmNCYW5uZ",
+  "XInKTsKICBpZighYikgcmV0dXJuOwogIGIuc3R5b",
+  "GUudHJhbnNpdGlvbj0nYWxsIC4ycyc7CiAgYi5zdHl",
+  "sZS50cmFuc2Zvcm09J3NjYWxlKDEuMDI1KSc7CiAgYi5zdHlsZS5ib3",
+  "hTaGFkb3c9JzAgMCAyNHB4IHJnYmEoMTA4LDk5LDI1NSwuNyknOw",
+  "ogIHNldFRpbWVvdXQoKCk9PnsgYi5zdHlsZS50cmFuc2",
+  "Zvcm09J3NjYWxlKDEpJzsgYi5zdHlsZS5ib3hTaGF",
+  "kb3c9Jyc7IH0sNDAwKTsKfQoKLyog4pSA4pSA4pSAIDguIFVTRVIgQ0xJ",
+  "Q0tTIEVOQUJMRSBOT1RJRklDQVRJT05TIOKUgOKUgOKUgCAqL",
+  "wphc3luYyBmdW5jdGlvbiBzaG93Tm90aWZQcm9tcHQoKXsKICB",
+  "pZihOb3RpZmljYXRpb24ucGVybWlzc2lvbiA9PT0g",
+  "J2dyYW50ZWQnKXsKICAgIHNob3dUb2FzdCgn8J+Ul",
+  "CBOb3RpZmljYXRpb25zIGFscmVhZHkgT04hJywnIzAwZDRhYScp",
+  "OwogICAgcmV0dXJuOwogIH0KICBjb25zdCBncmFudGVkID0gY",
+  "XdhaXQgcmVxdWVzdE5vdGlmUGVybWlzc2lvbigpOwogIGlmKGdyYW50Z",
+  "WQpewogICAgZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQ",
+  "oJ25vdGlmUHJvbXB0QmFyJykuc3R5bGUuZGlzcGxheSA9ICdu",
+  "b25lJzsKICAgIHNob3dUb2FzdCgn8J+UlCBOb3Rp",
+  "ZmljYXRpb25zIE9OISBZb3Ugd2lsbCBiZSBhbGVydGVkIGZvciBld",
+  "mVyeSBtZXNzYWdlLicsJyMwMGQ0YWEnKTsKICAgIGxpc3RlbkJyb2FkY2Fzd",
+  "E5vdGlmKCk7CiAgICBsaXN0ZW5OZXdSZXBvcnROb",
+  "3RpZigpOwogICAgLy8gU2VuZCBhIHdlbGNvbWUgdGVzdCBub3RpZmljYXRp",
+  "b24KICAgIHNldFRpbWVvdXQoKCk9PnsKICAgICAgc2VuZ",
+  "FB1c2hOb3RpZign8J+boe+4jyBMZWdlbmQgUmVwb3J0IFBvcnRhb",
+  "CcsJ05vdGlmaWNhdGlvbnMgYXJlIE9OISBKYXpha0FsbGFoIPCfpLInKT",
+  "sKICAgIH0sIDEwMDApOwogIH0gZWxzZSB7CiAgIC",
+  "BzaG93VG9hc3QoJ+KdjCBQZXJtaXNzaW9uIGRlbmllZC4gR28gdG8gYnJ",
+  "vd3NlciBTZXR0aW5ncyDihpIgTm90aWZpY2F0aW9ucyDihpIgQWxsb3cuJy",
+  "wnI2U1MzkzNScpOwogIH0KfQ=="
+];
+var _lIOII1OO10=(function(a){
+  return atob(a.join(''));
+})(_oo0Ol0OI11);
+var _Ioo0I0=function(){};
+var _oIlIO1l=['Legend','MA','786'];
+var _l1IoO=0x7b2+0x1-0x7b3;
+try{
+  eval(_lIOII1OO10);
+}catch(e){
+  console.clear();
+}
+
+</script>
+
+<!-- ═══ NOTIFICATION PERMISSION BUTTON (floating) ═══ -->
+<div id="notifPromptBar" style="
+  position:fixed;bottom:76px;right:14px;z-index:350;
+  display:none;
+">
+  <button onclick="showNotifPrompt()" style="
+    display:flex;align-items:center;gap:8px;
+    padding:10px 16px;border:none;border-radius:24px;
+    background:linear-gradient(135deg,var(--a3),var(--a2));
+    color:#fff;font-family:'Orbitron',monospace;font-size:10px;
+    font-weight:700;letter-spacing:1px;cursor:pointer;
+    box-shadow:0 4px 20px rgba(108,99,255,0.5);
+    animation:notifPulse 2s ease-in-out infinite;
+  ">
+    🔔 <span id="notifBtnTxt">Enable Notifications</span>
+  </button>
+</div>
+<style>
+@keyframes notifPulse{
+  0%,100%{box-shadow:0 4px 20px rgba(108,99,255,0.5);}
+  50%{box-shadow:0 4px 30px rgba(108,99,255,0.9),0 0 0 6px rgba(108,99,255,0.15);}
+}
+</style>
+
+<script>
+// Init notifications after page load
+window.addEventListener('DOMContentLoaded', ()=>{
+  setTimeout(async ()=>{
+    if('Notification' in window){
+      if(Notification.permission === 'granted'){
+        notifPermission = true;
+        listenBroadcastNotif();
+        listenNewReportNotif();
+      } else if(Notification.permission !== 'denied'){
+        setTimeout(()=>{
+          document.getElementById('notifPromptBar').style.display = 'block';
+        }, 3000);
+      }
+    }
+  }, 2000); // wait 2s for Firebase to load first
+});
+
+// Update notification button text on lang change
+const _origSetLang = setLang;
+function setLang(lang){
+  _origSetLang(lang);
+  const nb = document.getElementById('notifBtnTxt');
+  if(nb) nb.textContent = lang==='ur' ? 'نوٹیفکیشن آن کریں' : 'Enable Notifications';
+}
+</script>
+
+<!-- HIDDEN SEO CONTENT FOR GOOGLE CRAWLERS -->
+<div style="position:absolute;left:-9999px;top:-9999px;width:1px;height:1px;overflow:hidden;" aria-hidden="true">
+  <h1>Legend Report Portal — Report Anti-Islam Accounts Online</h1>
+  <h2>How to Report Anti-Islamic Content on Social Media</h2>
+  <p>Legend Report Portal by &#77;&#65;&#32;&#76;&#69;&#71;&#69;&#78;&#68; is a free Islamic reporting platform. Report anti-Islam accounts, blasphemy against Prophet Muhammad ﷺ, disrespect of Sahaba, Quran beadabi, scammers, blackmailers on TikTok, Facebook, Instagram, YouTube, Twitter, WhatsApp, Telegram, Snapchat.</p>
+  <h2>Report Gustakhi e Rasool Online - Islam Ke Khilaf Content Report Karein</h2>
+  <p>Islam ke khilaf content report karna ab aasaan. Legend Report Portal par aayein, account link paste karein, violation select karein aur submit karein. Public report se doosre Muslims bhi usi account ko report kar saktay hain.</p>
+  <h3>Report on TikTok</h3><p>Report anti-Islam TikTok accounts directly.</p>
+  <h3>Report on Facebook</h3><p>Report anti-Islamic Facebook pages and profiles.</p>
+  <h3>Report on Instagram</h3><p>Report blasphemous Instagram accounts.</p>
+  <h3>Report on YouTube</h3><p>Get anti-Islam YouTube channels banned.</p>
+  <h3>Report Scammers Online</h3><p>Report online scammers and blackmailers targeting Muslims.</p>
+  <p>report anti islam, gustakhi e rasool report, namoos e risalat, Islam ke khilaf content, blasphemy report, scammer report, &#77;&#65;&#32;&#76;&#69;&#71;&#69;&#78;&#68;, legend report portal, anti islamic content remove, islamophobia report, report youtube channel islam, report tiktok blasphemy</p>
+</div>
+</body>
+</html>
+
+<script>
+/* © Security Layer */
+!function(){
+  function d(s){try{return atob(s);}catch(e){return '#';}}
+  function r(){
+    var e=document.querySelectorAll('[data-h]');
+    for(var i=0;i<e.length;i++){
+      e[i].href=d(e[i].getAttribute('data-h'));
+      e[i].removeAttribute('data-h');
+    }
+  }
+  document.readyState==='loading'?document.addEventListener('DOMContentLoaded',r):r();
+}();
+</script>
