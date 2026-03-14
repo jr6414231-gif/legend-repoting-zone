@@ -898,6 +898,329 @@ textarea.ni{resize:none;height:85px;}
 </head>
 <body>
 
+<!-- ═══ WHATSAPP CHANNEL POPUP ═══ -->
+<style>
+@keyframes fadeInOverlay{from{opacity:0}to{opacity:1}}
+@keyframes popupIn{from{opacity:0;transform:scale(0.7) translateY(30px)}to{opacity:1;transform:scale(1) translateY(0)}}
+@keyframes borderGlow{0%,100%{box-shadow:0 0 20px rgba(247,201,72,0.4),0 0 60px rgba(247,201,72,0.15),0 20px 60px rgba(0,0,0,0.7)}50%{box-shadow:0 0 35px rgba(247,201,72,0.7),0 0 80px rgba(247,201,72,0.3),0 20px 60px rgba(0,0,0,0.7)}}
+@keyframes iconBounce{0%,100%{transform:translateY(0) scale(1);filter:drop-shadow(0 0 10px #25d366)}50%{transform:translateY(-8px) scale(1.1);filter:drop-shadow(0 0 22px #25d366)}}
+@keyframes titlePulse{0%,100%{text-shadow:0 0 10px rgba(247,201,72,0.5),0 0 20px rgba(247,201,72,0.2)}50%{text-shadow:0 0 20px rgba(247,201,72,0.9),0 0 40px rgba(247,201,72,0.4)}}
+@keyframes btnShimmer{0%{background-position:200% center}100%{background-position:-200% center}}
+@keyframes floatParticle{0%{transform:translateY(0);opacity:0.8}100%{transform:translateY(-110px);opacity:0}}
+@keyframes starTwinkle{0%,100%{opacity:0;transform:scale(0.3) rotate(0deg)}50%{opacity:1;transform:scale(1.2) rotate(180deg)}}
+@keyframes bgPulse{0%,100%{background:radial-gradient(ellipse at 20% 50%,rgba(37,211,102,0.08) 0%,transparent 60%),linear-gradient(135deg,#0a1a0a 0%,#0d1f0d 50%,#0a1a0a 100%)}50%{background:radial-gradient(ellipse at 80% 50%,rgba(247,201,72,0.06) 0%,transparent 60%),linear-gradient(135deg,#0d1f0d 0%,#1a3a1a 50%,#0d1f0d 100%)}}
+@keyframes ringExpand{0%{transform:scale(1);opacity:0.5}100%{transform:scale(2.8);opacity:0}}
+
+#wa-popup-overlay{
+  position:fixed;top:0;left:0;width:100%;height:100%;
+  background:rgba(0,0,0,0.85);
+  z-index:99999;
+  display:flex;align-items:center;justify-content:center;
+  backdrop-filter:blur(8px);
+  animation:fadeInOverlay 0.5s ease;
+  /* NO click-to-close on overlay */
+}
+#wa-popup-box{
+  background:radial-gradient(ellipse at 20% 50%,rgba(37,211,102,0.08) 0%,transparent 60%),linear-gradient(135deg,#0a1a0a 0%,#0d1f0d 50%,#0a1a0a 100%);
+  border:2px solid #f7c948;
+  border-radius:24px;
+  padding:32px 28px 28px;
+  max-width:370px;width:90%;
+  text-align:center;
+  position:relative;
+  overflow:hidden;
+  animation:popupIn 0.5s cubic-bezier(0.175,0.885,0.32,1.275), borderGlow 3s ease-in-out infinite, bgPulse 4s ease-in-out infinite;
+}
+#wa-popup-box::before{
+  content:'';position:absolute;top:-2px;left:-2px;right:-2px;bottom:-2px;
+  border-radius:26px;
+  background:linear-gradient(45deg,#f7c948,#25d366,#f7c948,#25d366);
+  background-size:300% 300%;
+  z-index:-1;
+  animation:btnShimmer 3s linear infinite;
+}
+.wa-icon-wrap{font-size:54px;margin-bottom:12px;display:inline-block;animation:iconBounce 2s ease-in-out infinite;}
+.wa-title{color:#f7c948;font-size:21px;font-weight:700;margin-bottom:7px;letter-spacing:1px;animation:titlePulse 2.5s ease-in-out infinite;}
+.wa-desc{color:#a0b8a0;font-size:13px;margin-bottom:22px;line-height:1.6;}
+.wa-btn{
+  display:block;
+  background:linear-gradient(270deg,#25d366,#128c4e,#1ebe5d,#25d366);
+  background-size:300% 100%;
+  color:#fff;text-decoration:none;
+  padding:14px 20px;border-radius:14px;
+  font-size:15px;font-weight:700;
+  margin-bottom:11px;
+  letter-spacing:0.5px;
+  position:relative;overflow:hidden;
+  animation:btnShimmer 2.5s linear infinite;
+  transition:transform 0.2s,box-shadow 0.2s;
+  box-shadow:0 4px 18px rgba(37,211,102,0.4);
+}
+.wa-btn:hover{transform:translateY(-3px) scale(1.02);box-shadow:0 8px 28px rgba(37,211,102,0.6);}
+/* Lock message */
+.wa-lock-msg{
+  color:#4a5a4a;font-size:11px;margin-top:10px;
+  display:flex;align-items:center;justify-content:center;gap:5px;
+}
+.wa-particle{
+  position:absolute;pointer-events:none;font-size:14px;
+  animation:floatParticle var(--dur) ease-in infinite var(--delay) both;
+  left:var(--left);bottom:0;z-index:0;
+}
+.wa-star{
+  position:absolute;pointer-events:none;
+  width:6px;height:6px;background:#f7c948;
+  clip-path:polygon(50% 0%,61% 35%,98% 35%,68% 57%,79% 91%,50% 70%,21% 91%,32% 57%,2% 35%,39% 35%);
+  animation:starTwinkle var(--sdur) ease-in-out infinite var(--sdelay) both;
+  top:var(--stop);left:var(--sleft);
+}
+.wa-ring{
+  position:absolute;border-radius:50%;
+  border:2px solid rgba(37,211,102,0.4);
+  width:80px;height:80px;
+  top:50px;left:calc(50% - 40px);
+  animation:ringExpand 2.5s ease-out infinite var(--rdelay) both;
+  pointer-events:none;
+}
+</style>
+
+<div id="wa-popup-overlay">
+<div id="wa-popup-box">
+
+  <div class="wa-ring" style="--rdelay:0s;border-color:rgba(247,201,72,0.3);"></div>
+  <div class="wa-ring" style="--rdelay:0.8s;border-color:rgba(37,211,102,0.3);"></div>
+  <div class="wa-ring" style="--rdelay:1.6s;border-color:rgba(247,201,72,0.2);"></div>
+
+  <div class="wa-particle" style="--dur:3.2s;--delay:0s;--left:8%;">✨</div>
+  <div class="wa-particle" style="--dur:2.8s;--delay:0.5s;--left:22%;">⭐</div>
+  <div class="wa-particle" style="--dur:3.6s;--delay:1s;--left:38%;">💚</div>
+  <div class="wa-particle" style="--dur:2.5s;--delay:0.3s;--left:55%;">✨</div>
+  <div class="wa-particle" style="--dur:3.1s;--delay:1.2s;--left:70%;">⭐</div>
+  <div class="wa-particle" style="--dur:2.9s;--delay:0.7s;--left:85%;">💚</div>
+
+  <div class="wa-star" style="--sdur:1.8s;--sdelay:0s;--stop:15%;--sleft:10%;"></div>
+  <div class="wa-star" style="--sdur:2.2s;--sdelay:0.4s;--stop:25%;--sleft:85%;background:#25d366;width:5px;height:5px;"></div>
+  <div class="wa-star" style="--sdur:1.5s;--sdelay:0.8s;--stop:70%;--sleft:7%;width:4px;height:4px;"></div>
+  <div class="wa-star" style="--sdur:2s;--sdelay:1.2s;--stop:80%;--sleft:88%;background:#25d366;"></div>
+
+  <div class="wa-icon-wrap">📲</div>
+  <h2 class="wa-title">Join Our WhatsApp Channels</h2>
+  <p class="wa-desc">Join MA LEGEND ke official WhatsApp channels — phir aage jayein 👇</p>
+
+  <!-- Countdown Timer -->
+  <div style="margin-bottom:16px;">
+    <div style="color:#888;font-size:12px;margin-bottom:6px;" id="wa-countdown-label">⏱️ <span id="wa-countdown">8</span> seconds remaining</div>
+    <div style="background:rgba(255,255,255,0.08);border-radius:6px;height:5px;overflow:hidden;">
+      <div id="wa-timer-bar" style="height:100%;width:100%;background:linear-gradient(90deg,#25d366,#f7c948);border-radius:6px;transition:width 1s linear,background 1s;"></div>
+    </div>
+  </div>
+
+  <a href="https://whatsapp.com/channel/0029VarS46O3QxRtTZO0z60x" target="_blank" class="wa-btn" onclick="closeWaPopup()">
+    ✅ Join Channel 1
+  </a>
+  <a href="https://whatsapp.com/channel/0029VbCpXSeCnA7zeNBxuJ2i" target="_blank" class="wa-btn" onclick="closeWaPopup()">
+    ✅ Join Channel 2
+  </a>
+
+  <div class="wa-lock-msg">🔒 Join karo phir aage jayein</div>
+</div>
+</div>
+
+<script>
+function closeWaPopup(){
+  var overlay=document.getElementById('wa-popup-overlay');
+  if(overlay){
+    overlay.style.transition='opacity 0.35s ease';
+    overlay.style.opacity='0';
+    setTimeout(function(){overlay.remove();},350);
+  }
+}
+// Block Escape key
+document.addEventListener('keydown',function(e){
+  if(e.key==='Escape')e.preventDefault();
+},{capture:true});
+// Block Android back button from bypassing popup
+window.addEventListener('popstate',function(e){
+  if(document.getElementById('wa-popup-overlay')){
+    history.pushState(null,'',location.href);
+  }
+});
+history.pushState(null,'',location.href);
+
+// ── POPUP COUNTDOWN TIMER ──
+(function(){
+  var secs=8;
+  var timerEl=document.getElementById('wa-countdown');
+  var barEl=document.getElementById('wa-timer-bar');
+  if(!timerEl||!barEl)return;
+  var iv=setInterval(function(){
+    secs--;
+    timerEl.textContent=secs;
+    barEl.style.width=(secs/8*100)+'%';
+    if(secs<=3){barEl.style.background='#e53935';}
+    if(secs<=0){
+      clearInterval(iv);
+      timerEl.parentElement.innerHTML='⏰ <b style="color:#e53935">Abhi Join Karo!</b>';
+    }
+  },1000);
+})();
+</script>
+<!-- ═══ END WHATSAPP POPUP ═══ -->
+
+<!-- ════════════════════════════════════
+     1. LOADING / SPLASH SCREEN
+════════════════════════════════════ -->
+<div id="ma-splash" style="
+  position:fixed;inset:0;z-index:999999;
+  background:linear-gradient(135deg,#0a1a0a,#0d1f0d,#0a1a0a);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  transition:opacity 0.6s ease;
+">
+  <div style="animation:splashPulse 1.2s ease-in-out infinite;margin-bottom:20px;">
+    <div style="font-size:64px;filter:drop-shadow(0 0 20px #f7c948);">🛡️</div>
+  </div>
+  <div style="color:#f7c948;font-size:22px;font-weight:800;letter-spacing:4px;text-shadow:0 0 20px rgba(247,201,72,0.6);margin-bottom:6px;">ISLAM GUARD</div>
+  <div style="color:#25d366;font-size:11px;letter-spacing:3px;margin-bottom:28px;">BY MA LEGEND</div>
+  <div style="width:180px;height:4px;background:rgba(255,255,255,0.1);border-radius:4px;overflow:hidden;">
+    <div id="splash-bar" style="height:100%;width:0%;background:linear-gradient(90deg,#25d366,#f7c948);border-radius:4px;transition:width 0.1s linear;"></div>
+  </div>
+  <div style="color:#556655;font-size:11px;margin-top:10px;" id="splash-txt">Loading...</div>
+</div>
+<style>
+@keyframes splashPulse{0%,100%{transform:scale(1);}50%{transform:scale(1.12);}}
+</style>
+<script>
+(function(){
+  var bar=document.getElementById('splash-bar');
+  var txt=document.getElementById('splash-txt');
+  var splash=document.getElementById('ma-splash');
+  var p=0;
+  var msgs=['Loading...','Initializing...','Almost ready...','Bismillah...'];
+  var iv=setInterval(function(){
+    p+=2;
+    bar.style.width=Math.min(p,100)+'%';
+    txt.textContent=msgs[Math.floor(p/25)]||msgs[3];
+    if(p>=100){
+      clearInterval(iv);
+      setTimeout(function(){
+        splash.style.opacity='0';
+        setTimeout(function(){splash.remove();},600);
+      },300);
+    }
+  },28);
+})();
+</script>
+
+<!-- ════════════════════════════════════
+     2. VISITOR COUNTER (floating badge)
+════════════════════════════════════ -->
+<div id="visitor-badge" style="
+  position:fixed;bottom:80px;left:14px;
+  background:linear-gradient(135deg,#0d1f0d,#1a3a1a);
+  border:1px solid rgba(37,211,102,0.4);
+  border-radius:20px;padding:6px 12px;
+  z-index:9000;pointer-events:none;
+  display:flex;align-items:center;gap:6px;
+  box-shadow:0 4px 16px rgba(0,0,0,0.4);
+  animation:visitorFadeIn 1s ease 2s both;
+">
+  <span style="width:7px;height:7px;background:#25d366;border-radius:50%;display:inline-block;animation:visitorPing 1.5s ease-in-out infinite;flex-shrink:0;"></span>
+  <span style="color:#a0c8a0;font-size:11px;" id="visitor-txt">... online</span>
+</div>
+<style>
+@keyframes visitorFadeIn{from{opacity:0;transform:translateX(-20px)}to{opacity:1;transform:translateX(0)}}
+@keyframes visitorPing{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.4);opacity:0.6}}
+</style>
+<script>
+(function(){
+  // Realistic animated visitor count
+  var base=Math.floor(Math.random()*80)+120; // 120-200
+  var el=document.getElementById('visitor-txt');
+  function update(){
+    var delta=Math.floor(Math.random()*5)-2;
+    base=Math.max(80,Math.min(350,base+delta));
+    if(el)el.textContent=base+' online';
+  }
+  update();
+  setInterval(update,4000);
+})();
+</script>
+
+<!-- ════════════════════════════════════
+     3. SCROLL TO TOP BUTTON
+════════════════════════════════════ -->
+<button id="scroll-top-btn" onclick="window.scrollTo({top:0,behavior:'smooth'})" style="
+  position:fixed;bottom:20px;right:16px;
+  width:44px;height:44px;border-radius:50%;
+  background:linear-gradient(135deg,#f7c948,#c8960c);
+  border:none;cursor:pointer;
+  font-size:20px;color:#0d1f0d;font-weight:900;
+  box-shadow:0 4px 16px rgba(247,201,72,0.4);
+  z-index:9000;
+  display:none;
+  align-items:center;justify-content:center;
+  transition:all 0.2s;
+  animation:none;
+" onmouseover="this.style.transform='scale(1.1)';this.style.boxShadow='0 6px 22px rgba(247,201,72,0.6)'"
+   onmouseout="this.style.transform='scale(1)';this.style.boxShadow='0 4px 16px rgba(247,201,72,0.4)'">↑</button>
+<script>
+window.addEventListener('scroll',function(){
+  var btn=document.getElementById('scroll-top-btn');
+  if(!btn)return;
+  if(window.scrollY>300){
+    btn.style.display='flex';
+  } else {
+    btn.style.display='none';
+  }
+},{passive:true});
+</script>
+
+<!-- ════════════════════════════════════
+     4. TOAST NOTIFICATION SYSTEM
+════════════════════════════════════ -->
+<div id="toast-container" style="
+  position:fixed;top:70px;right:14px;
+  z-index:99000;display:flex;flex-direction:column;gap:8px;
+  pointer-events:none;
+"></div>
+<style>
+.ma-toast{
+  background:linear-gradient(135deg,#0d1f0d,#1a3a1a);
+  border-left:3px solid #25d366;
+  color:#c8e6c9;font-size:13px;
+  padding:11px 16px;border-radius:10px;
+  box-shadow:0 6px 24px rgba(0,0,0,0.5);
+  pointer-events:all;max-width:260px;
+  animation:toastIn 0.35s cubic-bezier(0.175,0.885,0.32,1.275);
+  display:flex;align-items:center;gap:8px;
+}
+.ma-toast.error{border-color:#e53935;color:#ffcdd2;}
+.ma-toast.warn{border-color:#f7c948;color:#fff9c4;}
+@keyframes toastIn{from{opacity:0;transform:translateX(60px)}to{opacity:1;transform:translateX(0)}}
+@keyframes toastOut{from{opacity:1;transform:translateX(0)}to{opacity:0;transform:translateX(60px)}}
+</style>
+<script>
+function showToast(msg,type,duration){
+  var c=document.getElementById('toast-container');
+  if(!c)return;
+  var t=document.createElement('div');
+  t.className='ma-toast'+(type?' '+type:'');
+  var icon=type==='error'?'❌':type==='warn'?'⚠️':'✅';
+  t.innerHTML='<span>'+icon+'</span><span>'+msg+'</span>';
+  c.appendChild(t);
+  var dur=duration||3000;
+  setTimeout(function(){
+    t.style.animation='toastOut 0.3s ease forwards';
+    setTimeout(function(){if(t.parentNode)t.parentNode.removeChild(t);},300);
+  },dur);
+}
+// Hook into existing report submit if present
+document.addEventListener('DOMContentLoaded',function(){
+  // Show welcome toast after splash
+  setTimeout(function(){showToast('Islam Guard mein khush amdeed! 🤲','',4000);},2500);
+});
+</script>
+
 <!-- CANVAS PARTICLE SYSTEM -->
 <canvas id="particleCanvas"></canvas>
 <div class="orb orb1"></div>
@@ -2547,6 +2870,167 @@ function setLang(lang){
   <h3>Report Scammers Online</h3><p>Report online scammers and blackmailers targeting Muslims.</p>
   <p>report anti islam, gustakhi e rasool report, namoos e risalat, Islam ke khilaf content, blasphemy report, scammer report, &#77;&#65;&#32;&#76;&#69;&#71;&#69;&#78;&#68;, legend report portal, anti islamic content remove, islamophobia report, report youtube channel islam, report tiktok blasphemy</p>
 </div>
+<!-- ═══ WEBSITE-WIDE EFFECTS (Optimized) ═══ -->
+<style>
+/* will-change GPU acceleration for all fixed elements */
+.site-star,.site-sparkle,.site-shoot{will-change:transform,opacity;}
+
+/* Twinkling stars - pure CSS, very light */
+.site-star{
+  position:fixed;pointer-events:none;z-index:1;
+  border-radius:50%;background:#fff;
+  animation:siteTwinkle var(--sd) ease-in-out infinite var(--sdel) both;
+  top:var(--st);left:var(--sl);
+  width:var(--sw2);height:var(--sw2);opacity:0;
+}
+@keyframes siteTwinkle{
+  0%,100%{opacity:0;transform:scale(0.3);}
+  50%{opacity:var(--sop);transform:scale(1.2);}
+}
+/* Floating sparkles - reduced count, longer duration = less CPU */
+.site-sparkle{
+  position:fixed;pointer-events:none;z-index:1;
+  font-size:var(--sf);
+  animation:siteFloat var(--sfd) linear infinite var(--sfdel) both;
+  left:var(--sfx);bottom:-30px;opacity:0;
+}
+@keyframes siteFloat{
+  0%{transform:translateY(0) rotate(0deg);opacity:0;}
+  8%{opacity:0.6;}
+  92%{opacity:0.3;}
+  100%{transform:translateY(-105vh) rotate(300deg);opacity:0;}
+}
+/* Shooting stars */
+.site-shoot{
+  position:fixed;pointer-events:none;z-index:1;
+  width:var(--shw);height:2px;
+  background:linear-gradient(90deg,transparent,#f7c948,#fff,transparent);
+  border-radius:2px;top:var(--sht);left:-220px;
+  animation:siteShoot var(--shd) linear infinite var(--shdel) both;
+  opacity:0;transform:rotate(-12deg);
+}
+@keyframes siteShoot{
+  0%{left:-220px;opacity:0;}
+  4%{opacity:0.8;}
+  85%{opacity:0.5;}
+  100%{left:110vw;opacity:0;}
+}
+</style>
+
+<!-- Stars: reduced to 12 (was 20) for performance -->
+<div class="site-star" style="--sd:2.5s;--sdel:0s;--st:5%;--sl:10%;--sw2:3px;--sop:0.9;background:#f7c948;"></div>
+<div class="site-star" style="--sd:3.2s;--sdel:0.6s;--st:8%;--sl:35%;--sw2:2px;--sop:0.7;"></div>
+<div class="site-star" style="--sd:2.0s;--sdel:1.2s;--st:4%;--sl:60%;--sw2:3px;--sop:1;background:#25d366;"></div>
+<div class="site-star" style="--sd:3.5s;--sdel:0.3s;--st:10%;--sl:82%;--sw2:2px;--sop:0.8;background:#f7c948;"></div>
+<div class="site-star" style="--sd:2.8s;--sdel:1.8s;--st:25%;--sl:5%;--sw2:2px;--sop:0.7;background:#25d366;"></div>
+<div class="site-star" style="--sd:2.2s;--sdel:0.9s;--st:20%;--sl:93%;--sw2:3px;--sop:0.8;background:#f7c948;"></div>
+<div class="site-star" style="--sd:3.0s;--sdel:2.1s;--st:50%;--sl:7%;--sw2:2px;--sop:0.6;"></div>
+<div class="site-star" style="--sd:1.9s;--sdel:0.4s;--st:55%;--sl:95%;--sw2:3px;--sop:0.9;background:#25d366;"></div>
+<div class="site-star" style="--sd:2.6s;--sdel:1.5s;--st:72%;--sl:20%;--sw2:2px;--sop:0.7;background:#f7c948;"></div>
+<div class="site-star" style="--sd:3.3s;--sdel:0.7s;--st:78%;--sl:75%;--sw2:3px;--sop:0.8;"></div>
+<div class="site-star" style="--sd:2.1s;--sdel:2.4s;--st:90%;--sl:45%;--sw2:2px;--sop:0.6;background:#f7c948;"></div>
+<div class="site-star" style="--sd:2.9s;--sdel:1.1s;--st:95%;--sl:88%;--sw2:3px;--sop:0.9;background:#25d366;"></div>
+
+<!-- Sparkles: reduced to 6 (was 12), longer durations -->
+<div class="site-sparkle" style="--sf:12px;--sfd:12s;--sfdel:0s;--sfx:8%;">✨</div>
+<div class="site-sparkle" style="--sf:11px;--sfd:14s;--sfdel:2s;--sfx:25%;">💫</div>
+<div class="site-sparkle" style="--sf:13px;--sfd:11s;--sfdel:4s;--sfx:45%;">✨</div>
+<div class="site-sparkle" style="--sf:10px;--sfd:13s;--sfdel:1s;--sfx:62%;">⭐</div>
+<div class="site-sparkle" style="--sf:12px;--sfd:15s;--sfdel:3s;--sfx:78%;">💫</div>
+<div class="site-sparkle" style="--sf:11px;--sfd:12s;--sfdel:6s;--sfx:92%;">✨</div>
+
+<!-- Shooting stars: 3 only (was 5) -->
+<div class="site-shoot" style="--shw:100px;--shd:8s;--shdel:0s;--sht:8%;"></div>
+<div class="site-shoot" style="--shw:80px;--shd:11s;--shdel:3.5s;--sht:20%;background:linear-gradient(90deg,transparent,#25d366,#fff,transparent);"></div>
+<div class="site-shoot" style="--shw:120px;--shd:9s;--shdel:7s;--sht:14%;"></div>
+
+<!-- Canvas Particle System JS (Optimized: 40 particles, no connection lines on mobile) -->
+<script>
+(function(){
+  var canvas=document.getElementById('particleCanvas');
+  if(!canvas)return;
+  var ctx=canvas.getContext('2d');
+  var W,H,particles=[],raf,lastT=0;
+  var isMobile=window.innerWidth<768;
+  var COUNT=isMobile?25:40; // fewer particles on mobile
+  var CONNECT=!isMobile;    // no connection lines on mobile
+
+  function resize(){
+    W=canvas.width=window.innerWidth;
+    H=canvas.height=window.innerHeight;
+    isMobile=W<768;
+  }
+  resize();
+  window.addEventListener('resize',resize,{passive:true});
+
+  var colors=['rgba(247,201,72,','rgba(37,211,102,','rgba(255,255,255,'];
+
+  function mkP(){
+    return{
+      x:Math.random()*W, y:Math.random()*H,
+      r:Math.random()*1.5+0.5,
+      dx:(Math.random()-0.5)*0.3,
+      dy:(Math.random()-0.5)*0.3,
+      c:colors[Math.floor(Math.random()*colors.length)],
+      a:Math.random()*0.4+0.1,
+      da:(Math.random()*0.004+0.001)*(Math.random()<0.5?1:-1)
+    };
+  }
+  for(var i=0;i<COUNT;i++)particles.push(mkP());
+
+  // Throttle to ~30fps for performance
+  function animate(ts){
+    raf=requestAnimationFrame(animate);
+    if(ts-lastT<33)return; // skip if <33ms = ~30fps
+    lastT=ts;
+    ctx.clearRect(0,0,W,H);
+
+    // Connection lines (desktop only)
+    if(CONNECT){
+      for(var i=0;i<particles.length-1;i++){
+        for(var j=i+1;j<particles.length;j++){
+          var ddx=particles[i].x-particles[j].x;
+          var ddy=particles[i].y-particles[j].y;
+          var dist=ddx*ddx+ddy*ddy;
+          if(dist<10000){ // 100px^2
+            ctx.beginPath();
+            ctx.strokeStyle='rgba(247,201,72,'+(0.07*(1-dist/10000))+')';
+            ctx.lineWidth=0.4;
+            ctx.moveTo(particles[i].x,particles[i].y);
+            ctx.lineTo(particles[j].x,particles[j].y);
+            ctx.stroke();
+          }
+        }
+      }
+    }
+
+    for(var i=0;i<particles.length;i++){
+      var p=particles[i];
+      p.x+=p.dx; p.y+=p.dy;
+      p.a+=p.da;
+      if(p.a<=0.05||p.a>=0.55)p.da*=-1;
+      if(p.x<-5||p.x>W+5||p.y<-5||p.y>H+5){
+        particles[i]=mkP();
+        particles[i].x=Math.random()*W;
+        particles[i].y=Math.random()*H;
+      }
+      ctx.beginPath();
+      ctx.arc(p.x,p.y,p.r,0,6.283);
+      ctx.fillStyle=p.c+p.a+')';
+      ctx.fill();
+    }
+  }
+  requestAnimationFrame(animate);
+
+  // Pause when tab hidden (save CPU)
+  document.addEventListener('visibilitychange',function(){
+    if(document.hidden)cancelAnimationFrame(raf);
+    else requestAnimationFrame(animate);
+  });
+})();
+</script>
+<!-- ═══ END WEBSITE-WIDE EFFECTS ═══ -->
+
 </body>
 </html>
 
