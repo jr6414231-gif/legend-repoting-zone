@@ -402,7 +402,7 @@ body{
    TOP NAV
 ═══════════════════════════════════════ */
 .topnav{
-  position:sticky;top:0;z-index:300;
+  position:sticky;top:37px;z-index:300;
   background:var(--card-bg);
   padding:10px 14px;
   box-shadow:var(--topnav-shadow);
@@ -1360,6 +1360,44 @@ document.addEventListener('DOMContentLoaded',function(){
     <button class="ab-btn" onclick="doLogout()" id="ab-logout">Logout</button>
   </div>
 </div>
+
+<!-- ═══ DAROOD SHARIF BANNER ═══ -->
+<div id="darood-banner" style="
+  background:linear-gradient(135deg,#0a1f0a,#0d2b0d,#0a1f0a);
+  border-bottom:1px solid rgba(247,201,72,0.4);
+  padding:9px 0;
+  overflow:hidden;
+  white-space:nowrap;
+  position:sticky;
+  top:0;
+  z-index:301;
+">
+  <div style="position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,#f7c948,#f7c948,transparent);opacity:0.6;"></div>
+
+  <div style="display:inline-block;animation:daroodScroll 28s linear infinite;">
+    <span style="
+      font-family:'Noto Nastaliq Urdu','Jameel Noori Nastaleeq','Arial',sans-serif;
+      font-size:14px;
+      color:#f7c948;
+      text-shadow:0 0 10px rgba(247,201,72,0.6),0 0 20px rgba(247,201,72,0.3);
+      padding:0 50px;
+      direction:rtl;
+    ">
+      ﷺ &nbsp; اَللّٰهُمَّ صَلِّ عَلٰى مُحَمَّدٍ وَّعَلٰٓى اٰلِ مُحَمَّدٍ كَمَا صَلَّيْتَ عَلٰٓى اِبْرَاهِيْمَ وَعَلٰٓى اٰلِ اِبْرَاهِيْمَ اِنَّكَ حَمِيْدٌ مَّجِيْدٌ &nbsp; ﷺ &nbsp;&nbsp;&nbsp;&nbsp;
+      ﷺ &nbsp; اَللّٰهُمَّ صَلِّ عَلٰى مُحَمَّدٍ وَّعَلٰٓى اٰلِ مُحَمَّدٍ كَمَا صَلَّيْتَ عَلٰٓى اِبْرَاهِيْمَ وَعَلٰٓى اٰلِ اِبْرَاهِيْمَ اِنَّكَ حَمِيْدٌ مَّجِيْدٌ &nbsp; ﷺ &nbsp;&nbsp;&nbsp;&nbsp;
+      ﷺ &nbsp; اَللّٰهُمَّ صَلِّ عَلٰى مُحَمَّدٍ وَّعَلٰٓى اٰلِ مُحَمَّدٍ كَمَا صَلَّيْتَ عَلٰٓى اِبْرَاهِيْمَ وَعَلٰٓى اٰلِ اِبْرَاهِيْمَ اِنَّكَ حَمِيْدٌ مَّجِيْدٌ &nbsp; ﷺ
+    </span>
+  </div>
+
+  <div style="position:absolute;bottom:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,#f7c948,#f7c948,transparent);opacity:0.6;"></div>
+</div>
+<style>
+@keyframes daroodScroll{
+  0%{transform:translateX(-100%);}
+  100%{transform:translateX(100vw);}
+}
+</style>
+<!-- ═══ END DAROOD BANNER ═══ -->
 
 <!-- TOP NAV -->
 <div class="topnav">
